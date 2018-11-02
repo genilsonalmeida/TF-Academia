@@ -1,0 +1,16 @@
+***Passo a passo para instalar o electron e rodar a aplicação!***
+
+!!Rodar os comandos dentro da pasta!!
+Pré-requisitos:
+Ter o node js instalado e atualizado.
+Ter um editor de texto instalado(de preferência o Visual Studio Code).
+
+Primeiros comandos:
+
+1º) npm init -y //Cria o arquivo package.json
+
+2º) npm install electron --save-dev --save-exact  //Comando para instalação do electron
+
+3º) code .  //Abri o editor de texto
+
+4º) npm start  //Iniciar a aplicação

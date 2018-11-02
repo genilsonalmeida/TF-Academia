@@ -1,0 +1,13 @@
+/* Css da tela Principal cadastro e listagem de aluno */
+
+.cadastra-aluno {
+    background-color: blueviolet;
+    width: 20%;
+    height: 20%;
+}
+.lista-aluno {
+    background-color: brown;
+    width: 20%;
+    height: 20%;
+}
+
