@@ -1,13 +1,33 @@
 /* Css da tela Principal cadastro e listagem de aluno */
 
 .cadastra-aluno {
+    display: inline-block;
     background-color: blueviolet;
     width: 20%;
     height: 20%;
 }
 .lista-aluno {
+    display: inline-block;
     background-color: brown;
     width: 20%;
     height: 20%;
 }
 
+.titulo-cadastra{
+    text-align: center;
+}
+
+.titulo-lista{
+    text-align: center;
+}
+
+#titleHome{
+    margin-left: 47%;
+}
+
+#menuPrincipal{
+    margin-left: 25%;
+    border: 2px solid red;
+    border-radius: 5px;
+    height: 40%;
+}
