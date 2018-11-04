@@ -41,6 +41,7 @@
   box-sizing: border-box;
 }
 
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -161,10 +162,11 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #FFFFFF;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  font-weight: bolder;  
 }
 
 a:hover {
@@ -6133,7 +6135,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #83e6e6 !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
