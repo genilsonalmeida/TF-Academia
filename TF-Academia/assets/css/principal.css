@@ -40,20 +40,20 @@ body{
 .cadastra-aluno {
     display: inline-block;
     background-color:#146F6F;
-    width: 40%;
-    height: 25%;
+    width: 450px;
+    height: 180px;
     float: left;
-    margin: 90px  2px 100px 90px;
+    margin: 50px  auto 100px 150px;
     border: #FFFFFF;
     border-radius: 10px;
 }
 .lista-aluno {
     display: inline-block;
     background-color: #146F6F;
-    width: 40%;
-    height: 25%;
+    width: 450px;
+    height: 180px;
     float: right;
-    margin: 90px  90px 100px 2px;
+    margin: 50px  150px 100px 2px;
     border: #FFFFFF;
     border-radius: 10px;
 }
@@ -61,7 +61,7 @@ body{
 .titulo-cadastra{
     text-align: right;
     margin: 16% 8% 5% 5%;
-    font-size: 22px;
+    font-size: 30px;
     color: white;
     
 }
@@ -69,7 +69,7 @@ body{
 .titulo-lista{
     text-align: right;
     margin: 16% 8% 5% 5%;
-    font-size: 22px;
+    font-size: 30px;
     color: white;
 }
 
