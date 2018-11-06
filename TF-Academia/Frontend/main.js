@@ -9,8 +9,9 @@ const { app, BrowserWindow } = require('electron')
     win = new BrowserWindow({ width: 800, height: 600/*, frame: false*/ })
   
     // and load the index.html of the app.
-    win.loadFile('src/pages/index.html')
-  
+    //win.loadFile('src/pages/index.html')
+    win.loadFile('src/pages/login.html')
+    
     // Open the DevTools.
     //win.webContents.openDevTools()
   
