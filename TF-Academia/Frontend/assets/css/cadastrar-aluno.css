@@ -44,8 +44,11 @@ body{
     width: 70%;
 }
 #dataNascimento{
-    width: 50%;
+   
     margin-left: 0%;    
 }
-
-
+#botao-finalizar{
+    width: 30%;
+    float: right;
+    font-size: 18px;
+}
