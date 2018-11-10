@@ -1,17 +1,40 @@
 package com.timedev.academia.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
+
+import org.springframework.lang.NonNull;
 
 @Embeddable
 public class Endereco {
-    
+    @NonNull
+    @Size(max = 15)
 	private String cep;
-	private String rua;
-	private String numero;
-	private String cidade;
-	private String bairro;
-	private String uf;
+	
+    @NonNull
+    @Size(max = 20)
+    private String rua;
+	
+    
+    @Size(max = 10)
+    private String numero;
+	
+    @NonNull
+    @Size(max = 10)
+    private String cidade;
+	
+    @NonNull
+    @Size(max = 15)
+    private String bairro;
+	
+    @NonNull
+    @Size(max = 2)
+    private String uf;
+    
+    public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
+    
 	public String getCep() {
 		return cep;
 	}

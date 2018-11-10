@@ -2,7 +2,10 @@ package com.timedev.academia.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Pessoa {
 
 	@Id
@@ -30,7 +34,14 @@ public abstract class Pessoa {
 	@Column
 	private String sexo;
 	
+	@Column(unique = true)	
+	private String email;
+	
 	@Embedded
+	@AttributeOverrides(value= {
+			@AttributeOverride(name = "cep", column = @Column(name = "cep_numero") ),
+			@AttributeOverride(name = "numero", column = @Column(name = "casa_numero"))
+	})
 	private Endereco Endereco;
 
 	public Pessoa() {
@@ -83,6 +94,14 @@ public abstract class Pessoa {
 
 	public void setEndereco(Endereco endereco) {
 		Endereco = endereco;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 		
 	
