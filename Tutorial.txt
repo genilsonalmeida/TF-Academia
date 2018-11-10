@@ -14,3 +14,14 @@ Primeiros comandos:
 3º) code .  //Abri o editor de texto
 
 4º) npm start  //Iniciar a aplicação
+
+---****---****---****---****---****---****---****---
+Executar o comando no diretório frontend
+
+* npm install electron-winstaller
+
+Executar o comando dentro do diretório buildSistema
+
+* npm install electron-squirrel-startup
+Link para gerar o instalador!!!
+https://ourcodeworld.com/articles/read/365/how-to-create-a-windows-installer-for-an-application-built-with-electron-framework

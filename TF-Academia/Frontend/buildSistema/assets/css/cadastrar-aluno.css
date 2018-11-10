@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.principal{
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    display: block;
+    
+}
+
+.cabecalho{
+    width: 100%;
+    margin: 0%; 
+    display: block;
+    height: 40px;
+    background-color:#168E95;
+    padding-top: 5px;
+}
+
+.nome-do-sistema{
+    color: white;
+    font-size: 20px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.titulo-cadastrar{
+    display: block;
+    color: #2CB7C4;
+    font-size: 35px;
+    margin-left: 40px;
+    margin-top: 20px;    
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+.form-cadastro{
+    margin-left: 5%;
+    
+    float: left;
+    width: 70%;
+    display: inline-table;
+    height: auto;
+}
+.foto-cadastro{
+    float: right;
+    margin-top: 3%;
+    margin-right: 9%;
+    width: 120px;
+    border:2px black;
+    border-style: solid;
+    height: 150px;
+    display: inline-block;
+}
+#dataNascimento{
+   
+    margin-left: 0%;    
+}
+#botao-finalizar{
+    width: 30%;
+    float: right;
+    font-size: 18px;
+    background-color:#168E95;
+    border-color:#168E95;
+}
+input:invalid {
+    border-color: red;
+}
+
+input:valid {
+    border-color:green;
+}   
