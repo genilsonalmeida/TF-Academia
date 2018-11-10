@@ -5,6 +5,6 @@ function AUTENTICACAO(event) {
     if ($('#formGroupExampleInput').val() == 'usuario' && $('#formGroupExampleInput2').val() == '123') {
         location.href = '../pages/principal.html';        
     }
-    $('#formGroupExampleInput').val('');
-    $('#formGroupExampleInput2').val('');
+    $('input').val('');
+    
 }
