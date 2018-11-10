@@ -19,9 +19,14 @@ body{
     font-weight:lighter;
     font-family: 'Times New Roman', Times, serif;
 }
-.botao{
+#botao{
     float: right;
+    width: 150px;
+    display: block;
     
+}
+.radio{
+    display: inline-block;
 }
 
 .tela-central{
