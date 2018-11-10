@@ -38,10 +38,22 @@ body{
     text-align: center;
 }
 .form-cadastro{
-
-    margin: 15px;
+    margin-left: 5%;
+    
     float: left;
     width: 70%;
+    display: inline-table;
+    height: auto;
+}
+.foto-cadastro{
+    float: right;
+    margin-top: 3%;
+    margin-right: 9%;
+    width: 120px;
+    border:2px black;
+    border-style: solid;
+    height: 150px;
+    display: inline-block;
 }
 #dataNascimento{
    
@@ -51,4 +63,13 @@ body{
     width: 30%;
     float: right;
     font-size: 18px;
+    background-color:#168E95;
+    border-color:#168E95;
 }
+input:invalid {
+    border-color: red;
+}
+
+input:valid {
+    border-color:green;
+}   
