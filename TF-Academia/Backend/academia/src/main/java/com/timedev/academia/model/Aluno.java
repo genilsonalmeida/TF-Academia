@@ -1,14 +1,18 @@
 package com.timedev.academia.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import com.sun.javafx.beans.IDProperty;
+import org.springframework.lang.NonNull;
+
 
 @Entity
 @DiscriminatorValue("AL")
@@ -19,10 +23,15 @@ public class Aluno extends Pessoa{
 	private Integer id;
 	
 	@Column
+	@NonNull
 	private Double mensalidade;
 	
 	@Column
+	@NonNull
 	private LocalDateTime dataDeMatricula;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<RegistroPagamento> registrosDePagamentos;
 
 	public Integer getId() {
 		return id;
@@ -46,6 +55,15 @@ public class Aluno extends Pessoa{
 
 	public void setDataDeMatricula(LocalDateTime dataDeMatricula) {
 		this.dataDeMatricula = dataDeMatricula;
+	}
+
+	public List<RegistroPagamento> getRegistrosDePagamentos() {
+		return registrosDePagamentos;
+	}
+
+	public void setRegistrosDePagamentos(List<RegistroPagamento> registrosDePagamentos) {
+		this.registrosDePagamentos.clear();
+		this.registrosDePagamentos = registrosDePagamentos;
 	}
 		
 	
