@@ -11,50 +11,46 @@
 </head>
 
 <body>
-  <div class="principal">
-    <div class="cabecalho">
+  <div class="container-flex">
+    <div class="header">
       <div class="nome-do-sistema">
         TF ACADEMIA
       </div>
     </div>
-
-    <div class="boas-vindas">
-      <div class="texto-boas-vindas">
-        Bem vindo Usuário
-      </div>
-    </div>
-
-    <div class="cadastra-aluno">
-      <a href="cadastrar-aluno.html">
-        <div>
-          <!--<div class="logo-cadastra">
-        <img src="" alt="logo-cadastrar">
-      </div>-->
-          <div class="titulo-cadastra">
-            Cadastrar Aluno
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="lista-aluno">
-      <a href="">
-      <div>
-        <!--<div class="logo-lista">
-        <img src="" alt="logo-lista">
-      </div>-->
-        <div class="titulo-lista">
-          Listar Aluno
+    <div class="content">
+      <div class="boas-vindas">
+        <div class="texto-boas-vindas">
+          Bem vindo Usuário
         </div>
       </div>
-    </a>
-    </div>
+      <div class="card-columns">
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+          <div class="card-header" id="title-card">Alunos</div>
+          <div class="text-card" id="listar-aluno">Exibir alunos</div>
+          <div class="text-card" id="cadastrar-aluno">Cadastrar</div>
+          <div class="text-card" id="editar-aluno">Editar dados</div>
+          <div class="text-card" id="deletar-aluno">Excluir</div>
+        </div>
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+          <div class="card-header" id="title-card">Instrutores</div>
+          <div class="text-card" id="listar-aluno">Exibir Instrutores</div>
+          <div class="text-card" id="cadastrar-instrutor">Cadastrar</div>
+          <div class="text-card" id="editar-instrutor">Editar dados</div>
+          <div class="text-card" id="deletar-aluno">Excluir</div>
+        </div>
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+          <div class="card-header" id="title-card">Financeiro</div>
+          <div class="text-card" id="pagamento-mensal">Pagamento Mensal</div>
+          <div class="text-card" id="pagamento-diario">Pagamento diário</div>
+        </div>
 
-    <div class="rodape">
+      </div>
+    </div>
+    <div class="footer">
       <div class="texto-rodape"> ©corporation</div>
     </div>
   </div>
-
 </body>
 <script src="../javascript/principal.js"></script>
+
 </html>
