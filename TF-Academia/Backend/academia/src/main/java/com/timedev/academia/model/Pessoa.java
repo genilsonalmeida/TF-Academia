@@ -1,5 +1,6 @@
 package com.timedev.academia.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.AttributeOverride;
@@ -29,7 +30,7 @@ public abstract class Pessoa {
 	private String cpf;
 
 	@Column
-	private LocalDateTime dataDeNascimento;
+	private LocalDate dataDeNascimento;
 	
 	@Column
 	private String sexo;
@@ -72,11 +73,11 @@ public abstract class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public LocalDateTime getDataDeNascimento() {
+	public LocalDate getDataDeNascimento() {
 		return dataDeNascimento;
 	}
 
-	public void setDataDeNascimento(LocalDateTime dataDeNascimento) {
+	public void setDataDeNascimento(LocalDate dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
