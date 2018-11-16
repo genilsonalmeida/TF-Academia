@@ -1,5 +1,6 @@
 package com.timedev.academia.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,7 @@ public class RegistroPagamento {
 	private Integer id;
     
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pagamento> pagamentos;
+    private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
 
 	public Integer getId() {
 		return id;
@@ -31,7 +32,7 @@ public class RegistroPagamento {
 
 	public void setPagamentos(List<Pagamento> pagamentos) {
 		this.pagamentos.clear();
-		this.pagamentos = pagamentos;
+		this.pagamentos.addAll(pagamentos);
 	}
 	
     

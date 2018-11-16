@@ -1,6 +1,7 @@
 package com.timedev.academia.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class Aluno extends Pessoa{
 	private LocalDateTime dataDeMatricula;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RegistroPagamento> registrosDePagamentos;
+	private List<RegistroPagamento> registrosDePagamentos = new ArrayList<RegistroPagamento>();
 
 	public Integer getId() {
 		return id;
@@ -63,7 +64,7 @@ public class Aluno extends Pessoa{
 
 	public void setRegistrosDePagamentos(List<RegistroPagamento> registrosDePagamentos) {
 		this.registrosDePagamentos.clear();
-		this.registrosDePagamentos = registrosDePagamentos;
+		this.registrosDePagamentos.addAll(registrosDePagamentos);
 	}
 		
 	

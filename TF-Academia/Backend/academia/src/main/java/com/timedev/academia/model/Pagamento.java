@@ -16,13 +16,9 @@ public class Pagamento {
 	private Integer id;
 	
     @Column
-    @NotNull
-    @NotEmpty
     private Double valor;
     
     @Column
-    @NotNull
-    @NotEmpty
     private LocalDateTime dataDoPagamento;
     
     @Column

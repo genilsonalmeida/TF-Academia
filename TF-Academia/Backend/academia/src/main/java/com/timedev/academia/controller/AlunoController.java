@@ -54,6 +54,7 @@ public class AlunoController {
 					aluno.setDataDeNascimento(alunoRequest.getDataDeNascimento());
 					aluno.setMensalidade(alunoRequest.getMensalidade());
 					aluno.setEndereco(alunoRequest.getEndereco());
+					aluno.setRegistrosDePagamentos(alunoRequest.getRegistrosDePagamentos());
 					
 					return alunoRepository.save(aluno);
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));				
