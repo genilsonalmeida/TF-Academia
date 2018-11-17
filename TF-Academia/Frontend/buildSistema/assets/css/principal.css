@@ -15,7 +15,7 @@ body{
     margin: 0%; 
     display: table-row;
     height: 40px;
-    background-color:#2CB7C4;
+    background-color:rgb(62, 226, 241);
     padding-top: 5px;
 }
 .nome-do-sistema{
@@ -74,11 +74,20 @@ body{
     font-family: 'Times New Roman', Times, serif;
     background-color: #168E95;
 }
+.card:hover{
+    box-shadow: 10px 10px 10px 0px #aaaaaa;
+    border-radius: 5px;
+}
 .text-card{
  font-size: 20px;   
- margin-left: 5%;
+ padding-left: 2%;
  color:#168E95;
  cursor: hand;
+}
+
+.text-card:hover{
+    background-color: rgb(241, 245, 245);
+    font-weight: bold;
 }
 
 #titleHome{
