@@ -1,4 +1,4 @@
-$('.botao').click(AUTENTICACAO); //evento executa funcão -> AUTENTICACAO(event)
+$('#botao').click(AUTENTICACAO); //evento executa funcão -> AUTENTICACAO(event)
 
 function AUTENTICACAO(event) {
     event.preventDefault();
