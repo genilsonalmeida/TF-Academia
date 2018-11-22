@@ -18,7 +18,7 @@ if (handleSquirrelEvent(app)) {
     win.loadFile('src/pages/login.html')
     
     // Open the DevTools.
-    win.webContents.openDevTools()
+    //win.webContents.openDevTools()
   
     // Emitted when the window is closed.
     win.on('closed', () => {
