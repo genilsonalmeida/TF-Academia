@@ -1,3 +1,8 @@
+@font-face{
+    font-family: 'Candara';
+    src: url('../fontes/Candara.ttf')
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -14,18 +19,18 @@ body{
     width: 100%;
     margin: 0%; 
 }
+
+.cor-navbar{
+    background-color: #1EBEC8 !important;
+}
+
 #img-adm{
     float: right;
 }
+
 .nome-do-sistema{
-    margin-top: 1%;
-}
-.nome-do-sistema{
-    color: white;
-    font-size: 20px;
-    margin-left: 40px;
-    font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    color: white !important;
+    font-family: 'Candara';
 }
 
 .boas-vindas{
@@ -33,10 +38,10 @@ body{
 }
 .texto-boas-vindas{
     color: #2CB7C4;
-    font-size: 35px;
+    font-size: 2.1875rem;
     margin-left: 40px;
     margin-top: 20px;    
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Candara';
 }
 
 .card-aluno {
@@ -58,15 +63,16 @@ body{
     border:#FFFFFF;
     border-radius: 10px;   
 }
+
 #title-card{
     text-align: left;
-    font-size: 25px;
+    font-size: 1.56rem;
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Candara';
     background-color: #168E95;
 }
 .text-card{
- font-size: 20px;   
+ font-size: 1.25rem;   
  padding-left: 2%;
  color:#168E95;
  cursor: hand;
@@ -98,17 +104,16 @@ body{
     position: fixed;
     bottom:0;
     width: 100%;
-    background-color: #2CB7C4;
+    background-color: #1EBEC8;
     margin: 0%;
     height: 30px;
-    font-weight: bold;
     display: table-row;
     padding-top: 2px;    
 }
 
 .texto-rodape{  
-    font-size: 15px;
+    font-size: 1rem;
     text-align: center;
     color: #FFFFFF;
-    font-family: 'Times New Roman', Times, serif;   
+    font-family: 'Candara';   
 }
