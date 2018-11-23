@@ -66,6 +66,12 @@ body{
     background-color:#168E95;
     border-color:#168E95;
 }
+#botao-cancelar{
+    width: 30%;
+    float: left;
+    font-size: 18px;  
+    margin-bottom: 3%;
+}
 input:invalid {
     border-color: red;
 }

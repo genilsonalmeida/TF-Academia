@@ -13,10 +13,9 @@ body{
 .header{
     width: 100%;
     margin: 0%; 
-    display: table-row;
-    height: 40px;
-    background-color:rgb(62, 226, 241);
-    padding-top: 5px;
+}
+#img-adm{
+    float: right;
 }
 .nome-do-sistema{
     margin-top: 1%;
@@ -42,28 +41,20 @@ body{
 
 .card-aluno {
     display: inline;  
-    width: 450px;
-    height: 180px;
     float: left;
-   
     border: #FFFFFF;
     border-radius: 10px;
 }
 .card-instrutor {
     display: inline;
-    width: 450px;
-    height: 180px;
     float: left;
-    
     border: #FFFFFF;
     border-radius: 10px;
 }
 .card-financeiro{
-    display: inline;
-    width: 450px;
-    height: 180px;
-    float: right;
-   
+    display: inline;    
+    float: left;
+    margin-right: 50%;
     border:#FFFFFF;
     border-radius: 10px;   
 }
@@ -73,10 +64,6 @@ body{
     color: white;
     font-family: 'Times New Roman', Times, serif;
     background-color: #168E95;
-}
-.card:hover{
-    box-shadow: 10px 10px 10px 0px #aaaaaa;
-    border-radius: 5px;
 }
 .text-card{
  font-size: 20px;   
