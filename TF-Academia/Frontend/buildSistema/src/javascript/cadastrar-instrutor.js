@@ -1,3 +1,41 @@
-$('#botao-cancelar').click(function(){
+var novo = {
+    nome: $('#nome').val(),
+    dataNascimento: $('#dataNascimento').val(),
+    sexo: $('#sexo').val(),
+    cpf: $('#cpf').val(),
+    cep: $('#cep').val(),
+    endereco: $('#endereco').val(),
+    numero: $('#numero').val(),
+    cidade: $('#cidade').val(),
+    bairro: $('#bairro').val(),
+    uf: $('#uf').val(),
+    celular: $('#celular').val(),
+    residencial: $('#residencial').val(),
+};
+
+$('#botao-cancelar').click(function () {
     location.href = '../pages/principal.html';
 });
+
+$('#botao-finalizar').click(function (event) {
+    event.preventDefault();
+
+    save(event);
+    location.href = '../pages/principal.html';
+});
+
+
+function save(event) {
+    event.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST',  'Url salvar instrutor');
+
+    xhr.setRequestHeader('Content-Type', 'application/json', true);
+
+    xhr.onerro = () => alert('ERRO');
+    xhr.send(JSON.stringify(novo));
+    alert("Cadastro efetuado com sucesso ..")
+}
+
+
+
