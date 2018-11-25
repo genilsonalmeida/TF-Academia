@@ -14,7 +14,10 @@ var novo = {
 };
 
 $('#botao-cancelar').click(function () {
-    location.href = '../pages/principal.html';
+    var r = confirm("Tem certeza que deseja cancelar o cadastro?");
+    if (r == true) {
+        location.href = '../pages/principal.html';
+    }
 });
 
 $('#botao-finalizar').click(function (event) {
