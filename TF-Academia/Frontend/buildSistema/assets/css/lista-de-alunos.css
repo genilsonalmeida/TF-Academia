@@ -1,8 +1,12 @@
+@font-face{
+    font-family: 'Candara';
+    src: url('../fontes/Candara.ttf')
+}
+
 body{
     margin: 0;
     padding: 0;
 }
-
 .container-flex{
     width: 100%;
     height: 100%;
@@ -10,32 +14,27 @@ body{
     display: block;
     
 }
-
 .header{
     width: 100%;
     margin: 0%; 
-    display: block;
-    height: 50px;
-    background-color:#168E95;
-    padding-top: 10px;
 }
-
+.cor-navbar{
+    background-color: #1EBEC8 !important;
+}
 .nome-do-sistema{
-    color: white;
-    font-size: 20px;
-    margin-left: 40px;
-    margin-right: 5rem;
-    font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
-    display: inline;
+    color: white !important;
+    font-family: 'Candara';
 }
 .opcao-list{
     display: inline;
     padding-left: 5rem;
     padding-right: 5rem;
     color: white;
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;   
+    font-size: 1.25rem;
+    font-family: 'Candara';
+}
+.bg-primary {
+    color: white !important;
 }
 #list-regular:hover{
     cursor: pointer;
@@ -50,14 +49,13 @@ body{
 #list-irregular:hover{
     cursor: pointer;
     background-color: rgb(163, 23, 23);
-
 }
 .titulo-listar{
     display: block;
     color: #2CB7C4;
-    font-size: 35px;
+    font-size: 2.25rem;
     margin: 3% auto 3% auto;    
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Candara';
     text-align: center;
 } 
 #numero-list{
@@ -85,26 +83,25 @@ body{
 #botao-voltar{
     width: 13rem;
     float: right;
-    font-size: 18px;  
+    font-size: 1.125rem;  
     margin-bottom: 3%;
     margin-right: 12.4rem;
     margin-top: 5rem;
 }
-
 .footer{
     position: fixed;
     bottom:0;
     width: 100%;
     background-color: #2CB7C4;
     margin: 0%;
-    height: 30px;
+    height: 1.875rem;
     font-weight: bold;
     display: table-row;
-    padding-top: 2px;    
+    padding-top: 0.125rem;    
 }
 .texto-rodape{  
-    font-size: 15px;
+    font-size: 1rem;
     text-align: center;
     color: #FFFFFF;
-    font-family: 'Times New Roman', Times, serif;   
+    font-family: 'Candara';   
 }

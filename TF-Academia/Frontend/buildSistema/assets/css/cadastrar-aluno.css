@@ -1,45 +1,35 @@
+@font-face{
+    font-family: 'Candara';
+    src: url('../fontes/Candara.ttf')
+}
 body{
     margin: 0;
     padding: 0;
 }
-
 .principal{
     width: 100%;
     height: 100%;
     margin: 0%;
-    display: block;
-    
+    display: block; 
 }
-
-.cabecalho{
-    width: 100%;
-    margin: 0%; 
-    display: block;
-    height: 40px;
-    background-color:#168E95;
-    padding-top: 5px;
+.cor-navbar{
+    background-color: #1EBEC8 !important;
 }
-
 .nome-do-sistema{
-    color: white;
-    font-size: 20px;
-    margin-left: 40px;
-    font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    color: white !important;
+    font-family: 'Candara';
 }
-
 .titulo-cadastrar{
     display: block;
     color: #2CB7C4;
-    font-size: 35px;
-    margin-left: 40px;
-    margin-top: 20px;    
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.25rem;
+    margin-left: 2.5rem;
+    margin-top: 1.25rem;    
+    font-family: 'Candara';
     text-align: center;
 }
 .form-cadastro{
     margin-left: 5%;
-    
     float: left;
     width: 70%;
     display: inline-table;
@@ -49,10 +39,10 @@ body{
     float: right;
     margin-top: 3%;
     margin-right: 9%;
-    width: 120px;
-    border:2px black;
+    width: 7.5rem;
+    border: 0.125 black;
     border-style: solid;
-    height: 150px;
+    height: 9.375rem;
     display: inline-block;
 }
 #dataNascimento{
@@ -62,7 +52,7 @@ body{
 #botao-finalizar{
     width: 30%;
     float: right;
-    font-size: 18px;
+    font-size: 1.125rem;
     background-color:#168E95;
     border-color:#168E95;
     margin-bottom: 3%;
@@ -70,13 +60,12 @@ body{
 #botao-cancelar{
     width: 30%;
     float: left;
-    font-size: 18px;  
+    font-size: 1.125rem;  
     margin-bottom: 3%;
 }
 input:invalid {
     border-color: red;
 }
-
 input:valid {
     border-color:green;
 }   
