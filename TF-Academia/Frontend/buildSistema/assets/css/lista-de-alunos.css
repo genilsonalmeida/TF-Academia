@@ -1,63 +1,10 @@
-@font-face{
-    font-family: 'Candara';
-    src: url('../fontes/Candara.ttf')
-}
-
-body{
-    margin: 0;
-    padding: 0;
-}
-.container-flex{
-    width: 100%;
-    height: 100%;
-    margin: 0%;
-    display: block;
-    
-}
 .header{
     width: 100%;
     margin: 0%; 
 }
-.cor-navbar{
-    background-color: #1EBEC8 !important;
-}
-.nome-do-sistema{
-    color: white !important;
-    font-family: 'Candara';
-}
-.opcao-list{
-    display: inline;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    color: white;
-    font-size: 1.25rem;
-    font-family: 'Candara';
-}
 .bg-primary {
     color: white !important;
 }
-#list-regular:hover{
-    cursor: pointer;
-    background-color: rgb(51, 156, 51);
-    height: auto;
-  
-}
-#list-pendente:hover{
-    cursor: pointer;
-    background-color: orange;
-}
-#list-irregular:hover{
-    cursor: pointer;
-    background-color: rgb(163, 23, 23);
-}
-.titulo-listar{
-    display: block;
-    color: #2CB7C4;
-    font-size: 2.25rem;
-    margin: 3% auto 3% auto;    
-    font-family: 'Candara';
-    text-align: center;
-} 
 #numero-list{
     width: 10%;
 }
@@ -73,19 +20,14 @@ body{
 #deletar-list{
     width: 10%;
 }
-.content{
-    /*margin: 5% 3% auto 3%;*/
-}
-#list-aluno{
-    margin: 3% auto auto auto;
-    width: 70%;
+#buscar{
+    width: 35rem;
 }
 #botao-voltar{
     width: 13rem;
     float: right;
     font-size: 1.125rem;  
     margin-bottom: 3%;
-    margin-right: 12.4rem;
     margin-top: 5rem;
 }
 .footer{

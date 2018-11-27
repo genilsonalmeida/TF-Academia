@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    //Função para carregar o cabeçalho
+    $("#cabecalho").load("cabecalho.html");
+
+
     $('#botao-finalizar').click(save);
 
     function save(event) {

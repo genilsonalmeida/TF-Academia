@@ -6,6 +6,11 @@ $('#editar-aluno').click(function(){
     location.href = '../pages/editar-aluno.html';
 });
 
+//Função para carregar o cabeçalho
+$(document).ready(function(){
+    $("#cabecalho").load("cabecalho.html");
+});
+
 $('#listar-aluno').click(function(){
     location.href = '../pages/lista-de-alunos.html';
     //alert("Pagina de listar alunos ainda não foi definida...");

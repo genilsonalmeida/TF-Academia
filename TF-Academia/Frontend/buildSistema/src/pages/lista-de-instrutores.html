@@ -16,16 +16,17 @@
 
 <body>
     <div class="container-flex">
-        <div class="header">
-            <nav class="nav nav-pills flex-column flex-sm-row">
-                <div id="nome-do-sistema">TF ACADEMIA</div>
-                       
-        </div>
+        <header id="cabecalho"></header>
         <div class="content">
-            <div class="titulo-listar">
+            <div class="titulo">
                 Lista de Instrutores
             </div>
-         
+            <div class="input-group mb-3" id="buscar">
+                <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                </div>
+            </div>
             <table class="table" id="list-aluno">
                     <thead class="bg-primary">
                       <tr>

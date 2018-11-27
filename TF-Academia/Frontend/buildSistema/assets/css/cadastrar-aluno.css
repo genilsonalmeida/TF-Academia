@@ -1,33 +1,3 @@
-@font-face{
-    font-family: 'Candara';
-    src: url('../fontes/Candara.ttf')
-}
-body{
-    margin: 0;
-    padding: 0;
-}
-.principal{
-    width: 100%;
-    height: 100%;
-    margin: 0%;
-    display: block; 
-}
-.cor-navbar{
-    background-color: #1EBEC8 !important;
-}
-.nome-do-sistema{
-    color: white !important;
-    font-family: 'Candara';
-}
-.titulo-cadastrar{
-    display: block;
-    color: #2CB7C4;
-    font-size: 2.25rem;
-    margin-left: 2.5rem;
-    margin-top: 1.25rem;    
-    font-family: 'Candara';
-    text-align: center;
-}
 .form-cadastro{
     margin-left: 5%;
     float: left;
@@ -45,8 +15,7 @@ body{
     height: 9.375rem;
     display: inline-block;
 }
-#dataNascimento{
-   
+#dataNascimento{   
     margin-left: 0%;    
 }
 #botao-finalizar{

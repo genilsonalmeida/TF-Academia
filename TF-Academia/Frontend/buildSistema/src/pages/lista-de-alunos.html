@@ -15,26 +15,49 @@
 
 <body>
   <div class="container-flex">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light cor-navbar">
-        <a class="navbar-brand nome-do-sistema" href="#">TF ACADEMIA</a>
-        <!--<div class="opcao-list" id="list-todos">Todos </div>
-              <div class="opcao-list" id="list-regular">Regular </div>
-              <div class="opcao-list" id="list-pendente">Pendente</div>
-              <div class="opcao-list" id="list-irregular">Irregular</div>-->
-      </nav>
-    </header>
+    <header id="cabecalho"></header>
     <div class="content">
-      <div class="titulo-listar">Lista de alunos </div>
+      <div class="titulo">Lista de alunos </div>
+      <div class="input-group mb-3" id="buscar">
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+        </div>
+      </div>
       <table class="table" id="list-aluno">
-        <thead class="bg-primary">
+        <!--<thead class="bg-primary">
           <tr>
             <th scope="col" id="">#</th>
             <th scope="col" id="">Search</th>
           </tr>
-        </thead>
-        <thead class="bg-primary">
-          <tr>
+        </thead>-->
+        <thead>
+          <!--<tr class="table-light">
+            <form>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="search" class="form-control" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-sucess" type="submit">Search</button>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Last name">
+                  </div>
+                </div>
+              </form>
+          </tr>
+          <tr class="table-light table-borderless">
+            <th scope="col" colspan="4">
+                <div class="input-group mb-3 w-auto p-3">
+                    <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                  </div>
+                <input type="search" class="form-control" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-sucess" type="submit">Search</button>
+            </th>
+          </tr>-->
+          <tr class="bg-primary">
             <th scope="col" id="numero-list">#</th>
             <th scope="col" id="nome-list">Nome</th>
             <th scope="col" id="situacao-list">Situação</th>
