@@ -25,6 +25,7 @@ public class AlunoController {
 	@Autowired
 	AlunoRepository alunoRepository;
 	
+	
 	@GetMapping("/aluno")
 	public Page<Aluno> getAll(@Valid Pageable pageable){
 		return alunoRepository.findAll(pageable);		
