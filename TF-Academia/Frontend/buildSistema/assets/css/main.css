@@ -19,10 +19,32 @@ body{
     margin: 1.25rem auto 1.5rem auto;  
     font-family: 'Candara';
 } 
+.cor-navbar{
+    background-color: #1EBEC8 !important;
+}
+.nome-do-sistema{
+    color: white !important;
+    font-family: 'Candara';
+}
 .content{
     margin: 2rem 1.5rem auto 1.5rem;
 }
-
+.footer{
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    background-color: #1EBEC8;
+    margin: 0%;
+    height: 1.875rem;
+    display: table-row;
+    padding-top: 0.125rem;    
+}
+.texto-rodape{  
+    font-size: 1rem;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'Candara';   
+}
 /*#login{
     position:absolute;
 	left:28%;

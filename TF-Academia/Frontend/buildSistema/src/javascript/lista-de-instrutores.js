@@ -1,9 +1,4 @@
 $(document).ready(function () {
-    
-    //Função para carregar o cabeçalho
-    $("#cabecalho").load("cabecalho.html");
-
-    
     let recebe;
     let convete;
 

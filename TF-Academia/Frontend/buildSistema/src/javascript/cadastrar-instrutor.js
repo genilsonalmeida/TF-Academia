@@ -1,8 +1,3 @@
-//Função para carregar o cabeçalho
-$(document).ready(function(){
-    $("#cabecalho").load("cabecalho.html");
-});
-
 var novo = {
     nome: $('#nome').val(),
     dataNascimento: $('#dataNascimento').val(),

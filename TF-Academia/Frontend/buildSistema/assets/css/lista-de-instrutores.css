@@ -1,7 +1,3 @@
-.header{
-    width: 100%;
-    margin: 0%; 
-}
 .bg-primary {
     color: white !important;
 }
@@ -29,21 +25,4 @@
     font-size: 18px;  
     margin-bottom: 3%;
     margin-top: 5rem;
-}
-.footer{
-    position: fixed;
-    bottom:0;
-    width: 100%;
-    background-color: #2CB7C4;
-    margin: 0%;
-    height: 30px;
-    font-weight: bold;
-    display: table-row;
-    padding-top: 2px;    
-}
-.texto-rodape{  
-    font-size: 15px;
-    text-align: center;
-    color: #FFFFFF;
-    font-family: 'Times New Roman', Times, serif;   
 }
