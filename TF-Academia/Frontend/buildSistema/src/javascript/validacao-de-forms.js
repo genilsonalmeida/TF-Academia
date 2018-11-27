@@ -7,7 +7,6 @@ $(document).ready(function () {
     $('#valorMensalidade').mask('000,00',{reverse:true});
     $('#celular').mask('(00) 00000-0000');
     $('#residencial').mask('(00) 0000-0000');
-    $('#dataMatricula').mask('00/00/0000 00-:-00');
      
 });
 // fim da validação
