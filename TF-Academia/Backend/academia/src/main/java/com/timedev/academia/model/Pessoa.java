@@ -45,6 +45,12 @@ public abstract class Pessoa {
 	})
 	private Endereco Endereco;
 
+	@Column
+	private String numeroCelular;
+	
+	@Column(nullable = false)
+	private String numeroCelularEmergencia;
+	
 	public Pessoa() {
 		// TODO Auto-generated constructor stub
 	}
@@ -103,6 +109,22 @@ public abstract class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getNumeroCelular() {
+		return numeroCelular;
+	}
+
+	public void setNumeroCelular(String numeroCelular) {
+		this.numeroCelular = numeroCelular;
+	}
+
+	public String getNumeroCelularEmergencia() {
+		return numeroCelularEmergencia;
+	}
+
+	public void setNumeroCelularEmergencia(String numeroCelularEmergencia) {
+		this.numeroCelularEmergencia = numeroCelularEmergencia;
 	}
 		
 	

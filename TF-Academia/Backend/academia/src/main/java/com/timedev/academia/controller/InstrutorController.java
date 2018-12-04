@@ -54,6 +54,9 @@ public class InstrutorController {
 					instrutor.setCpf(instrutorRequest.getCpf());
 					instrutor.setDataDeNascimento(instrutorRequest.getDataDeNascimento());
 					instrutor.setEndereco(instrutorRequest.getEndereco());
+					instrutor.setNumeroCelular(instrutorRequest.getNumeroCelular());
+					instrutor.setNumeroCelularEmergencia(instrutorRequest.getNumeroCelularEmergencia());
+					
 					
 					return instrutorRepository.save(instrutor);
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idInstrutor));				
