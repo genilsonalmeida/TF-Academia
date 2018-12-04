@@ -1,0 +1,25 @@
+.card-aluno {
+    display: inline;  
+    float: left;
+    border: #FFFFFF;
+    border-radius: 0.625rem;
+}
+
+#title-card{
+    text-align: left;
+    font-size: 1.56rem;
+    color: white;
+    font-family: 'Candara';
+    background-color: #168E95;
+}
+.text-card{
+ font-size: 1.25rem;   
+ padding-left: 2%;
+ color:#168E95;
+ cursor: hand;
+}
+
+.cards{
+    max-width: 70%;
+
+}

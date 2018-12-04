@@ -20,3 +20,8 @@ $('#listar-instrutor').click(function(){
     location.href = '../pages/lista-de-instrutores.html';
     //alert("Pagina de listar alunos ainda não foi definida...");
 });
+
+$('#efetuar-pagamento').click(function(){
+    location.href = '../pages/pagamento.html';
+    //alert("Pagina de listar alunos ainda não foi definida...");
+});
