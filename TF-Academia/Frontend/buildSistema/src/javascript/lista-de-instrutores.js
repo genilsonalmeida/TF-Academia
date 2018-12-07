@@ -5,7 +5,7 @@ $(document).ready(function () {
     function tabela() {
 
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8081/aluno');
+        xhr.open('GET', 'http://localhost:8081/instrutor');
 
         xhr.onload = function () {
 
