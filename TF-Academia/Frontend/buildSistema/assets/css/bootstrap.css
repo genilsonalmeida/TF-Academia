@@ -4376,7 +4376,7 @@ input[type="button"].btn-block {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-width: 0;
+  min-width: 34rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
@@ -4601,7 +4601,7 @@ input[type="button"].btn-block {
   .card-columns {
     -webkit-column-count: 3;
     -moz-column-count: 3;
-    column-count: 2;
+    column-count: 1;
     -webkit-column-gap: 1.25rem;
     -moz-column-gap: 1.25rem;
     column-gap: 1.25rem;
