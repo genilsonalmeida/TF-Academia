@@ -22,11 +22,15 @@
                 Lista de Instrutores
             </div>
             <div class="input-group mb-3" id="buscar">
-                <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                <input type="search" class="form-control" id="nomeInstrutor" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                 </div>
             </div>
+            <div>
+            <ul id="listaEncontrados" class="list-group"></ul>
+            <div id="alert"></div>
+            </div>  
             <table class="table" id="list-aluno">
                     <thead class="bg-primary">
                       <tr>
@@ -40,7 +44,8 @@
                     </tbody>
                   </table>
                   <button type="submit" class="btn btn-danger" id="botao-voltar">Voltar</button> 
-        </div>
+        
+           </div>
         <div class="footer" id="rodape"></div>
     </div>
 

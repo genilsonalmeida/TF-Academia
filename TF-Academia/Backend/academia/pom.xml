@@ -52,8 +52,12 @@
 	</dependencies>
 
 	<build>
+	<finalName>academia-service</finalName>
 		<plugins>
 			<plugin>
+			    <configuration>
+                <excutable>true</excutable>
+                </configuration>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -24,6 +25,7 @@ public abstract class Pessoa {
 	private Integer id;
 	
 	@Column
+	@NotNull
 	private String nome;
 	
 	@Column
@@ -35,7 +37,8 @@ public abstract class Pessoa {
 	@Column
 	private String sexo;
 	
-	@Column(unique = true)	
+	@Column(unique = true)
+	
 	private String email;
 	
 	@Embedded

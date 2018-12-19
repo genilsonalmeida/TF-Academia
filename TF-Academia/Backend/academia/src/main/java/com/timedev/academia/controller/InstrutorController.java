@@ -37,7 +37,13 @@ public class InstrutorController {
 				.orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idInstrutor));
 				
 	}
-	@CrossOrigin
+	
+	@GetMapping("/instrutor/find-name/{nomeInstrutor}")
+	public Page<Instrutor> getNomeInstrutor(@Valid @PathVariable String nomeInstrutor,
+			@Valid Pageable pageable){
+		return instrutorRepository.findByNome(nomeInstrutor,pageable);		
+	}
+	
 	@PostMapping("/instrutor")
 	public Instrutor save(@Valid @RequestBody Instrutor instrutor) {
 		return instrutorRepository.save(instrutor);

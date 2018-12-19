@@ -1,19 +1,4 @@
-var novo = {
-    nome: $('#nome').val(),
-    email: $('#email').val(),
-    dataNascimento: $('#dataNascimento').val(),
-    sexo: $('#sexo').val(),
-    cpf: $('#cpf').val(),
-    endereco: {
-    cep: $('#cep').val(),
-    numero: $('#numero').val(),
-    cidade: $('#cidade').val(),
-    bairro: $('#bairro').val(),
-    uf: $('#uf').val()
-    },
-    numeroCelular: $('#celular').val(),
-    numeroCelularEmergencia: $('#residencial').val(),
-};
+
 
 
 
@@ -34,17 +19,34 @@ $('#botao-finalizar').click(function (event) {
 
 
 function save(event) {
-    event.preventDefault();
+    var novo = {
+        nome: $('#nome').val(),
+        email: $('#email').val(),
+        dataNascimento: $('#dataNascimento').val(),
+        sexo: $('#sexo').val(),
+        cpf: $('#cpf').val(),
+        endereco: {
+        cep: $('#cep').val(),
+        numero: $('#numero').val(),
+        cidade: $('#cidade').val(),
+        bairro: $('#bairro').val(),
+        uf: $('#uf').val()
+        },
+        numeroCelular: $('#celular').val(),
+        numeroCelularEmergencia: $('#residencial').val(),
+    };
 
-    console.log('salvando');
+    event.preventDefault();
+    
+   
     let xhr = new XMLHttpRequest();
     xhr.open('POST',  'http://localhost:8081/instrutor');
 
     xhr.setRequestHeader('Content-Type', 'application/json', true);
     xhr.onload = function() {
         if(this.status == 200){
-            console.log('salvando');  
-      }
+            console.log('ok');
+      } 
 }
 xhr.onerro = () => alert('ERRO');
 xhr.send(JSON.stringify(novo));

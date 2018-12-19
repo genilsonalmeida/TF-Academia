@@ -8,24 +8,28 @@ $(document).ready(function () {
         xhr.open('POST', 'http://localhost:8081/aluno');
 
         xhr.setRequestHeader('Content-Type', 'application/json', true);
-
+         
+        xhr.onload = function(){
+            if(this.status == 200){
+                alert('ok');
+            }
+        }
         let novo = {
             nome: $('#nome').val(),
             dataNascimento: $('#dataNascimento').val(),
             sexo: $('#sexo').val(),
             cpf: $('#cpf').val(),
-            cep: $('#cep').val(),
-            endereco: $('#endereco').val(),
-            numero: $('#numero').val(),
-            cidade: $('#cidade').val(),
-            bairro: $('#bairro').val(),
-            uf: $('#uf').val(),
+            endereco: {
+                cep: $('#cep').val(),
+                numero: $('#numero').val(),
+                cidade: $('#cidade').val(),
+                bairro: $('#bairro').val(),
+                uf: $('#uf').val()
+                },
             email: $('#email').val(),
             dataMatricula: $('#dataMatricula').val(),
             valorMensalidade: $('#valorMensalidade').val(),
-            celular: $('#celular').val(),
-            residencial: $('#residencial').val(),
-
+    
         };
         
         xhr.onerro = () => alert('ERRO');

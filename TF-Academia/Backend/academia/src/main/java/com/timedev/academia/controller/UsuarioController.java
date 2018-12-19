@@ -66,16 +66,4 @@ public class UsuarioController {
 				}).orElseThrow(() -> new ResourceNotFoundException(" Página não encontrada " + usuarioId));
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
