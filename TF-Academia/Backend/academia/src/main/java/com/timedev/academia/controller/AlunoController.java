@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.timedev.academia.exeption.ResourceNotFoundException;
 import com.timedev.academia.model.Aluno;
+import com.timedev.academia.model.Pagamento;
+import com.timedev.academia.model.RegistroPagamento;
 import com.timedev.academia.repository.AlunoRepository;
 @CrossOrigin
 @RestController
@@ -73,5 +75,24 @@ public class AlunoController {
 					return ResponseEntity.ok().build();
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));
 
+	}
+	@PostMapping("/aluno/{idAluno}/addRegistro")
+	public Aluno adicionarPagamento(@PathVariable Integer idAluno,
+			@Valid @RequestBody RegistroPagamento rPagamento) {
+		return alunoRepository.findById(idAluno)
+				.map(aluno -> {
+					aluno.addRegistro(rPagamento);
+					return alunoRepository.save(aluno);
+				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));
+	}
+
+	@DeleteMapping("/aluno/{idAluno}/removerRegistro")
+	public Aluno removerPagamento(@PathVariable Integer idAluno,
+			@Valid @RequestBody RegistroPagamento rPagamento) {
+		return alunoRepository.findById(idAluno)
+				.map(aluno -> {
+					aluno.removerRegistro(rPagamento.getId());
+					return alunoRepository.save(aluno);
+				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));
 	}
 }

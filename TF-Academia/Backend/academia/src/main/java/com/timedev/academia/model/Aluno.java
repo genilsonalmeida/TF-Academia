@@ -66,6 +66,21 @@ public class Aluno extends Pessoa{
 		this.registrosDePagamentos.clear();
 		this.registrosDePagamentos.addAll(registrosDePagamentos);
 	}
+	
+	public void addRegistro(RegistroPagamento rPagamento) {
+		this.registrosDePagamentos.add(rPagamento);
+	}
+	
+	public void removerRegistro(Integer id) {
+		RegistroPagamento recebeRegistro = null;
+		for (RegistroPagamento registroPagamento : registrosDePagamentos) {
+			if(registroPagamento.getId() == id) {
+				recebeRegistro = registroPagamento; 
+			}
+		}
+		
+		registrosDePagamentos.remove(recebeRegistro);
+	}
 		
 	
 }

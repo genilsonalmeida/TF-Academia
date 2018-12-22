@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.timedev.academia.exeption.ResourceNotFoundException;
+import com.timedev.academia.model.Pagamento;
 import com.timedev.academia.model.RegistroPagamento;
 import com.timedev.academia.repository.RegistroPagamentoRepository;
 
@@ -23,23 +24,23 @@ public class RegistroPagamentoController {
 
 	@Autowired
 	RegistroPagamentoRepository registroPagamentoRepository;
-	
+
 	@GetMapping("/registroPagamento")
 	public Page<RegistroPagamento> getRegistroPagamento(@Valid Pageable pageable){
 		return registroPagamentoRepository.findAll(pageable);
 	}
-	
+
 	@GetMapping("/registroPagamento/{idRegistroPag}")
 	public RegistroPagamento getOne(@Valid @PathVariable Integer idRegistroPag) {
 		return registroPagamentoRepository.findById(idRegistroPag)
 				.orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idRegistroPag));
 	}
-	
+
 	@PostMapping("/registroPagamento")
 	public RegistroPagamento create(@Valid @RequestBody RegistroPagamento rPagamento) {
 		return registroPagamentoRepository.save(rPagamento);
 	}
-	
+
 	@PutMapping("/registroPagamento/{idRegistroPag}")
 	public RegistroPagamento update(@PathVariable Integer idRegistroPag,
 			@Valid @RequestBody RegistroPagamento rPagamentoRequest) {
@@ -48,9 +49,9 @@ public class RegistroPagamentoController {
 					rPagamento.setPagamentos(rPagamentoRequest.getPagamentos());
 					return registroPagamentoRepository.save(rPagamento);
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idRegistroPag));
-				
+
 	}
-	
+
 	@DeleteMapping("/registroPagamento/{idRegistroPag}")
 	public ResponseEntity<?> delete(@PathVariable Integer idRegistroPag){
 		return registroPagamentoRepository.findById(idRegistroPag)
@@ -59,5 +60,24 @@ public class RegistroPagamentoController {
 					return ResponseEntity.ok().build();
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idRegistroPag));
 	}
-	
+
+	@PostMapping("/registroPagamento/{idRegistroPag}/addPagamento")
+	public RegistroPagamento adicionarPagamento(@PathVariable Integer idRegistroPag,
+			@Valid @RequestBody Pagamento pagamento) {
+		return registroPagamentoRepository.findById(idRegistroPag)
+				.map(rPagamento -> {
+					rPagamento.addPagamento(pagamento);
+					return registroPagamentoRepository.save(rPagamento);
+				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idRegistroPag));
+	}
+
+	@DeleteMapping("/registroPagamento/{idRegistroPag}/deletePagamento")
+	public RegistroPagamento removerPagamento(@PathVariable Integer idRegistroPag,
+			@Valid @RequestBody Pagamento pagamento) {
+		return registroPagamentoRepository.findById(idRegistroPag)
+				.map(rPagamento -> {
+					rPagamento.removePagamento(pagamento.getId());
+					return registroPagamentoRepository.save(rPagamento);
+				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idRegistroPag));
+	}
 }
