@@ -1,0 +1,40 @@
+.form-cadastro{
+    margin-left: 5%;
+    float: left;
+    width: 70%;
+    display: inline-table;
+    height: auto;
+}
+.foto-cadastro{
+    float: right;
+    margin-top: 3%;
+    margin-right: 9%;
+    width: 7.5rem;
+    border: 0.125 black;
+    border-style: solid;
+    height: 9.375rem;
+    display: inline-block;
+}
+#dataNascimento{   
+    margin-left: 0%;    
+}
+#botao-finalizar{
+    width: 30%;
+    float: right;
+    font-size: 1.125rem;
+    background-color:#168E95;
+    border-color:#168E95;
+    margin-bottom: 3%;
+}
+#botao-cancelar{
+    width: 30%;
+    float: left;
+    font-size: 1.125rem;  
+    margin-bottom: 3%;
+}
+input:invalid {
+    border-color: red;
+}
+input:valid {
+    border-color:green;
+}   

@@ -1,0 +1,28 @@
+.bg-primary {
+    color: white !important;
+}
+#numero-list{
+    width: 10%;
+}
+#nome-list{
+    width: 40%;
+}
+#situacao-list{
+    width: 30%;
+}
+#editar-list{
+    width: 10%;
+}
+#deletar-list{
+    width: 10%;
+}
+#buscar{
+    width: 35rem;
+}
+#botao-voltar{
+    width: 13rem;
+    float: right;
+    font-size: 18px;  
+    margin-bottom: 3%;
+    margin-top: 5rem;
+}
