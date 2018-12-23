@@ -1,17 +1,19 @@
 $(document).ready(function () {
     let recebe;
     let convete;
-
-    function tabela() {
-
+   
+    function tabela(paginadefalt) {
+       
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8081/instrutor');
+        xhr.open('GET', 'http://localhost:8081/instrutor/lista/'+paginadefalt);
 
         xhr.onload = function () {
 
             if (this.status == 200) {
                 recebe = JSON.parse(this.responseText);
-                console.log(recebe);
+                console.log(recebe.totalPages);
+                paginacaoDaLista(recebe.totalPages);
+                
                 atualizandoLista();
             }
         };
@@ -21,6 +23,10 @@ $(document).ready(function () {
     }
 
     $('#botao-voltar').click(function () {
+        location.href = '../pages/principal.html';
+    });
+
+    $('#page').click(function () {
         location.href = '../pages/principal.html';
     });
 
@@ -98,6 +104,29 @@ $(document).ready(function () {
         }
     }
 
-    tabela();
+    function paginacaoDaLista(qntDePaginas){
+        let ul = $('<ul>');
+        let li = '<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>';
 
+        for(let i = 0; i < qntDePaginas; i++){
+        li += '<li class="page-item"><button type="button" class="page-link bnt">'+ i +'</button></li>';   
+        }
+       li += '<li class="page-item"><a class="page-link" href="#">Next</a></li>';
+    $('ul').append(li);
+    
+    selecionandoId(qntDePaginas);
+}  
+
+function selecionandoId(pages){
+  for(let i = 0; i < pages; i++){
+      console.log(i);
+      document.getElementsByClassName('bnt')[i].onclick = function () {
+        document.getElementById("list-instrutores").innerHTML = "";
+        document.getElementById("pagination-conteudo").innerHTML = ""; 
+        tabela(i);
+     };
+  }
+}
+    tabela(0);
+    selecionandoId();
 });

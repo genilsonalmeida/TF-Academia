@@ -28,10 +28,9 @@
                 </div>
             </div>
             <div>
-            <ul id="listaEncontrados" class="list-group"></ul>
             <div id="alert"></div>
             </div>  
-            <table class="table" id="list-aluno">
+            <table class="table">
                     <thead class="bg-primary">
                       <tr>
                         <th scope="col" id="numero-list">#</th>
@@ -40,13 +39,18 @@
                         <th scope="col" id="deletar-list">Excluir</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="list-instrutores">
                     </tbody>
                   </table>
-                  <button type="submit" class="btn btn-danger" id="botao-voltar">Voltar</button> 
+                  <button type="button" class="btn btn-danger" id="botao-voltar">Voltar</button> 
         
            </div>
+           <div class="container">
+           <ul class="pagination" id="pagination-conteudo">         
+          </ul>
+        </div> 
         <div class="footer" id="rodape"></div>
+    </div>
     </div>
 
 </body>

@@ -4,7 +4,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.timedev.academia.exeption.ResourceNotFoundException;
 import com.timedev.academia.model.Instrutor;
 import com.timedev.academia.repository.InstrutorRepository;
+
 @CrossOrigin
 @RestController
 public class InstrutorController {
@@ -25,9 +28,15 @@ public class InstrutorController {
 	@Autowired
 	InstrutorRepository instrutorRepository;
 	
-	
 	@GetMapping("/instrutor")
 	public Page<Instrutor> getAll(@Valid Pageable pageable){
+		return instrutorRepository.findAll(pageable);		
+	}
+	
+	@GetMapping("/instrutor/lista/{pageNunber}")
+	public Page<Instrutor> getAll(@Valid Pageable pageable,
+			@PathVariable Integer pageNunber){
+		pageable = PageRequest.of(pageNunber, 5);
 		return instrutorRepository.findAll(pageable);		
 	}
 	
