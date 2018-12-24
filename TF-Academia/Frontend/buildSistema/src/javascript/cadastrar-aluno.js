@@ -14,11 +14,17 @@ $(document).ready(function () {
                 alert('ok');
             }
         }
+
+        console.log($('#dataNascimento').val());
+
         let novo = {
             nome: $('#nome').val(),
             dataNascimento: $('#dataNascimento').val(),
             sexo: $('#sexo').val(),
             cpf: $('#cpf').val(),
+            numeroCelular:$('celular').val(),
+            numeroCelularEmergencia:$('celular-emergencia').val(),
+            mensalidade:$('valorMensalidade').val(),
             endereco: {
                 cep: $('#cep').val(),
                 numero: $('#numero').val(),
@@ -26,10 +32,14 @@ $(document).ready(function () {
                 bairro: $('#bairro').val(),
                 uf: $('#uf').val()
                 },
+            registrosDePagamentos:[
+                {
+                    descricaoDoregistro:'mensalidade'
+                }
+            ],
             email: $('#email').val(),
             dataMatricula: $('#dataMatricula').val(),
             valorMensalidade: $('#valorMensalidade').val(),
-    
         };
         
         xhr.onerro = () => alert('ERRO');

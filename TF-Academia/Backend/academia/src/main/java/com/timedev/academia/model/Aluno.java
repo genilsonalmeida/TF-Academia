@@ -29,7 +29,7 @@ public class Aluno extends Pessoa{
 	
 	@Column
 	@NonNull
-	private LocalDateTime dataDeMatricula;
+	private LocalDateTime dataDeMatricula = LocalDateTime.now();
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RegistroPagamento> registrosDePagamentos = new ArrayList<RegistroPagamento>();

@@ -57,4 +57,15 @@ function carregarDadosDoAluno(aluno){
    nome.value = aluno.nome;
    cpf.value = aluno.cpf;
 }
+
+
+function formatandoData(){
+  let  now = new Date;
+  let  dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado");
+  let  monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto","setembro", "outubro", "novembro", "dezembro");
+  let dataPagamento = dayName[now.getDay()] + ", " + now.getDate() + " de " + monName[now.getMonth()]  +  " de "  +     now.getFullYear () + "\npagamento da mensalidade realizado com sucesso";
+  console.log(dataPagamento); 
+  return dataPagamento;
+}
+formatandoData();
 esconderDivForm();

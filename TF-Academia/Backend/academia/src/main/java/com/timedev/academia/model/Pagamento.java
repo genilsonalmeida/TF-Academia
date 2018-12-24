@@ -1,6 +1,7 @@
 package com.timedev.academia.model;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ public class Pagamento {
     private Double valor;
     
     @Column
-    private LocalDateTime dataDoPagamento;
+    private LocalDate dataDoPagamento = LocalDate.now();
     
     @Column
     private String descricaoDoPagamento;
@@ -40,11 +41,11 @@ public class Pagamento {
 		this.valor = valor;
 	}
 
-	public LocalDateTime getDataDoPagamento() {
+	public LocalDate getDataDoPagamento() {
 		return dataDoPagamento;
 	}
 
-	public void setDataDoPagamento(LocalDateTime dataDoPagamento) {
+	public void setDataDoPagamento(LocalDate dataDoPagamento) {
 		this.dataDoPagamento = dataDoPagamento;
 	}
 
