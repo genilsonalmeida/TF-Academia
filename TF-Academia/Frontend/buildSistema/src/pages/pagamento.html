@@ -17,6 +17,28 @@
         <div class="titulo">
             TF Academia
         </div>
+
+        <div class="content">
+            <div id="buscar-container" class="card-columns">
+                <div class="card border-info mb-3" style="max-width: 50rem;">
+                    <div class="card-header" id="title-card">Pagamento</div>
+                    <form id="form-card">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>CPF</label>
+                                <input type="cpf" placeholder="Digite o cpf do aluno" class="form-control" id="cpf-busca">
+                            </div>
+                            
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="buscarAlunoPorCpf()">Buscar</button>
+                        <button type="button" class="btn btn-danger" >Cancelar</button> 
+                     </form>
+                 </div>
+             </div>                         
+        </div>
+        
+  
+
         <div class="content">
             <div id="card-pagamento">
                 <div class="card-columns">
@@ -41,7 +63,7 @@
                                     <input type="datetime" class="form-control" id="data-pagamento">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" id="botao-confirmar">Confirmar</button>
+                            <button type="button" class="btn btn-primary" id="botao-confirmar">Confirmar</button>
                             <button type="button" class="btn btn-danger" id="botao-cancelar">Cancelar</button>
                         </form>
                     </div>

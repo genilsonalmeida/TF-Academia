@@ -40,6 +40,11 @@ public class AlunoController {
 				
 	}
 	
+	@GetMapping("/aluno/buscarCpf/{alunoCpf}")
+	public Aluno getAlunoByCpf(@Valid @PathVariable String alunoCpf) {
+		return alunoRepository.findByCpf(alunoCpf);
+	}
+	
 	@PostMapping("/aluno")
 	public Aluno save(@Valid @RequestBody Aluno aluno) {
 		return alunoRepository.save(aluno);
