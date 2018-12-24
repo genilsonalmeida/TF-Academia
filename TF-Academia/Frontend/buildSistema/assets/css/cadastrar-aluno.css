@@ -5,16 +5,6 @@
     display: inline-table;
     height: auto;
 }
-.foto-cadastro{
-    /*float: right;*/
-    margin-top: 3%;
-    margin-right: 9%;
-    width: 7.5rem;
-    border: 0.125 black;
-    border-style: solid;
-    height: 9.375rem;
-    display: inline-block;
-}
 #dataNascimento{   
     margin-left: 0%;    
 }
