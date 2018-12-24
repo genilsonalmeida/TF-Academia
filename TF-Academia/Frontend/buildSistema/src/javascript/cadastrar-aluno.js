@@ -15,16 +15,16 @@ $(document).ready(function () {
             }
         }
 
-        console.log($('#dataNascimento').val());
+        console.log($('#celular').val());
 
         let novo = {
             nome: $('#nome').val(),
-            dataNascimento: $('#dataNascimento').val(),
+            dataDeNascimento: $('#dataNascimento').val(),
             sexo: $('#sexo').val(),
             cpf: $('#cpf').val(),
-            numeroCelular:$('celular').val(),
-            numeroCelularEmergencia:$('celular-emergencia').val(),
-            mensalidade:$('valorMensalidade').val(),
+            numeroCelular:$('#celular').val(),
+            numeroCelularEmergencia:$('#celular-emergencia').val(),
+            mensalidade:$('#valorMensalidade').val(),
             endereco: {
                 cep: $('#cep').val(),
                 numero: $('#numero').val(),
