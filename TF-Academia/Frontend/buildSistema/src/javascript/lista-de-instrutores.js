@@ -120,7 +120,7 @@ $(document).ready(function () {
 function selecionandoId(pages){
   for(let i = 0; i < pages; i++){
       console.log(i);
-      document.getElementsByClassName('bnt')[i].onclick = function () {
+        document.getElementsByClassName('bnt')[i].onclick = function () {
         document.getElementById("list-instrutores").innerHTML = "";
         document.getElementById("pagination-conteudo").innerHTML = ""; 
         tabela(i);

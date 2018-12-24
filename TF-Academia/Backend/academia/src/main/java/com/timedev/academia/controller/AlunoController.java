@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,12 +33,17 @@ public class AlunoController {
 	public Page<Aluno> getAll(@Valid Pageable pageable){
 		return alunoRepository.findAll(pageable);		
 	}
+	@GetMapping("/aluno/lista/{pageNumber}")
+	public Page<Aluno> getByPage(@Valid Pageable pageable,
+			@PathVariable Integer pageNumber){
+		pageable =  PageRequest.of(pageNumber, 5);
+		return alunoRepository.findAll(pageable);
+	}
 	
 	@GetMapping("/aluno/{idAluno}")
 	public Aluno getOne(@Valid @PathVariable Integer idAluno) {
 		return alunoRepository.findById(idAluno)
-				.orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));
-				
+				.orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));		
 	}
 	
 	@GetMapping("/aluno/buscarCpf/{alunoCpf}")
