@@ -7,6 +7,13 @@ $('#botao-cancelar').click(function(){
     }
 });
 
+$('#btn-cancelar').click(function(){
+    var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
+    if (r == true) {
+        location.href = '../pages/principal.html';
+    }
+});
+
 function buscarAlunoPorCpf(){
     let cpf = document.getElementById('cpf-busca').value;
     http.open('GET','http://localhost:8081/aluno/buscarCpf/'+ cpf);
