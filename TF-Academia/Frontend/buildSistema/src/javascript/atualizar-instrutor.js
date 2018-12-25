@@ -1,10 +1,10 @@
 http = new XMLHttpRequest();
-let aluno;
+let instrutor;
 $('#botao-finalizar').click(atualizarDados);
 
-function buscarAlunoPorId(){
-    let id = localStorage.getItem('idAluno');
-    http.open('GET','http://localhost:8081/aluno/'+ id);
+function buscarInstrutorPorId(){
+    let id = localStorage.getItem('idInstrutor');
+    http.open('GET','http://localhost:8081/instrutor/'+ id);
     http.onload = function(){
         if(this.status == 200){
            instrutor = JSON.parse(this.responseText);
@@ -17,28 +17,28 @@ function buscarAlunoPorId(){
     http.send();
 }
 
-function carregarDadosDoAluno(aluno){
-    console.log(aluno);
-    $('#nome').val(aluno.nome);
-    $('#dataNascimento').val(aluno.dataDeNascimento);
-    $('#sexo').val(aluno.sexo);
-    $('#cpf').val(aluno.cpf);
-    $('#celular').val(aluno.numeroCelular);
-    $('#celular-emergencia').val(aluno.numeroCelularEmergencia);
-    $('#valorMensalidade').val(aluno.mensalidade);
-    $('#numero').val(aluno.endereco.numero);
-    $('#cep').val(aluno.endereco.cep);
-    $('#cidade').val(aluno.endereco.cidade);
-    $('#bairro').val(aluno.endereco.bairro);
-    $('#uf').val(aluno.endereco.uf);
-    $('#email').val(aluno.email);
-    $('#dataMatricula').val(aluno.dataMatricula);
+function carregarDadosDoAluno(instrutor){
+    console.log(instrutor);
+    $('#nome').val(instrutor.nome);
+    $('#dataNascimento').val(instrutor.dataDeNascimento);
+    $('#sexo').val(instrutor.sexo);
+    $('#cpf').val(instrutor.cpf);
+    $('#celular').val(instrutor.numeroCelular);
+    $('#celular-emergencia').val(instrutor.numeroCelularEmergencia);
+    $('#valorMensalidade').val(instrutor.mensalidade);
+    $('#numero').val(instrutor.endereco.numero);
+    $('#cep').val(instrutor.endereco.cep);
+    $('#cidade').val(instrutor.endereco.cidade);
+    $('#bairro').val(instrutor.endereco.bairro);
+    $('#uf').val(instrutor.endereco.uf);
+    $('#email').val(instrutor.email);
+    $('#dataMatricula').val(instrutor.dataMatricula);
     /*
    */
 }
 
 function atualizarDados(){
-    http.open('PUT', 'http://localhost:8081/aluno/'+ instrutor.id);
+    http.open('PUT', 'http://localhost:8081/instrutor/'+ instrutor.id);
     http.setRequestHeader('Content-Type', 'application/json', true);
     
     http.onload = function(){
@@ -55,7 +55,6 @@ function atualizarDados(){
         cpf: $('#cpf').val(),
         numeroCelular:$('#celular').val(),
         numeroCelularEmergencia:$('#celular-emergencia').val(),
-        mensalidade:$('#valorMensalidade').val(),
         endereco: {
             cep: $('#cep').val(),
             numero: $('#numero').val(),
@@ -64,11 +63,10 @@ function atualizarDados(){
             uf: $('#uf').val()
             },
         email: $('#email').val(),
-        dataMatricula: $('#dataMatricula').val(),
     };
 
     http.onerro = () => alert('ERRO');
     http.send(JSON.stringify(novo));
     
 }
-buscarAlunoPorId();
+buscarInstrutorPorId();

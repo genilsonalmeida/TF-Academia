@@ -50,9 +50,11 @@ $("a#ajax").click(function() { // inclui todos os links com id="ajax"
 $("#ajaxContent").load($(this).attr("href")); // carrega o conteúdo da página em HREF dentro da DIV #ajaxContent (id="ajaxContent")
 return false; // remove a ação do link para navegar até a página do HREF, pois ela já foi carregada na DIV
  });
-function editarAluno() {
 
-}
+ function editarAluno(id) {   
+    localStorage.setItem('idInstrutor', recebe.content[id].id);
+    document.location = "atualizar-instrutor.html"
+  }
 
 
 
@@ -99,7 +101,7 @@ function atualizandoLista() {
         let cols = '';
         cols += '<th scope="row">' + i + '</th>';
         cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
-        cols += '<th scope="row" onClick="editarAluno()"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
+        cols += '<th scope="row" onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onClick="removerAluno('+i+')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
