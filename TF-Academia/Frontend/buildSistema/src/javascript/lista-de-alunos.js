@@ -4,9 +4,7 @@ $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
 
-$('#bnt-delete').click(function () {
-alert('ok')
-});
+
 
 
 function tabela(numeroPagina) {
@@ -34,7 +32,7 @@ function atualizandoLista() {
         let cols = '';
         cols += '<th scope="row">' + i + '</th>';
         cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
-        cols += '<th scope="row" onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
+        cols += '<th scope="row"  onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onClick="removerAluno('+i+')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
@@ -73,7 +71,7 @@ function editarAluno(id) {
 
 function removerAluno(posicion){
 let http = new XMLHttpRequest();
-let id = recebe.content[posicion].id;
+let id = recebe.content[posicion].id;   
 http.open('DELETE', 'http://localhost:8081/aluno/'+ id);
 http.setRequestHeader('Content-Type', 'application/json', true);
 http.onload = function(){
