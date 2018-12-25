@@ -34,7 +34,7 @@ public class InstrutorController {
 	}
 	
 	@GetMapping("/instrutor/lista/{pageNunber}")
-	public Page<Instrutor> getAll(@Valid Pageable pageable,
+	public Page<Instrutor> getSpecificPage(@Valid Pageable pageable,
 			@PathVariable Integer pageNunber){
 		pageable = PageRequest.of(pageNunber, 5);
 		return instrutorRepository.findAll(pageable);		

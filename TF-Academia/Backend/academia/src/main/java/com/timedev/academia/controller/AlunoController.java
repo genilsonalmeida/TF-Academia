@@ -33,13 +33,14 @@ public class AlunoController {
 	public Page<Aluno> getAll(@Valid Pageable pageable){
 		return alunoRepository.findAll(pageable);		
 	}
+	
 	@GetMapping("/aluno/lista/{pageNumber}")
-	public Page<Aluno> getByPage(@Valid Pageable pageable,
+	public Page<Aluno> getSpecificPage(@Valid Pageable pageable,
 			@PathVariable Integer pageNumber){
 		pageable =  PageRequest.of(pageNumber, 5);
 		return alunoRepository.findAll(pageable);
 	}
-	
+		
 	@GetMapping("/aluno/{idAluno}")
 	public Aluno getOne(@Valid @PathVariable Integer idAluno) {
 		return alunoRepository.findById(idAluno)
