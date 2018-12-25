@@ -1,4 +1,7 @@
 let http = new XMLHttpRequest();
+//validar form cpf
+
+
 
 $('#botao-cancelar').click(function(){
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
