@@ -76,17 +76,9 @@ function buscarPorNome(){
             }else{
                 document.getElementById('alert').innerHTML = "";
             }
-             
-            li = '<li class="list-group-item active">Encontrados</li>';
-
-
-            for (var i = 0; i < recebe.content.length; i++) {
-                 
-                
+            for (var i = 0; i < recebe.content.length; i++) {              
                 li += ' <li class="list-group-item"> Nome: ' + recebe.content[i].nome + ' || Email: ' + recebe.content[i].email + ' </li>';
-              
                 $('ul').append(li);
-    
             }
         }
     };
@@ -101,12 +93,30 @@ function atualizandoLista() {
         let cols = '';
         cols += '<th scope="row">' + i + '</th>';
         cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
+        cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
         cols += '<th scope="row" onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onClick="removerAluno('+i+')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
 
     }
+}
+
+function listaDeNomesEncontrados(){
+
+    for (var i = 0; i < recebe.content.length; i++) {
+        let tr = $('<tr>');
+        let cols = '';
+        cols += '<th scope="row">' + i + '</th>';
+        cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
+        cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
+        cols += '<th scope="row" onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
+        cols += '<th scope="row"  onClick="removerAluno('+i+')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
+        tr.append(cols);
+        $('tbody').append(tr);
+
+    }
+
 }
 
 function paginacaoDaLista(qntDePaginas){
@@ -132,8 +142,6 @@ for(let i = 0; i < pages; i++){
  };
 }
 }
-tabela(0);
-selecionandoId();
 
 function removerAluno(posicao) {
     let http = new XMLHttpRequest();
@@ -151,3 +159,5 @@ function removerAluno(posicao) {
     http.onerro = () => alert('ERRO');
     http.send();    
 }
+tabela(0);
+selecionandoId();
