@@ -1,6 +1,12 @@
 http = new XMLHttpRequest();
 let aluno;
 $('#botao-finalizar').click(atualizarDados);
+$('#botao-cancelar').click(voltarAPaginaPrincipal);
+
+function voltarAPaginaPrincipal(event){
+    event.preventDefault();
+    document.location = "lista-de-alunos.html"
+}
 
 function buscarAlunoPorId(){
     let id = localStorage.getItem('idAluno');

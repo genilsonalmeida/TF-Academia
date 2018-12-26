@@ -1,6 +1,13 @@
 http = new XMLHttpRequest();
 let instrutor;
 $('#botao-finalizar').click(atualizarDados);
+$('#botao-cancelar').click(voltarAPaginaPrincipal);
+
+function voltarAPaginaPrincipal(event){
+    event.preventDefault();
+    document.location = "lista-de-instrutores.html"
+}
+
 
 function buscarInstrutorPorId(){
     let id = localStorage.getItem('idInstrutor');
