@@ -45,7 +45,6 @@ alert('lk')
 
 
 $('#button-addon2').click(function () {
-    document.getElementById('listaEncontrados').innerHTML = "";
 
     buscarPorNome();
 });
@@ -74,15 +73,12 @@ function buscarPorNome() {
             console.log(recebe);
             if (recebe.content.length == 0) {
                 document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
-                    + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um aluno Cadastrado.'
+                    + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Instrutor Cadastrado.'
                     + '</div>'
             } else {
-                document.getElementById('alert').innerHTML = "";
-            }
-            for (var i = 0; i < recebe.content.length; i++) {
-                li += ' <li class="list-group-item"> Nome: ' + recebe.content[i].nome + ' || Email: ' + recebe.content[i].email + ' </li>';
-                $('ul').append(li);
-            }
+                atualizandoLista() 
+          }
+           
         }
     };
     xhr.onerro = () => alert('ERRO');
@@ -91,6 +87,8 @@ function buscarPorNome() {
 }
 
 function atualizandoLista() {
+    document.getElementById('list-instrutores').innerHTML = "";
+
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
@@ -106,20 +104,7 @@ function atualizandoLista() {
     }
 }
 
-function listaDeNomesEncontrados() {
 
-    for (var i = 0; i < recebe.content.length; i++) {
-        let tr = $('<tr>');
-        let cols = '';
-        cols += '<th scope="row">' + i + '</th>';
-        cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
-        cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
-        cols += '<th scope="row" onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
-        cols += '<th scope="row"  onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
-        tr.append(cols);
-        $('tbody').append(tr);
-    }
-}
 
 function paginacaoDaLista(qntDePaginas) {
     let ul = $('<ul>');
