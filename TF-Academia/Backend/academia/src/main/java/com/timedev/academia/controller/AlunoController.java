@@ -69,6 +69,7 @@ public class AlunoController {
 					aluno.setDataDeMatricula(alunoRequest.getDataDeMatricula());
 					aluno.setDataDeNascimento(alunoRequest.getDataDeNascimento());
 					aluno.setMensalidade(alunoRequest.getMensalidade());
+					aluno.setDiaDoPagamento(alunoRequest.getDiaDoPagamento());
 					aluno.setEndereco(alunoRequest.getEndereco());
 					aluno.setRegistrosDePagamentos(alunoRequest.getRegistrosDePagamentos());
 					aluno.setNumeroCelular(alunoRequest.getNumeroCelular());

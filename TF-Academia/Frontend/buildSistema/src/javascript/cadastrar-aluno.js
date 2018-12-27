@@ -38,7 +38,7 @@ $(document).ready(function () {
                 }
             ],
             email: $('#email').val(),
-            dataPagamento: $('#dataPagamento').val(),
+            diaDoPagamento: $('#diaDoPagamento').val(),
             mensalidade: $('#valorMensalidade').val(),
         };
         

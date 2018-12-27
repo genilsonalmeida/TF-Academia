@@ -31,6 +31,9 @@ public class Aluno extends Pessoa{
 	@NonNull
 	private LocalDateTime dataDeMatricula = LocalDateTime.now();
 	
+	@Column
+	private String diaDoPagamento;
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RegistroPagamento> registrosDePagamentos = new ArrayList<RegistroPagamento>();
 
@@ -80,6 +83,14 @@ public class Aluno extends Pessoa{
 		}
 		
 		registrosDePagamentos.remove(recebeRegistro);
+	}
+
+	public String getDiaDoPagamento() {
+		return diaDoPagamento;
+	}
+
+	public void setDiaDoPagamento(String diaDoPagamento) {
+		this.diaDoPagamento = diaDoPagamento;
 	}
 		
 	
