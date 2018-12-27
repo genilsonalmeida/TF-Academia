@@ -4,3 +4,8 @@ $('#botao-voltar').click(function(){
         location.href = '../pages/principal.html';
     }
 });
+
+jQuery(window).load(function () {
+    $(".loader").delay(500).fadeOut("slow"); //retire o delay quando for copiar!
+  $("#tudo_page").toggle("fast");
+});

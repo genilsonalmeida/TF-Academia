@@ -1,3 +1,8 @@
+jQuery(window).load(function () {
+    $(".loader").delay(500).fadeOut("slow"); //retire o delay quando for copiar!
+  $("#tudo_page").toggle("fast");
+});
+
 let recebe;
 let paginaAtual;
 $('#botao-voltar').click(function () {
@@ -107,5 +112,6 @@ function fecharinfo(){
     document.getElementById('info-aluno').innerHTML="";
     
 }
+
 tabela(0);
 selecionandoId();

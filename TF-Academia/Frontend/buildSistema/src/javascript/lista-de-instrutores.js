@@ -1,11 +1,15 @@
-let recebe;
-let caminhoDaImagem;
-$(document).ready(function () {
-
+jQuery(window).load(function () {
+    $(".loader").delay(500).fadeOut("slow"); //retire o delay quando for copiar!
+    $("#tudo_page").toggle("fast");
 });
 
-
+let recebe;
+let caminhoDaImagem;
 let paginaAtual;
+
+$('#botao-voltar').click(function () {
+    location.href = '../pages/principal.html';
+});
 
 function tabela(paginadefalt) {
     paginaAtual = paginadefalt;
@@ -27,9 +31,6 @@ function tabela(paginadefalt) {
 
 }
 
-$('#botao-voltar').click(function () {
-    location.href = '../pages/principal.html';
-});
 
 $('#page').click(function () {
     location.href = '../pages/principal.html';
@@ -159,7 +160,7 @@ function carregarInfoInstrutor(instrutor) {
     div.innerHTML += '<h4>' + recebe.content[instrutor].nome + '</h4>';
     div.innerHTML += '<p>Número: ' + recebe.content[instrutor].numeroCelular + '  Número de emergêmcia:' + recebe.content[instrutor].numeroCelularEmergencia + '</p>';
     div.innerHTML += '<p>Email: ' + recebe.content[instrutor].email + ' </p>';
-    div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[instrutor].dataDeNascimento + ' </p>';
+    div.innerHTML += '<p>Data de Nascimento: ' + recebe.content[instrutor].dataDeNascimento + ' </p>';
     div.innerHTML += '<p>Endereço: ' + recebe.content[instrutor].endereco.cidade + ' bairro:' + recebe.content[instrutor].endereco.bairro + ' cep:' + recebe.content[instrutor].endereco.cep + '</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">fechar</button></div></div> ';
 }
