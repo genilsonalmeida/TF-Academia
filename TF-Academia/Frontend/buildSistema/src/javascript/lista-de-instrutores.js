@@ -1,4 +1,5 @@
 let recebe;
+let caminhoDaImagem;
 $(document).ready(function () {
 
 });
@@ -40,7 +41,7 @@ $('#alertSair').click(function () {
 });
 
 $('#fechar-info').click(function () {
-alert('lk')
+    alert('lk')
 });
 
 
@@ -76,9 +77,9 @@ function buscarPorNome() {
                     + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Instrutor Cadastrado.'
                     + '</div>'
             } else {
-                atualizandoLista() 
-          }
-           
+                atualizandoLista()
+            }
+
         }
     };
     xhr.onerro = () => alert('ERRO');
@@ -149,22 +150,32 @@ function removerAluno(posicao) {
 
 function carregarInfoInstrutor(instrutor) {
     console.log(recebe.content[instrutor].dataNascimento);
+    retornarIconereferenteASexoDoInstrutor(instrutor);
     let div = document.getElementById('info-instrutor');
     div.innerHTML = "";
     div.innerHTML += '<div class="media" >';
-    div.innerHTML += '<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px">';
+    div.innerHTML += '<img src="../../assets/icones/'+caminhoDaImagem+'" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
     div.innerHTML += '<h4>' + recebe.content[instrutor].nome + '</h4>';
     div.innerHTML += '<p>Número: ' + recebe.content[instrutor].numeroCelular + '  Número de emergêmcia:' + recebe.content[instrutor].numeroCelularEmergencia + '</p>';
     div.innerHTML += '<p>Email: ' + recebe.content[instrutor].email + ' </p>';
-    div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[instrutor].dataDeNascimento +' </p>';
-    div.innerHTML += '<p>Endereço: ' + recebe.content[instrutor].endereco.cidade + ' bairro:' + recebe.content[instrutor].endereco.bairro +' cep:' + recebe.content[instrutor].endereco.cep +'</p>';
+    div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[instrutor].dataDeNascimento + ' </p>';
+    div.innerHTML += '<p>Endereço: ' + recebe.content[instrutor].endereco.cidade + ' bairro:' + recebe.content[instrutor].endereco.bairro + ' cep:' + recebe.content[instrutor].endereco.cep + '</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">fechar</button></div></div> ';
 }
 
-function fecharinfo(){
-    document.getElementById('info-instrutor').innerHTML="";
-    
+function retornarIconereferenteASexoDoInstrutor(instrutor) {
+     
+    if (recebe.content[instrutor].sexo === "MASCULINO") {
+        caminhoDaImagem = "man-icon.png";
+    } else {
+        caminhoDaImagem = "wam-icon.png"
+    }
+}
+
+function fecharinfo() {
+    document.getElementById('info-instrutor').innerHTML = "";
+
 }
 tabela(0);
 selecionandoId();
