@@ -33,7 +33,7 @@ function save(event) {
         uf: $('#uf').val()
         },
         numeroCelular: $('#celular').val(),
-        numeroCelularEmergencia: $('#residencial').val(),
+        numeroCelularEmergencia: $('#celular-emergencia').val(),
     };
 
     event.preventDefault();

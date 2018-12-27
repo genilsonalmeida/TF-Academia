@@ -38,8 +38,8 @@ $(document).ready(function () {
                 }
             ],
             email: $('#email').val(),
-            dataMatricula: $('#dataMatricula').val(),
-            valorMensalidade: $('#valorMensalidade').val(),
+            dataPagamento: $('#dataPagamento').val(),
+            mensalidade: $('#valorMensalidade').val(),
         };
         
         xhr.onerro = () => alert('ERRO');
