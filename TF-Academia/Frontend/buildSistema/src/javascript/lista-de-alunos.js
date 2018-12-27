@@ -32,6 +32,8 @@ function atualizandoLista() {
         let cols = '';
         cols += '<th scope="row">' + i + '</th>';
         cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
+        cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
+        cols += '<th scope="row"  onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
         cols += '<th scope="row"  onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onClick="removerAluno('+i+')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
@@ -87,5 +89,23 @@ http.send();
 
 }
 
+function carregarInfoAluno(aluno) {
+    console.log(recebe.content[aluno].dataNascimento);
+    let div = document.getElementById('info-aluno');
+    div.innerHTML = "";
+    div.innerHTML += '<div class="media" >';
+    div.innerHTML += '<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px">';
+    div.innerHTML += '<div class="media-body">';
+    div.innerHTML += '<h4>' + recebe.content[aluno].nome + '</h4>';
+    div.innerHTML += '<p>Número: ' + recebe.content[aluno].numeroCelular + '  Número de emergêmcia:' + recebe.content[aluno].numeroCelularEmergencia + '</p>';
+    div.innerHTML += '<p>Email: ' + recebe.content[aluno].email + ' </p>';
+    div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[aluno].dataDeNascimento +' </p>';
+    div.innerHTML += '<p>Endereço: ' + recebe.content[aluno].endereco.cidade + ' bairro:' + recebe.content[aluno].endereco.bairro +' cep:' + recebe.content[aluno].endereco.cep +'</p>';
+    div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">fechar</button></div></div> ';
+}
+function fecharinfo(){
+    document.getElementById('info-aluno').innerHTML="";
+    
+}
 tabela(0);
 selecionandoId();
