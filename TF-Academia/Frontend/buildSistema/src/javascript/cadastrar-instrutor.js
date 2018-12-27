@@ -22,7 +22,7 @@ function save(event) {
     var novo = {
         nome: $('#nome').val(),
         email: $('#email').val(),
-        dataNascimento: $('#dataNascimento').val(),
+        dataDeNascimento: $('#dataNascimento').val(),
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
         endereco: {
