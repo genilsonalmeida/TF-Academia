@@ -162,7 +162,7 @@ function removerAluno(posicao) {
 function carregarInfoInstrutor(instrutor) {
     console.log('buscol');
     let div = document.getElementById('info-instrutor');
-
+    div.innerHTML = "";
     div.innerHTML += '<div class="media" >';
     div.innerHTML += '<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
