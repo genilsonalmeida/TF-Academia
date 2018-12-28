@@ -1,5 +1,6 @@
 package com.timedev.academia.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Aluno extends Pessoa{
 	
 	@Column
 	@NonNull
-	private LocalDateTime dataDeMatricula = LocalDateTime.now();
+	private LocalDate dataDeMatricula = LocalDate.now();
 	
 	@Column
 	private String diaDoPagamento;
@@ -53,11 +54,11 @@ public class Aluno extends Pessoa{
 		this.mensalidade = mensalidade;
 	}
 
-	public LocalDateTime getDataDeMatricula() {
+	public LocalDate getDataDeMatricula() {
 		return dataDeMatricula;
 	}
 
-	public void setDataDeMatricula(LocalDateTime dataDeMatricula) {
+	public void setDataDeMatricula(LocalDate dataDeMatricula) {
 		this.dataDeMatricula = dataDeMatricula;
 	}
 

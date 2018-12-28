@@ -38,7 +38,7 @@ function carregarDadosDoAluno(aluno){
     $('#bairro').val(aluno.endereco.bairro);
     $('#uf').val(aluno.endereco.uf);
     $('#email').val(aluno.email);
-    $('#dataMatricula').val(aluno.dataMatricula);
+    $('#dataMatricula').val(aluno.dataDeMatricula);
     /*
    */
 }
