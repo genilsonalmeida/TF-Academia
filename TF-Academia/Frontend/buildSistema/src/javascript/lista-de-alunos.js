@@ -95,11 +95,12 @@ http.send();
 }
 
 function carregarInfoAluno(aluno) {
+    retornarIconereferenteASexoDoInstrutor(aluno);
     console.log(recebe.content[aluno].dataNascimento);
     let div = document.getElementById('info-aluno');
     div.innerHTML = "";
     div.innerHTML += '<div class="media" >';
-    div.innerHTML += '<img src="img_avatar1.png" class="align-self-start mr-3" style="width:60px">';
+    div.innerHTML += '<img src="../../assets/icones/'+caminhoDaImagem+'" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
     div.innerHTML += '<h4>' + recebe.content[aluno].nome + '</h4>';
     div.innerHTML += '<p>Número: ' + recebe.content[aluno].numeroCelular + '  Número de emergêmcia:' + recebe.content[aluno].numeroCelularEmergencia + '</p>';
@@ -108,6 +109,17 @@ function carregarInfoAluno(aluno) {
     div.innerHTML += '<p>Endereço: ' + recebe.content[aluno].endereco.cidade + ' bairro:' + recebe.content[aluno].endereco.bairro +' cep:' + recebe.content[aluno].endereco.cep +'</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">fechar</button></div></div> ';
 }
+
+function retornarIconereferenteASexoDoInstrutor(aluno) {
+     
+    if (recebe.content[aluno].sexo === "MASCULINO") {
+        caminhoDaImagem = "man-icon.png";
+    } else {
+        caminhoDaImagem = "wam-icon.png"
+    }
+}
+
+
 function fecharinfo(){
     document.getElementById('info-aluno').innerHTML="";
     
