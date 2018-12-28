@@ -52,6 +52,13 @@ public class AlunoController {
 		return alunoRepository.findByCpf(alunoCpf);
 	}
 	
+	@GetMapping("/aluno/buscarNomeCelular/{alunoNome}/{alunoCelular}")
+	public Page<Aluno> getByNomeCelular(@PathVariable String alunoNome, @PathVariable String alunoCelular,
+			Pageable pageable) {
+		pageable =  PageRequest.of(0, 10);
+		return alunoRepository.findByNomeOrNumeroCelular(alunoNome, alunoCelular, pageable);
+	}
+	
 	@PostMapping("/aluno")
 	public Aluno save(@Valid @RequestBody Aluno aluno) {
 		return alunoRepository.save(aluno);
