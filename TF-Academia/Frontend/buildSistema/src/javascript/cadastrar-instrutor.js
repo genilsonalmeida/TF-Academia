@@ -14,7 +14,13 @@ $('#botao-finalizar').click(function (event) {
     event.preventDefault();
 
     save(event);
-    location.href = '../pages/principal.html';
+    alert('Instrutor Cadastrado com sucesso!');
+    var r = confirm("Deseja cadastrar um novo instrutor?");
+    if (r == true) {
+        location.href = '../pages/cadastrar-aluno.html';
+    } else {
+        location.href = '../pages/principal.html';
+    }
 });
 
 
@@ -26,28 +32,28 @@ function save(event) {
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
         endereco: {
-        cep: $('#cep').val(),
-        numero: $('#numero').val(),
-        cidade: $('#cidade').val(),
-        bairro: $('#bairro').val(),
-        uf: $('#uf').val()
+            cep: $('#cep').val(),
+            numero: $('#numero').val(),
+            cidade: $('#cidade').val(),
+            bairro: $('#bairro').val(),
+            uf: $('#uf').val()
         },
         numeroCelular: $('#celular').val(),
         numeroCelularEmergencia: $('#celular-emergencia').val(),
     };
 
     event.preventDefault();
-    
-   
+
+
     let xhr = new XMLHttpRequest();
-    xhr.open('POST',  'http://localhost:8081/instrutor');
+    xhr.open('POST', 'http://localhost:8081/instrutor');
 
     xhr.setRequestHeader('Content-Type', 'application/json', true);
-    xhr.onload = function() {
-        if(this.status == 200){
+    xhr.onload = function () {
+        if (this.status == 200) {
             console.log('ok');
-      } 
-}
-xhr.onerro = () => alert('ERRO');
-xhr.send(JSON.stringify(novo));
+        }
+    }
+    xhr.onerro = () => alert('ERRO');
+    xhr.send(JSON.stringify(novo));
 }

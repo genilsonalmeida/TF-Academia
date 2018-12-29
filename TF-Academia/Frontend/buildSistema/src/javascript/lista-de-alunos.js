@@ -9,9 +9,6 @@ $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
 
-
-
-
 function tabela(numeroPagina) {
 
     let xhr = new XMLHttpRequest();
@@ -31,12 +28,26 @@ function tabela(numeroPagina) {
 
 }
 
+let nome;
+function letraMaiuscula(i) {
+    str = recebe.content[i].nome;
+    qtd = recebe.content[i].nome.length;
+    prim = str.substring(0,1);
+    resto = str.substring(1,qtd);
+    str = prim.toUpperCase() + resto;
+    nome = str;
+    
+    return nome;
+}
+
 function atualizandoLista() {
+    
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
         cols += '<th scope="row">' + i + '</th>';
-        cols += '<th scope="row">' + recebe.content[i].nome + '</th>';
+        var nome = letraMaiuscula(i);
+        cols += '<th scope="row">' + nome + '</th>';
         cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
         cols += '<th scope="row"  onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
         cols += '<th scope="row"  onClick="editarAluno('+i+')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
