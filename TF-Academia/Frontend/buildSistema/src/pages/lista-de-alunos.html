@@ -20,11 +20,12 @@
     <div class="content">
       <div class="titulo">Lista de alunos </div>
       <div class="input-group mb-3" id="buscar">
-        <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+        <input id="buscaValor" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+          <button class="btn btn-outline-secondary" onclick="buscarPorNomeNumeroCelular()" type="submit" id="button-addon2">Search</button>
         </div>
       </div>
+      <div id="alert"></div>
       <div class="container" id="info-aluno">        
       </div>
       <table class="table">

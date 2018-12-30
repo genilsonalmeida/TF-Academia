@@ -41,7 +41,7 @@ function letraMaiuscula(i) {
 }
 
 function atualizandoLista() {
-    
+    document.getElementById('list-aluno').innerHTML = "";
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
@@ -59,6 +59,8 @@ function atualizandoLista() {
 }
 
 function paginacaoDaLista(qntDePaginas){
+    document.getElementById('pagination-conteudo').innerHTML = "";
+    
     let ul = $('<ul>');
     let li = '<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>';
 
@@ -134,6 +136,37 @@ function retornarIconereferenteASexoDoInstrutor(aluno) {
 function fecharinfo(){
     document.getElementById('info-aluno').innerHTML="";
     
+}
+
+
+
+function buscarPorNomeNumeroCelular() {
+    
+    let valor  = document.getElementById('buscaValor').value;
+    console.log(valor);
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:8081/aluno/buscarNomeCelular/'+valor+'/'+valor+'/0');
+
+    xhr.onload = function () {
+        if (this.status == 200) {
+            recebe = JSON.parse(this.responseText);
+            console.log(recebe);
+            if (recebe.content.length == 0) {
+                document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
+                    + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Instrutor Cadastrado.'
+                    + '</div>'
+            } else {
+               
+                atualizandoLista();
+                paginacaoDaLista(recebe.totalPages);
+
+            }
+            
+        }
+    };
+    xhr.onerro = () => alert('ERRO');
+    xhr.send();
+
 }
 
 tabela(0);

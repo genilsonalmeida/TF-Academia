@@ -52,10 +52,10 @@ public class AlunoController {
 		return alunoRepository.findByCpf(alunoCpf);
 	}
 	
-	@GetMapping("/aluno/buscarNomeCelular/{alunoNome}/{alunoCelular}")
+	@GetMapping("/aluno/buscarNomeCelular/{alunoNome}/{alunoCelular}/{pageNumber}")
 	public Page<Aluno> getByNomeCelular(@PathVariable String alunoNome, @PathVariable String alunoCelular,
-			Pageable pageable) {
-		pageable =  PageRequest.of(0, 10);
+		@PathVariable Integer pageNumber, Pageable pageable) {
+		pageable =  PageRequest.of(pageNumber, 5);
 		return alunoRepository.findByNomeOrNumeroCelular(alunoNome, alunoCelular, pageable);
 	}
 	
