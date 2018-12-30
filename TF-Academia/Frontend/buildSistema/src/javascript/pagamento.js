@@ -58,7 +58,7 @@ function carregarDadosDoAluno(aluno){
    let cpf = document.getElementById('cpf');
    let vencimento = document.getElementById('data-vencimento');
    let dataPagamento = document.getElementById('data-pagamento');
-   nome.value = aluno.nome;
+   nome.value = aluno.nome.toUpperCase();
    cpf.value = aluno.cpf;
    vencimento.value = aluno.diaDoPagamento;
    dataPagamento.value = recebeDataAtual;

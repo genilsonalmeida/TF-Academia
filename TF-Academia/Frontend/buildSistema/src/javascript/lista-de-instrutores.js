@@ -145,7 +145,10 @@ function selecionandoId(pages) {
 }
 
 function removerAluno(posicao) {
-    let http = new XMLHttpRequest();
+
+    var r = confirm("Tem certeza que deseja excluir o instrutor?");
+    if (r == true) {
+        let http = new XMLHttpRequest();
     let id = recebe.content[posicao].id;
     http.open('DELETE', 'http://localhost:8081/instrutor/' + id);
     http.setRequestHeader('Content-Type', 'application/json', true);
@@ -159,6 +162,8 @@ function removerAluno(posicao) {
 
     http.onerro = () => alert('ERRO');
     http.send();
+    }
+
 }
 
 function carregarInfoInstrutor(instrutor) {
