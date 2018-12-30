@@ -39,6 +39,7 @@ function carregarDadosDoAluno(aluno){
     $('#uf').val(aluno.endereco.uf);
     $('#email').val(aluno.email);
     $('#dataMatricula').val(aluno.dataDeMatricula);
+    $('#diaDoPagamento').val(aluno.diaDoPagamento);
     /*
    */
 }
@@ -62,6 +63,7 @@ function atualizarDados(){
         numeroCelular:$('#celular').val(),
         numeroCelularEmergencia:$('#celular-emergencia').val(),
         mensalidade:$('#valorMensalidade').val(),
+        diaDoPagamento:$('#diaDoPagamento').val(),
         endereco: {
             cep: $('#cep').val(),
             numero: $('#numero').val(),

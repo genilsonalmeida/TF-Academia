@@ -33,12 +33,15 @@
             <div class="form-cadastro">
                 <form>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label for="inputNome">NOME COMPLETO</label>
                             <input type="text" style="text-transform: uppercase" required="required" class="form-control"
                                 id="nome" placeholder="Ex.: JOAO DA SILVA" required>
                         </div>
-
+                        <div class="form-group col-md-6">
+                                <label for="inputEmail">E-MAIL</label>
+                                <input type="email" class="form-control" id="email" placeholder="josejoao@live.com">
+                            </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -94,19 +97,22 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail">E-MAIL</label>
-                            <input type="email" class="form-control" id="email" placeholder="josejoao@live.com">
-                        </div>
-                        <div class="form-group col-md-3">
+                     
+                        <div class="form-group col-md-4">
                             <label for="inputDataMatricula">DATA DA MATRÍCULA</label>
                             <input type="date" class="form-control" id="dataMatricula" required="required">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
+                                <label for="inputNumero">DIA PARA PAGAMENTO: </label>
+                                <input type="text" class="form-control" id="diaDoPagamento" placeholder="Ex.: 01"    required="required">
+                            </div>
+                        <div class="form-group col-md-4">
                             <label for="inputValorMensalidade">VALOR DA MENSALIDADE</label>
                             <input type="text" step="0.10" class="form-control" id="valorMensalidade" placeholder="Ex.: 00,00">
                         </div>
+                        
                     </div>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputTelefone">TELEFONE CELULAR</label>

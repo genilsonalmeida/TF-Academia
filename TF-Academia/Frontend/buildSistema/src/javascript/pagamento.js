@@ -84,7 +84,10 @@ function savePagamento(){
     http.onload = function (){
         if(this.status == 200){
            let recebe = JSON.parse(this.responseText);
-            console.log(recebe);   
+           alert(formatandoData());
+           console.log(recebe);   
+         }else{
+            alert("Pagamento não cadastrado");
          }
     }
 
