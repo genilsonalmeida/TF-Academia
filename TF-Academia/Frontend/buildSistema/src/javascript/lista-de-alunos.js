@@ -153,7 +153,7 @@ function buscarPorNomeNumeroCelular() {
             console.log(recebe);
             if (recebe.content.length == 0) {
                 document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
-                    + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Instrutor Cadastrado.'
+                    + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
                     + '</div>'
             } else {
                
