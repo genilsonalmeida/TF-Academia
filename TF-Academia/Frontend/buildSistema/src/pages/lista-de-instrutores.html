@@ -22,7 +22,8 @@
                 Lista de Instrutores
             </div>
             <div class="input-group mb-3" id="buscar">
-                <input type="search" class="form-control" id="nomeInstrutor" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                <input type="search" class="form-control" id="nomeInstrutor" placeholder="Search" aria-label="Search"
+                    aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                 </div>
@@ -32,26 +33,29 @@
             <div>
                 <div id="alert"></div>
             </div>
-            <table class="table">
-                <thead class="bg-primary">
-                    <tr>
-                        <th scope="col" id="numero-list">#</th>
-                        <th scope="col" id="nome-list">Nome</th>
-                        <th scope="col" id="celular-list">Watz</th>
-                        <th scope="col" id="info-list">informação</th>
-                        <th scope="col" id="editar-list">Editar</th>
-                        <th scope="col" id="deletar-list">Excluir</th>
-                    </tr>
-                </thead>
-                <tbody id="list-instrutores">
-                </tbody>
-            </table>
-            <button type="button" class="btn btn-danger" id="botao-voltar">Voltar</button>
+            <div id="divPrincipal">
+                <table class="table">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col" id="numero-list">#</th>
+                            <th scope="col" id="nome-list">Nome</th>
+                            <th scope="col" id="celular-list">Número para Contato</th>
+                            <th scope="col" id="info-list">Informação</th>
+                            <th scope="col" id="editar-list">Editar</th>
+                            <th scope="col" id="deletar-list">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody id="list-instrutores">
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-danger" id="botao-voltar">Voltar</button>
 
-        </div>
-        <div class="container">
-            <ul class="pagination" id="pagination-conteudo">
-            </ul>
+
+                <div class="container">
+                    <ul class="pagination" id="pagination-conteudo">
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="footer" id="rodape"></div>

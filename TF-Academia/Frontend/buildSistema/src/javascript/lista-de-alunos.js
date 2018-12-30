@@ -45,7 +45,7 @@ function atualizandoLista() {
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
-        cols += '<th scope="row">' + i + '</th>';
+        cols += '<th scope="row">' + (i+1) + '</th>';
         var nome = letraMaiuscula(i);
         cols += '<th scope="row">' + nome + '</th>';
         cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
@@ -115,12 +115,17 @@ function carregarInfoAluno(aluno) {
     div.innerHTML += '<div class="media" >';
     div.innerHTML += '<img src="../../assets/icones/'+caminhoDaImagem+'" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
-    div.innerHTML += '<h4>' + recebe.content[aluno].nome + '</h4>';
-    div.innerHTML += '<p>Número: ' + recebe.content[aluno].numeroCelular + '  Número de emergêmcia:' + recebe.content[aluno].numeroCelularEmergencia + '</p>';
+    div.innerHTML += '<h4>' + recebe.content[aluno].nome.toUpperCase() + '</h4>';
+    div.innerHTML += '<p>Número: ' + recebe.content[aluno].numeroCelular + '</p>';
+    div.innerHTML += '<p>Número de Emergência: ' + recebe.content[aluno].numeroCelularEmergencia + '</p>';
     div.innerHTML += '<p>Email: ' + recebe.content[aluno].email + ' </p>';
     div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[aluno].dataDeNascimento +' </p>';
-    div.innerHTML += '<p>Endereço: ' + recebe.content[aluno].endereco.cidade + ' bairro:' + recebe.content[aluno].endereco.bairro +' cep:' + recebe.content[aluno].endereco.cep +'</p>';
-    div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">fechar</button></div></div> ';
+    div.innerHTML += '<p>Endereço: ' + recebe.content[aluno].endereco.cidade + '</p>';
+    div.innerHTML += '<p>Bairro: ' + recebe.content[aluno].endereco.bairro +'</p>';
+    div.innerHTML += '<p>CEP: ' + recebe.content[aluno].endereco.cep +'</p>';
+    div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">Voltar</button></div></div> ';
+
+    $('#divPrincipal').css('visibility', 'hidden');
 }
 
 function retornarIconereferenteASexoDoInstrutor(aluno) {
@@ -135,6 +140,7 @@ function retornarIconereferenteASexoDoInstrutor(aluno) {
 
 function fecharinfo(){
     document.getElementById('info-aluno').innerHTML="";
+    $('#divPrincipal').css('visibility', 'visible');
     
 }
 

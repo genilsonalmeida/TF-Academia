@@ -106,7 +106,7 @@ function atualizandoLista() {
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
-        cols += '<th scope="row">' + i + '</th>';
+        cols += '<th scope="row">' + (i+1) + '</th>';
         var nome = letraMaiuscula(i);
         cols += '<th scope="row">' + nome + '</th>';
         cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
@@ -115,7 +115,6 @@ function atualizandoLista() {
         cols += '<th scope="row"  onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
-
     }
 }
 
@@ -170,12 +169,17 @@ function carregarInfoInstrutor(instrutor) {
     div.innerHTML += '<div class="media" >';
     div.innerHTML += '<img src="../../assets/icones/'+caminhoDaImagem+'" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
-    div.innerHTML += '<h4>' + recebe.content[instrutor].nome + '</h4>';
-    div.innerHTML += '<p>Número: ' + recebe.content[instrutor].numeroCelular + '  Número de emergêmcia:' + recebe.content[instrutor].numeroCelularEmergencia + '</p>';
+    div.innerHTML += '<h4>' + recebe.content[instrutor].nome.toUpperCase() + '</h4>';
+    div.innerHTML += '<p>Número: ' + recebe.content[instrutor].numeroCelular + '</p>';
+    div.innerHTML += '<p>Número de Emergência: ' + recebe.content[instrutor].numeroCelularEmergencia + '</p>';
     div.innerHTML += '<p>Email: ' + recebe.content[instrutor].email + ' </p>';
-    div.innerHTML += '<p>Data de Nascimento: ' + recebe.content[instrutor].dataDeNascimento + ' </p>';
-    div.innerHTML += '<p>Endereço: ' + recebe.content[instrutor].endereco.cidade + ' bairro:' + recebe.content[instrutor].endereco.bairro + ' cep:' + recebe.content[instrutor].endereco.cep + '</p>';
-    div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">fechar</button></div></div> ';
+    div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[instrutor].dataDeNascimento +' </p>';
+    div.innerHTML += '<p>Endereço: ' + recebe.content[instrutor].endereco.cidade + '</p>';
+    div.innerHTML += '<p>Bairro: ' + recebe.content[instrutor].endereco.bairro +'</p>';
+    div.innerHTML += '<p>CEP: ' + recebe.content[instrutor].endereco.cep +'</p>';
+    div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">Voltar</button></div></div> ';
+
+    $('#divPrincipal').css('visibility', 'hidden');
 }
 
 function retornarIconereferenteASexoDoInstrutor(instrutor) {
@@ -189,6 +193,7 @@ function retornarIconereferenteASexoDoInstrutor(instrutor) {
 
 function fecharinfo() {
     document.getElementById('info-instrutor').innerHTML = "";
+    $('#divPrincipal').css('visibility', 'visible');
 
 }
 tabela(0);
