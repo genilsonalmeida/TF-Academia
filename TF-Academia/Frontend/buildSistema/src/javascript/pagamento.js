@@ -2,6 +2,7 @@ let http = new XMLHttpRequest();
 //validar form cpf
 let  data = new Date;
 let recebeDataAtual;
+let recebe;
 
 $('#botao-cancelar').click(function(){
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
@@ -22,7 +23,7 @@ function buscarAlunoPorCpf(){
     http.open('GET','http://localhost:8081/aluno/buscarCpf/'+ cpf);
     http.onload = function (){
         if(this.status == 200){
-           let recebe = JSON.parse(this.responseText);
+            recebe = JSON.parse(this.responseText);
             console.log(recebe);
             esconderDivBusca();
             exibirDivForm();
@@ -61,6 +62,7 @@ function carregarDadosDoAluno(aluno){
    cpf.value = aluno.cpf;
    vencimento.value = aluno.diaDoPagamento;
    dataPagamento.value = recebeDataAtual;
+  
 }
 
 
@@ -73,5 +75,27 @@ function formatandoData(){
   console.log(descricao); 
   return descricao;
 }
+
+function savePagamento(){
+    let idRegistroPag = recebe.registrosDePagamentos[0].id;
+    console.log(idRegistroPag);
+    http.open('POST','http://localhost:8081/registroPagamento/'+idRegistroPag+'/addPagamento');
+    http.setRequestHeader('Content-Type', 'application/json', true);
+    http.onload = function (){
+        if(this.status == 200){
+           let recebe = JSON.parse(this.responseText);
+            console.log(recebe);   
+         }
+    }
+
+    let pagamento = {
+        "valor":recebe.mensalidade,
+        "descricaoDoPagamento":formatandoData()
+    };
+    
+    http.onerro = () => alert('ERRO');
+   http.send(JSON.stringify(pagamento));
+}
+
 formatandoData();
 esconderDivForm();
