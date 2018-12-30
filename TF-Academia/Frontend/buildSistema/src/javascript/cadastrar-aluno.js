@@ -19,6 +19,12 @@ $(document).ready(function () {
                 } else {
                     location.href = '../pages/principal.html';
                 }
+            }else if (this.status == 400){
+              let  erro = JSON.parse(this.responseText);
+              console.log(erro.errors[0].defaultMessage);
+              document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
+              + '<strong>Não Encontrado!</strong> '+erro.errors[0].defaultMessage+'.'
+              + '</div>'
             }
         }
 

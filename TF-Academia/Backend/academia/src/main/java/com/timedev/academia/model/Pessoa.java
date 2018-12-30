@@ -1,7 +1,6 @@
 package com.timedev.academia.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -13,7 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -26,15 +28,18 @@ public abstract class Pessoa {
 	
 	@Column
 	@NotNull
+	@NotEmpty(message="Nome deve ser informado")
 	private String nome;
 	
 	@Column
+	@NotEmpty(message="Cpf deve ser informado")
 	private String cpf;
 
 	@Column
 	private LocalDate dataDeNascimento;
 	
 	@Column
+	@NotEmpty(message="Sexo deve ser informado")
 	private String sexo;
 	
 	@Column(unique = true)
