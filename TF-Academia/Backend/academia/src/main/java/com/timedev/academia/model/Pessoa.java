@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -54,10 +53,12 @@ public abstract class Pessoa {
 	})
 	private Endereco Endereco;
 
-	@Column
+	@Column(unique = true, nullable=false)
+	@NotEmpty(message="número de celular deve ser informado")
 	private String numeroCelular;
 	
 	@Column(nullable = false)
+	@NotEmpty(message="número de emergência deve ser informado")
 	private String numeroCelularEmergencia;
 	
 	public Pessoa() {

@@ -1,6 +1,7 @@
 package com.timedev.academia.model;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.lang.NonNull;
@@ -9,26 +10,32 @@ import org.springframework.lang.NonNull;
 public class Endereco {
     @NonNull
     @Size(max = 15)
+	@NotEmpty(message="número de emergência deve ser informado")
 	private String cep;
 	
     @NonNull
     @Size(max = 20)
+	@NotEmpty(message="número de emergência deve ser informado")
     private String rua;
 	
     
     @Size(max = 10)
+	@NotEmpty(message="número de emergência deve ser informado")
     private String numero;
 	
     @NonNull
     @Size(max = 10)
+	@NotEmpty(message="número de emergência deve ser informado")
     private String cidade;
 	
     @NonNull
     @Size(max = 15)
+	@NotEmpty(message="número de emergência deve ser informado")
     private String bairro;
 	
     @NonNull
     @Size(max = 2)
+	@NotEmpty(message="número de emergência deve ser informado")
     private String uf;
     
     public Endereco() {
