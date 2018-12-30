@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -43,7 +44,7 @@ public abstract class Pessoa {
 	private String sexo;
 	
 	@Column(unique = true)
-	
+	@NotEmpty(message="Email deve ser informado")
 	private String email;
 	
 	@Embedded

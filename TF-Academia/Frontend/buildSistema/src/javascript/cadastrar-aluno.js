@@ -21,10 +21,15 @@ $(document).ready(function () {
                 }
             }else if (this.status == 400){
               let  erro = JSON.parse(this.responseText);
-              console.log(erro.errors[0].defaultMessage);
-              document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
-              + '<strong>Não Encontrado!</strong> '+erro.errors[0].defaultMessage+'.'
-              + '</div>'
+              let messagem = "";
+              console.log(erro);
+              
+            for(let i = 0; i < erro.errors.length; i++){
+                messagem  += erro.errors[i].defaultMessage + ", ";
+            }
+            document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible"><strong>Não Encontrado!</strong> '+messagem+' </div>';         
+            }else if(this.status == 500){
+                document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible"><strong>Alerta!</strong> Email ou Cpf ou número de celular já existe </div>';         
             }
         }
 
