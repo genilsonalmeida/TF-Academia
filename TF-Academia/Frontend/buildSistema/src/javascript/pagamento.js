@@ -1,7 +1,7 @@
 let http = new XMLHttpRequest();
 //validar form cpf
-
-
+let  data = new Date;
+let recebeDataAtual;
 
 $('#botao-cancelar').click(function(){
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
@@ -55,20 +55,23 @@ function exibirDivForm(){
 function carregarDadosDoAluno(aluno){
    let nome = document.getElementById('nome-cliente');
    let cpf = document.getElementById('cpf');
-   let vencimento = document.getElementById('nome-cliente');
+   let vencimento = document.getElementById('data-vencimento');
    let dataPagamento = document.getElementById('data-pagamento');
    nome.value = aluno.nome;
    cpf.value = aluno.cpf;
+   vencimento.value = aluno.diaDoPagamento;
+   dataPagamento.value = recebeDataAtual;
 }
 
 
 function formatandoData(){
-  let  now = new Date;
+  
   let  dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado");
   let  monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto","setembro", "outubro", "novembro", "dezembro");
-  let dataPagamento = dayName[now.getDay()] + ", " + now.getDate() + " de " + monName[now.getMonth()]  +  " de "  +     now.getFullYear () + "\npagamento da mensalidade realizado com sucesso";
-  console.log(dataPagamento); 
-  return dataPagamento;
+  let descricao = dayName[data.getDay()] + ", " + data.getDate() + " de " + monName[data.getMonth()]  +  " de "  +     data.getFullYear () + "\npagamento da mensalidade realizado com sucesso";
+  recebeDataAtual = dayName[data.getDay()] + ", " + data.getDate() + " de " + monName[data.getMonth()]  +  " de "  +     data.getFullYear (); 
+  console.log(descricao); 
+  return descricao;
 }
 formatandoData();
 esconderDivForm();

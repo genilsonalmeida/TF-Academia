@@ -10,32 +10,32 @@ import org.springframework.lang.NonNull;
 public class Endereco {
     @NonNull
     @Size(max = 15)
-	@NotEmpty(message="número de emergência deve ser informado")
+	@NotEmpty(message="Cep deve ser informado")
 	private String cep;
 	
     @NonNull
     @Size(max = 20)
-	@NotEmpty(message="número de emergência deve ser informado")
+	@NotEmpty(message="Rua deve ser informado")
     private String rua;
 	
     
     @Size(max = 10)
-	@NotEmpty(message="número de emergência deve ser informado")
+	@NotEmpty(message="número deve ser informado")
     private String numero;
 	
     @NonNull
     @Size(max = 10)
-	@NotEmpty(message="número de emergência deve ser informado")
+	@NotEmpty(message="cidade deve ser informado")
     private String cidade;
 	
     @NonNull
     @Size(max = 15)
-	@NotEmpty(message="número de emergência deve ser informado")
+	@NotEmpty(message="bairro deve ser informado")
     private String bairro;
 	
     @NonNull
     @Size(max = 2)
-	@NotEmpty(message="número de emergência deve ser informado")
+	@NotEmpty(message="uf deve ser informado")
     private String uf;
     
     public Endereco() {
