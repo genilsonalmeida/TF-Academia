@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputNumero">NÚMERO: </label>
-                            <input type="text" class="form-control" id="numero" placeholder="0000">
+                            <input type="text" class="form-control" id="numero" placeholder="0000" required="required">
                         </div>
                     </div>
                     <div class="form-row">
@@ -98,15 +98,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail">E-MAIL: </label>
-                            <input type="email" class="form-control" id="email" placeholder="josejoao@live.com">
+                            <input type="email" class="form-control" id="email" placeholder="josejoao@live.com" required="required">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputNumero">DIA PARA PAGAMENTO: </label>
-                            <input type="text" class="form-control" id="diaDoPagamento" placeholder="Ex.: 01"    required="required">
+                            <input type="text" class="form-control" id="diaDoPagamento" placeholder="Ex.: 01" required="required">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputValorMensalidade">VALOR DA MENSALIDADE: </label>
-                            <input type="text" step="0.10" class="form-control" id="valorMensalidade" placeholder="Ex.: 00,00">
+                            <input type="text" step="0.10" class="form-control" id="valorMensalidade" placeholder="Ex.: 00,00" required="required">
                         </div>
                     </div>
                     <div class="form-row">
@@ -115,8 +115,8 @@
                             <input type="tel" class="form-control" id="celular" required="required" placeholder="(00) 00000-0000">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputResidencial">TELEFONE RESIDENCIAL: </label>
-                            <input type="tel" class="form-control" id="celular-emergencia" placeholder="(00) 0000-0000">
+                            <label for="inputResidencial">TELEFONE DE EMERGÊNCIA: </label>
+                            <input type="tel" class="form-control" id="celular-emergencia" placeholder="(00) 0000-0000" required="required">
                         </div>
                     </div>
                     <button class="btn btn-primary" id="botao-finalizar" type="button">Finalizar</button>
