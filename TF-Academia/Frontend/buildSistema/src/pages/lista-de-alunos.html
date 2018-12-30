@@ -20,33 +20,36 @@
     <div class="content">
       <div class="titulo">Lista de alunos </div>
       <div class="input-group mb-3" id="buscar">
-        <input id="buscaValor" type="search" class="form-control" placeholder="Ex: Nome ou Número: (82) 11111-1111" aria-label="Search" aria-describedby="button-addon2">
+        <input id="buscaValor" type="search" class="form-control" placeholder="Ex: Nome ou Número: (82) 11111-1111"
+          aria-label="Search" aria-describedby="button-addon2">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" onclick="buscarPorNomeNumeroCelular()" type="submit" id="button-addon2">Search</button>
         </div>
       </div>
       <div id="alert"></div>
-      <div class="container" id="info-aluno">        
+      <div class="container" id="info-aluno">
       </div>
-      <table class="table">
-        <thead>
-          <tr class="bg-primary">
-            <th scope="col" id="numero-list">#</th>
-            <th scope="col" id="nome-list">Nome</th>
-            <th scope="col" id="celular-list">Wats</th>
-            <th scope="col" id="info-list">Informação</th>
-            <th scope="col" id="editar-list">Editar</th>
-            <th scope="col" id="deletar-list">Excluir</th>
-          </tr>
-        </thead>
-        <tbody id="list-aluno">
-        </tbody>
-      </table>
-      <button class="btn btn-danger" id="botao-voltar">Voltar</button>
-    </div>
-    <div class="container">
-      <ul class="pagination" id="pagination-conteudo">
-      </ul>
+      <div id="divPrincipal">
+        <table class="table">
+          <thead>
+            <tr class="bg-primary">
+              <th scope="col" id="numero-list">#</th>
+              <th scope="col" id="nome-list">Nome</th>
+              <th scope="col" id="celular-list">Número para Contato</th>
+              <th scope="col" id="info-list">Informação</th>
+              <th scope="col" id="editar-list">Editar</th>
+              <th scope="col" id="deletar-list">Excluir</th>
+            </tr>
+          </thead>
+          <tbody id="list-aluno">
+          </tbody>
+        </table>
+        <button class="btn btn-danger" id="botao-voltar">Voltar</button>
+        <div class="container">
+          <ul class="pagination" id="pagination-conteudo">
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="footer" id="rodape"></div>
   </div>
