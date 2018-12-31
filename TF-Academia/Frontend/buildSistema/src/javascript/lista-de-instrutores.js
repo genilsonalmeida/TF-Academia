@@ -76,7 +76,7 @@ function editarAluno(id) {
 
 function buscarPorNome() {
 
-    let nome = document.getElementById('nomeInstrutor').value;
+    let nome = document.getElementById('nomeInstrutor').value.toLowerCase();;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8081/instrutor/find-name/' + nome);
     let li = " ";

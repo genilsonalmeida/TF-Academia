@@ -152,7 +152,7 @@ function fecharinfo() {
 
 function buscarPorNomeNumeroCelular() {
 
-    let valor = document.getElementById('buscaValor').value;
+    let valor = document.getElementById('buscaValor').value.toLowerCase();
     console.log(valor);
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8081/aluno/buscarNomeCelular/' + valor + '/' + valor + '/0');
