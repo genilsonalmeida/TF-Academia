@@ -18,14 +18,14 @@ jQuery(window).load(function () {
 function tabela(numeroPagina) {
 
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8081/aluno/lista/' + numeroPagina);
+    xhr.open('GET', 'http://localhost:8081/registroPagamento/' + registroId);
     paginaAtual = numeroPagina;
     xhr.onload = function () {
 
         if (this.status == 200) {
             recebe = JSON.parse(this.responseText);
             console.log(recebe);
-            paginacaoDaLista(recebe.totalPages);
+           // paginacaoDaLista(recebe.totalPages);
             atualizandoLista();
         }
     };
@@ -36,16 +36,13 @@ function tabela(numeroPagina) {
 
 function atualizandoLista() {
     document.getElementById('list-aluno').innerHTML = "";
-    for (var i = 0; i < recebe.content.length; i++) {
+    for (var i = 0; i < recebe.pagamentos.length; i++) {
         let tr = $('<tr>');
         let cols = '';
         cols += '<th scope="row">' + (i + 1) + '</th>';
-        var nome = letraMaiuscula(i);
-        cols += '<th scope="row">' + nome + '</th>';
-        cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
-        cols += '<th scope="row"  onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
-        cols += '<th scope="row"  onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
-        cols += '<th scope="row"  onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
+        cols += '<th scope="row">' + recebe.pagamentos[i].dataDoPagamento + '</th>';
+        cols += '<th scope="row">' + recebe.pagamentos[i].valor + '</th>'
+        cols += '<th scope="row">' + recebe.pagamentos[i].descricaoDoPagamento + '</th>';
         tr.append(cols);
         $('tbody').append(tr);
 
@@ -78,5 +75,6 @@ function buscarPorNomeNumeroCelular() {
     };
     xhr.onerro = () => alert('ERRO');
     xhr.send();
-
 }
+
+tabela(0);
