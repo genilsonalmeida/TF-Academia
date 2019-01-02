@@ -77,4 +77,9 @@ function buscarPorNomeNumeroCelular() {
     xhr.send();
 }
 
+function adicionarNomeDoAlunoADiv(){
+    document.getElementById('nome-aluno').innerHTML = localStorage.getItem('alunoNome');
+}
+
 tabela(0);
+adicionarNomeDoAlunoADiv();
