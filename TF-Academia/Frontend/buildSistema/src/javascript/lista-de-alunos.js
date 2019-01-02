@@ -21,6 +21,7 @@ function tabela(numeroPagina) {
             console.log(recebe);
             paginacaoDaLista(recebe.totalPages);
             atualizandoLista();
+
         }
     };
     xhr.onerro = () => alert('ERRO');
@@ -49,6 +50,7 @@ function atualizandoLista() {
         var nome = letraMaiuscula(i);
         cols += '<th scope="row">' + nome + '</th>';
         cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
+        cols += '<th scope="row"  onClick="guardarIdDoRegistroPagamentoNoLocalStorage(' + i + ')"><img src="../../assets/icones/info.svg"></th>';
         cols += '<th scope="row"  onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
         cols += '<th scope="row"  onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
@@ -177,6 +179,12 @@ function buscarPorNomeNumeroCelular() {
     xhr.onerro = () => alert('ERRO');
     xhr.send();
 
+}
+
+function guardarIdDoRegistroPagamentoNoLocalStorage(posicao){
+    localStorage.setItem('registroId',recebe.content[posicao].registrosDePagamentos[0].id);
+    console.log('re'+localStorage.getItem('registroId'));
+    document.location = "situacao-pagamento.html"
 }
 
 tabela(0);
