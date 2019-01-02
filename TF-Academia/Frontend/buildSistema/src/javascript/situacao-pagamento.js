@@ -43,6 +43,7 @@ function atualizandoLista() {
         cols += '<th scope="row">' + recebe.pagamentos[i].dataDoPagamento + '</th>';
         cols += '<th scope="row">' + recebe.pagamentos[i].valor + '</th>'
         cols += '<th scope="row">' + recebe.pagamentos[i].descricaoDoPagamento + '</th>';
+        cols += '<th scope="row"  onClick="removerPagamento(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
 
@@ -81,5 +82,26 @@ function adicionarNomeDoAlunoADiv(){
     document.getElementById('nome-aluno').innerHTML = localStorage.getItem('alunoNome');
 }
 
+function removerPagamento(posicao){
+
+    //    var r = confirm("Tem certeza que deseja excluir o aluno?");
+     ///   if (r == true) {
+            let http = new XMLHttpRequest();
+            http.open('DELETE', 'http://localhost:8081/registroPagamento/'+ registroId +'/deletePagamento');
+            http.setRequestHeader('Content-Type', 'application/json', true);
+            http.onload = function () {
+                if (this.status == 200) {
+                    tabela(0);
+                }
+            }
+            let pagamento = {
+                'id' : 	recebe.pagamentos[posicao].id
+            };
+    
+        http.onerro = () => alert('ERRO');
+        http.send(JSON.stringify(pagamento));
+ }
+    
+//}
 tabela(0);
 adicionarNomeDoAlunoADiv();
