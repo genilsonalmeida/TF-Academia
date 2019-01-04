@@ -13,9 +13,9 @@ function buscarAlunoPorId(){
     http.open('GET','http://localhost:8081/aluno/'+ id);
     http.onload = function(){
         if(this.status == 200){
-           instrutor = JSON.parse(this.responseText);
-           console.log(instrutor.nome);
-           carregarDadosDoAluno(instrutor);
+           aluno = JSON.parse(this.responseText);
+           console.log(aluno.nome);
+           carregarDadosDoAluno(aluno);
         }
     }
     
@@ -46,16 +46,18 @@ function carregarDadosDoAluno(aluno){
 }
 
 function atualizarDados(){
-    http.open('PUT', 'http://localhost:8081/aluno/'+ instrutor.id);
+    http.open('PUT', 'http://localhost:8081/aluno/'+ aluno.id);
     http.setRequestHeader('Content-Type', 'application/json', true);
     
     http.onload = function(){
         if(this.status == 200){
-            alert('ok');
+            alert('Atualizado com Sucesso!');
+            document.location = "lista-de-alunos.html"
         }
     }
-
-
+    
+    let registros = aluno.registrosDePagamentos[0];
+    console.log(registros);
     let novo = {
         nome: $('#nome').val(),
         dataDeNascimento: $('#dataNascimento').val(),
@@ -73,6 +75,7 @@ function atualizarDados(){
             uf: $('#uf').val(),
             rua: $('#rua').val()
             },
+        registrosDePagamentos:[registros],    
         email: $('#email').val(),
         dataMatricula: $('#dataMatricula').val(),
     };

@@ -52,7 +52,8 @@ function atualizarDados(){
     
     http.onload = function(){
         if(this.status == 200){
-            alert('ok');
+            alert('Atualizado com Sucesso!');
+            document.location = "lista-de-instrutores.html"
         }
     }
 
