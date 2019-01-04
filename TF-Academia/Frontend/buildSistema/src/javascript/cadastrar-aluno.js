@@ -48,7 +48,8 @@ $(document).ready(function () {
                 numero: $('#numero').val(),
                 cidade: $('#cidade').val(),
                 bairro: $('#bairro').val(),
-                uf: $('#uf').val()
+                uf: $('#uf').val(),
+                rua: $('#rua').val()
             },
             registrosDePagamentos: [
                 {

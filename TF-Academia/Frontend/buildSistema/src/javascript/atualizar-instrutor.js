@@ -37,9 +37,11 @@ function carregarDadosDoAluno(instrutor){
     $('#cep').val(instrutor.endereco.cep);
     $('#cidade').val(instrutor.endereco.cidade);
     $('#bairro').val(instrutor.endereco.bairro);
+    $('#rua').val(instrutor.endereco.rua);
     $('#uf').val(instrutor.endereco.uf);
     $('#email').val(instrutor.email);
     $('#dataMatricula').val(instrutor.dataMatricula);
+
     /*
    */
 }
@@ -64,6 +66,7 @@ function atualizarDados(){
         numeroCelularEmergencia:$('#celular-emergencia').val(),
         endereco: {
             cep: $('#cep').val(),
+            rua: $('#rua').val(),
             numero: $('#numero').val(),
             cidade: $('#cidade').val(),
             bairro: $('#bairro').val(),

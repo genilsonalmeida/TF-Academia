@@ -67,7 +67,8 @@ function save(event) {
             numero: $('#numero').val(),
             cidade: $('#cidade').val(),
             bairro: $('#bairro').val(),
-            uf: $('#uf').val()
+            uf: $('#uf').val(),
+            rua: $('#rua').val()
         },
         numeroCelular: $('#celular').val(),
         numeroCelularEmergencia: $('#celular-emergencia').val(),

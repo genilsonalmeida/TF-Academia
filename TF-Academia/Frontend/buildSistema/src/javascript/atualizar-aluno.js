@@ -37,6 +37,7 @@ function carregarDadosDoAluno(aluno){
     $('#cidade').val(aluno.endereco.cidade);
     $('#bairro').val(aluno.endereco.bairro);
     $('#uf').val(aluno.endereco.uf);
+    $('#rua').val(aluno.endereco.rua);
     $('#email').val(aluno.email);
     $('#dataMatricula').val(aluno.dataDeMatricula);
     $('#diaDoPagamento').val(aluno.diaDoPagamento);
@@ -69,7 +70,8 @@ function atualizarDados(){
             numero: $('#numero').val(),
             cidade: $('#cidade').val(),
             bairro: $('#bairro').val(),
-            uf: $('#uf').val()
+            uf: $('#uf').val(),
+            rua: $('#rua').val()
             },
         email: $('#email').val(),
         dataMatricula: $('#dataMatricula').val(),

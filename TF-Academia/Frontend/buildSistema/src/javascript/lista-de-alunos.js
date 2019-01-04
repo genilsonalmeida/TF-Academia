@@ -140,9 +140,11 @@ function carregarInfoAluno(aluno) {
     div.innerHTML += '<p>Número: ' + recebe.content[aluno].numeroCelular + '</p>';
     div.innerHTML += '<p>Número de Emergência: ' + recebe.content[aluno].numeroCelularEmergencia + '</p>';
     div.innerHTML += '<p>Email: ' + recebe.content[aluno].email + ' </p>';
+    div.innerHTML += '<p>CPF: ' + recebe.content[aluno].cpf + '</p>';
     div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[aluno].dataDeNascimento + ' </p>';
     div.innerHTML += '<p>Endereço: ' + recebe.content[aluno].endereco.cidade + '</p>';
     div.innerHTML += '<p>Bairro: ' + recebe.content[aluno].endereco.bairro + '</p>';
+    div.innerHTML += '<p>Rua ou Av e Número da residêcia: ' + recebe.content[aluno].endereco.rua + ' Num:' + recebe.content[aluno].endereco.numero +'</p>';
     div.innerHTML += '<p>CEP: ' + recebe.content[aluno].endereco.cep + '</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">Voltar</button></div></div> ';
 
