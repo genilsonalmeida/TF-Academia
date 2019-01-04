@@ -56,8 +56,8 @@ function atualizandoLista() {
 }
 
 
-function buscarPorNomeNumeroCelular() {
 
+function buscarPorNomeNumeroCelular() {
     let valor = document.getElementById('buscaValor').value.toLowerCase();
     console.log(valor);
     let xhr = new XMLHttpRequest();

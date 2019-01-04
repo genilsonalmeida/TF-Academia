@@ -22,17 +22,31 @@ function buscarAlunoPorCpf(){
     let cpf = document.getElementById('cpf-busca').value;
     http.open('GET','http://localhost:8081/aluno/buscarCpf/'+ cpf);
     http.onload = function (){
-        if(this.status == 200){
-            recebe = JSON.parse(this.responseText);
-            console.log(recebe);
-            esconderDivBusca();
-            exibirDivForm();
-            carregarDadosDoAluno(recebe);
+        if(this.status === 200){
+            if(!validarrespostaJson(this.responseText)){
+                recebe = JSON.parse(this.responseText);
+                console.log(recebe);
+                esconderDivBusca();
+                exibirDivForm();
+                carregarDadosDoAluno(recebe);
+            
+            }
+            
+            
+            
         }
     }
     
     http.onerro = () => alert('ERRO');
     http.send();
+}
+
+function validarrespostaJson(validar){ 
+    if(validar === ""){
+        alert('CPF não existe');
+        return true;
+    }
+     return false;
 }
 
 function esconderDivBusca(){
