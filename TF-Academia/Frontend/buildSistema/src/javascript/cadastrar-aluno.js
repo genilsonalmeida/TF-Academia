@@ -11,7 +11,7 @@ $(document).ready(function () {
         xhr.setRequestHeader('Content-Type', 'application/json', true);
 
         xhr.onload = function () {
-            if (this.status == 200) {
+            if (this.status === 200) {
                 alert('Usuário Cadastrado com sucesso!');
                 var r = confirm("Deseja cadastrar um novo usuário?");
                 if (r == true) {
