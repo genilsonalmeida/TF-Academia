@@ -26,7 +26,3 @@ $('#efetuar-pagamento').click(function(){
     //alert("Pagina de listar alunos ainda não foi definida...");
 });
 
-$('#situacao-pagamento').click(function(){
-    location.href = '../pages/situacao-pagamento.html';
-    //alert("Pagina de listar alunos ainda não foi definida...");
-});

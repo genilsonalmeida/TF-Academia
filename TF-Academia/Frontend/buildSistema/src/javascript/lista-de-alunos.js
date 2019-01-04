@@ -1,3 +1,5 @@
+
+
 jQuery(window).load(function () {
     $(".loader").delay(500).fadeOut("slow"); //retire o delay quando for copiar!
     $("#tudo_page").toggle("fast");
@@ -10,15 +12,20 @@ $('#botao-voltar').click(function () {
 });
 
 function tabela(numeroPagina) {
+    
 
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8081/aluno/lista/' + numeroPagina);
     paginaAtual = numeroPagina;
+    
+    
+
     xhr.onload = function () {
 
         if (this.status == 200) {
             recebe = JSON.parse(this.responseText);
             console.log(recebe);
+           
             paginacaoDaLista(recebe.totalPages);
             atualizandoLista();
 
@@ -56,8 +63,9 @@ function atualizandoLista() {
         cols += '<th scope="row"  onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
-
+        
     }
+   
 }
 
 function paginacaoDaLista(qntDePaginas) {
@@ -104,6 +112,7 @@ function removerAluno(posicion) {
                 document.getElementById("list-aluno").innerHTML = "";
                 document.getElementById("pagination-conteudo").innerHTML = "";
                 tabela(paginaAtual);
+
             }
         }
 
@@ -147,7 +156,6 @@ function retornarIconereferenteASexoDoInstrutor(aluno) {
 function fecharinfo() {
     document.getElementById('info-aluno').innerHTML = "";
     $('#divPrincipal').css('visibility', 'visible');
-
 }
 
 
@@ -178,7 +186,6 @@ function buscarPorNomeNumeroCelular() {
     };
     xhr.onerro = () => alert('ERRO');
     xhr.send();
-
 }
 
 function guardarIdDoRegistroPagamentoNoLocalStorage(posicao){
