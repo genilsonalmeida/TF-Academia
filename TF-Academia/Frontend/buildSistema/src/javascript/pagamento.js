@@ -85,6 +85,7 @@ function savePagamento(){
         if(this.status == 200){
            let recebe = JSON.parse(this.responseText);
            alert(formatandoData());
+           document.location = "lista-de-alunos.html";
            console.log(recebe);   
          }else{
             alert("Pagamento não cadastrado");

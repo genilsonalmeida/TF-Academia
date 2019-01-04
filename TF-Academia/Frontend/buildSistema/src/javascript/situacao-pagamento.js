@@ -44,16 +44,17 @@ function atualizandoLista() {
         let tr = $('<tr>');
         let cols = '';
         var data = newDate(recebe.pagamentos[i].dataDoPagamento);
-        cols += '<th scope="row">' + (i + 1) + '</th>';
+        cols += '<th scope="row">'+(i + 1)+'</th>';
         cols += '<th scope="row">' + recebe.pagamentos[i].dataDoPagamento + '</th>';
         cols += '<th scope="row"> R$ ' + recebe.pagamentos[i].valor + ',00 </th>'
         cols += '<th scope="row">' + recebe.pagamentos[i].descricaoDoPagamento + '</th>';
-        cols += '<th scope="row"  onClick="removerPagamento(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
+        cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)"  onClick="removerPagamento(' + i + ')" ><img   src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);
 
     }
 }
+
 
 function buscarPorNomeNumeroCelular() {
 
@@ -107,6 +108,13 @@ function removerPagamento(posicao) {
         http.send(JSON.stringify(pagamento));
     }
 
+}
+function mudarCorDaColunaQuandoMousePassar(x) {
+    x.style.backgroundColor = "lightblue";
+}
+  
+  function mudarCorDaColunaQuandoMouseSair(x) {
+    x.style.backgroundColor = "white";  
 }
 tabela(0);
 adicionarNomeDoAlunoADiv();
