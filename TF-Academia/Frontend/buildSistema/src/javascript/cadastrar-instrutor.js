@@ -56,8 +56,11 @@ function save(event) {
           }
     }
 
+    let numCelular = trim($('#celular').val());
+    let numCelEmergencia = trim($('#celular-emergencia').val());
+
     var novo = {
-        nome: $('#nome').val(),
+        nome: $('#nome').val().toUpperCase(),
         email: $('#email').val(),
         dataDeNascimento: $('#dataNascimento').val(),
         sexo: $('#sexo').val(),
@@ -65,15 +68,23 @@ function save(event) {
         endereco: {
             cep: $('#cep').val(),
             numero: $('#numero').val(),
-            cidade: $('#cidade').val(),
-            bairro: $('#bairro').val(),
-            uf: $('#uf').val(),
-            rua: $('#rua').val()
+            cidade: $('#cidade').val().toLowerCase(),
+            bairro: $('#bairro').val().toLowerCase(),
+            uf: $('#uf').val().toLowerCase(),
+            rua: $('#rua').val().toLowerCase()
         },
-        numeroCelular: $('#celular').val(),
-        numeroCelularEmergencia: $('#celular-emergencia').val(),
+        numeroCelular: numCelular,
+        numeroCelularEmergencia: numCelEmergencia,
     };
     
     xhr.onerro = () => alert('ERRO');
     xhr.send(JSON.stringify(novo));
+}
+
+function trim(vlr) {
+    var resultado = vlr.replace(/ /g, "");
+    resultado = resultado.replace('(', '');
+    resultado = resultado.replace(')', '');
+    resultado = resultado.replace('-', '');
+    return resultado;
 }

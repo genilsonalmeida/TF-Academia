@@ -57,27 +57,38 @@ function atualizarDados(){
         }
     }
 
+    let numCelular = trim($('#celular').val());
+    let numCelEmergencia = trim($('#celular-emergencia').val());
 
     let novo = {
-        nome: $('#nome').val(),
+        nome: $('#nome').val().toUpperCase(),
         dataDeNascimento: $('#dataNascimento').val(),
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
-        numeroCelular:$('#celular').val(),
-        numeroCelularEmergencia:$('#celular-emergencia').val(),
+        numeroCelular: numCelular,
+        numeroCelularEmergencia: numCelEmergencia,
         endereco: {
             cep: $('#cep').val(),
             rua: $('#rua').val(),
             numero: $('#numero').val(),
-            cidade: $('#cidade').val(),
-            bairro: $('#bairro').val(),
-            uf: $('#uf').val()
+            cidade: $('#cidade').val().toLowerCase(),
+            bairro: $('#bairro').val().toLowerCase(),
+            uf: $('#uf').val().toLowerCase()
             },
-        email: $('#email').val(),
+        email: $('#email').val().toLowerCase(),
     };
 
     http.onerro = () => alert('ERRO');
     http.send(JSON.stringify(novo));
     
 }
+
+function trim(vlr) {
+    var resultado = vlr.replace(/ /g, "");
+    resultado = resultado.replace('(', '');
+    resultado = resultado.replace(')', '');
+    resultado = resultado.replace('-', '');
+    return resultado;
+}
+
 buscarInstrutorPorId();

@@ -33,30 +33,33 @@ $(document).ready(function () {
             }
         }
 
+        let numCelular = trim($('#celular').val());
+        let numCelEmergencia = trim($('#celular-emergencia').val());
+
         console.log($('#celular').val());
 
         let novo = {
-            nome: $('#nome').val(),
+            nome: $('#nome').val().toUpperCase(),
             dataDeNascimento: $('#dataNascimento').val(),
             sexo: $('#sexo').val(),
             cpf: $('#cpf').val(),
-            numeroCelular: $('#celular').val(),
-            numeroCelularEmergencia: $('#celular-emergencia').val(),
+            numeroCelular: numCelular,
+            numeroCelularEmergencia: numCelEmergencia,
             mensalidade: $('#valorMensalidade').val(),
             endereco: {
                 cep: $('#cep').val(),
                 numero: $('#numero').val(),
-                cidade: $('#cidade').val(),
-                bairro: $('#bairro').val(),
-                uf: $('#uf').val(),
-                rua: $('#rua').val()
+                cidade: $('#cidade').val().toLowerCase(),
+                bairro: $('#bairro').val().toLowerCase(),
+                uf: $('#uf').val().toLowerCase(),
+                rua: $('#rua').val().toLowerCase()
             },
             registrosDePagamentos: [
                 {
                     descricaoDoregistro: 'mensalidade'
                 }
             ],
-            email: $('#email').val(),
+            email: $('#email').val().toLowerCase(),
             diaDoPagamento: $('#diaDoPagamento').val(),
             mensalidade: $('#valorMensalidade').val(),
         };
@@ -67,6 +70,14 @@ $(document).ready(function () {
     }
 
 });
+
+function trim(vlr) {
+    var resultado = vlr.replace(/ /g, "");
+    resultado = resultado.replace('(', '');
+    resultado = resultado.replace(')', '');
+    resultado = resultado.replace('-', '');
+    return resultado;
+}
 
 $('#botao-cancelar').click(function () {
     var r = confirm("Tem certeza que deseja cancelar o cadastro?");

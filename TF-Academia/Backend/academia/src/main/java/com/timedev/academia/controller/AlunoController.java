@@ -37,7 +37,7 @@ public class AlunoController {
 	@GetMapping("/aluno/lista/{pageNumber}")
 	public Page<Aluno> getSpecificPage(@Valid Pageable pageable,
 			@PathVariable Integer pageNumber){
-		pageable =  PageRequest.of(pageNumber, 5);
+		pageable =  PageRequest.of(pageNumber, 10);
 		return alunoRepository.findAll(pageable);
 	}
 		

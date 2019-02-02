@@ -3,27 +3,27 @@ let aluno;
 $('#botao-finalizar').click(atualizarDados);
 $('#botao-cancelar').click(voltarAPaginaPrincipal);
 
-function voltarAPaginaPrincipal(event){
+function voltarAPaginaPrincipal(event) {
     event.preventDefault();
     document.location = "lista-de-alunos.html"
 }
 
-function buscarAlunoPorId(){
+function buscarAlunoPorId() {
     let id = localStorage.getItem('idAluno');
-    http.open('GET','http://localhost:8081/aluno/'+ id);
-    http.onload = function(){
-        if(this.status == 200){
-           aluno = JSON.parse(this.responseText);
-           console.log(aluno.nome);
-           carregarDadosDoAluno(aluno);
+    http.open('GET', 'http://localhost:8081/aluno/' + id);
+    http.onload = function () {
+        if (this.status == 200) {
+            aluno = JSON.parse(this.responseText);
+            console.log(aluno.nome);
+            carregarDadosDoAluno(aluno);
         }
     }
-    
+
     http.onerro = () => alert('ERRO');
     http.send();
 }
 
-function carregarDadosDoAluno(aluno){
+function carregarDadosDoAluno(aluno) {
     console.log(aluno);
     $('#nome').val(aluno.nome);
     $('#dataNascimento').val(aluno.dataDeNascimento);
@@ -41,47 +41,58 @@ function carregarDadosDoAluno(aluno){
     $('#email').val(aluno.email);
     $('#dataMatricula').val(aluno.dataDeMatricula);
     $('#diaDoPagamento').val(aluno.diaDoPagamento);
-    /*
-   */
+
 }
 
-function atualizarDados(){
-    http.open('PUT', 'http://localhost:8081/aluno/'+ aluno.id);
+function atualizarDados() {
+    http.open('PUT', 'http://localhost:8081/aluno/' + aluno.id);
     http.setRequestHeader('Content-Type', 'application/json', true);
-    
-    http.onload = function(){
-        if(this.status == 200){
+
+    http.onload = function () {
+        if (this.status == 200) {
             alert('Atualizado com Sucesso!');
             document.location = "lista-de-alunos.html"
         }
     }
-    
+
+    let numCelular = trim($('#celular').val());
+    let numCelEmergencia = trim($('#celular-emergencia').val());
+
     let registros = aluno.registrosDePagamentos[0];
     console.log(registros);
     let novo = {
-        nome: $('#nome').val(),
+        nome: $('#nome').val().toUpperCase(),
         dataDeNascimento: $('#dataNascimento').val(),
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
-        numeroCelular:$('#celular').val(),
-        numeroCelularEmergencia:$('#celular-emergencia').val(),
-        mensalidade:$('#valorMensalidade').val(),
-        diaDoPagamento:$('#diaDoPagamento').val(),
+        numeroCelular: numCelular,
+        numeroCelularEmergencia: numCelEmergencia,
+        mensalidade: $('#valorMensalidade').val(),
+        diaDoPagamento: $('#diaDoPagamento').val(),
         endereco: {
             cep: $('#cep').val(),
             numero: $('#numero').val(),
-            cidade: $('#cidade').val(),
-            bairro: $('#bairro').val(),
-            uf: $('#uf').val(),
-            rua: $('#rua').val()
-            },
-        registrosDePagamentos:[registros],    
-        email: $('#email').val(),
+            cidade: $('#cidade').val().toLowerCase(),
+            bairro: $('#bairro').val().toLowerCase(),
+            uf: $('#uf').val().toLowerCase(),
+            rua: $('#rua').val().toLowerCase()
+        },
+        registrosDePagamentos: [registros],
+        email: $('#email').val().toLowerCase(),
         dataMatricula: $('#dataMatricula').val(),
     };
 
     http.onerro = () => alert('ERRO');
     http.send(JSON.stringify(novo));
-    
+
 }
+
+function trim(vlr) {
+    var resultado = vlr.replace(/ /g, "");
+    resultado = resultado.replace('(', '');
+    resultado = resultado.replace(')', '');
+    resultado = resultado.replace('-', '');
+    return resultado;
+}
+
 buscarAlunoPorId();

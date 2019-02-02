@@ -7,6 +7,8 @@ jQuery(window).load(function () {
 
 let recebe;
 let paginaAtual;
+let proximaLista = 1;
+
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
@@ -49,11 +51,11 @@ function letraMaiuscula(i) {
 }
 
 function atualizandoLista() {
-    document.getElementById('list-aluno').innerHTML = "";
+    
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
-        cols += '<th scope="row">' + (i + 1) + '</th>';
+        cols += '<th scope="row">*</th>';
         var nome = letraMaiuscula(i);
         cols += '<th scope="row">' + nome + '</th>';
         cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
@@ -62,10 +64,8 @@ function atualizandoLista() {
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
-        $('tbody').append(tr);
-        
+        $('tbody').append(tr);     
     }
-   
 }
 function mudarCorDaColunaQuandoMousePassar(x) {
     x.style.backgroundColor = "lightblue";
@@ -76,29 +76,29 @@ function mudarCorDaColunaQuandoMousePassar(x) {
 }
 function paginacaoDaLista(qntDePaginas) {
     document.getElementById('pagination-conteudo').innerHTML = "";
-
     let ul = $('<ul>');
-    let li = '<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>';
-
-    for (let i = 0; i < qntDePaginas; i++) {
-        li += '<li class="page-item"><button type="button" class="page-link bnt">' + i + '</button></li>';
-    }
-    li += '<li class="page-item"><a class="page-link" href="#">Next</a></li>';
+    let li = '';
+    li += '<li class="page-item"><button type="button" class="page-link bnt-proxima-page">Mais+</button></li>';
     $('ul').append(li);
-
-    selecionandoId(qntDePaginas);
+    selecionandoListaExibida(qntDePaginas);
 }
 
-function selecionandoId(pages) {
-    for (let i = 0; i < pages; i++) {
-        console.log(i);
-        document.getElementsByClassName('bnt')[i].onclick = function () {
-            document.getElementById("list-aluno").innerHTML = "";
-            document.getElementById("pagination-conteudo").innerHTML = "";
-            tabela(i);
-        };
+function selecionandoListaExibida(pages) {    
+    irParaProxmalista(pages);
+}
+
+function irParaProxmalista(pagTotal){
+    document.getElementsByClassName('bnt-proxima-page')[0].onclick = function () {
+        console.log('função selecionarid')
+        if(proximaLista < pagTotal){
+               tabela(proximaLista++);
+               console.log(proximaLista)
+            }else{alert('Fim da Lista')}
+                          
     }
 }
+
+
 
 function editarAluno(id) {
     localStorage.setItem('idAluno', recebe.content[id].id);
@@ -137,8 +137,10 @@ function carregarInfoAluno(aluno) {
     div.innerHTML += '<img src="../../assets/icones/' + caminhoDaImagem + '" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
     div.innerHTML += '<h4>' + recebe.content[aluno].nome.toUpperCase() + '</h4>';
-    div.innerHTML += '<p>Número: ' + recebe.content[aluno].numeroCelular + '</p>';
-    div.innerHTML += '<p>Número de Emergência: ' + recebe.content[aluno].numeroCelularEmergencia + '</p>';
+    let numFormatado = formatar(recebe.content[aluno].numeroCelular);
+    let numEmFormatado = formatar(recebe.content[aluno].numeroCelular);
+    div.innerHTML += '<p>Número: ' + numFormatado + '</p>';
+    div.innerHTML += '<p>Número de Emergência: ' + numEmFormatado + '</p>';
     div.innerHTML += '<p>Email: ' + recebe.content[aluno].email + ' </p>';
     div.innerHTML += '<p>CPF: ' + recebe.content[aluno].cpf + '</p>';
     div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[aluno].dataDeNascimento + ' </p>';
@@ -169,8 +171,8 @@ function fecharinfo() {
 
 
 function buscarPorNomeNumeroCelular() {
-
-    let valor = document.getElementById('buscaValor').value;
+    
+    let valor = document.getElementById('buscaValor').value.toUpperCase();
     console.log(valor);
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8081/aluno/buscarNomeCelular/' + valor + '/' + valor + '/0');
@@ -184,7 +186,7 @@ function buscarPorNomeNumeroCelular() {
                     + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
                     + '</div>'
             } else {
-
+                document.getElementById('list-aluno').innerHTML = "";    
                 atualizandoLista();
                 paginacaoDaLista(recebe.totalPages);
 
@@ -203,5 +205,13 @@ function guardarIdDoRegistroPagamentoNoLocalStorage(posicao){
     document.location = "situacao-pagamento.html"
 }
 
+function formatar(num){
+    var resultado = num.substr(0,0)+"("+num.substr(0);
+    resultado = resultado.substr(0,3)+")"+resultado.substr(3);
+    resultado = resultado.substr(0,4)+" "+resultado.substr(4);
+    resultado = resultado.substr(0,10)+"-"+resultado.substr(10);
+
+    return resultado;
+}
+
 tabela(0);
-selecionandoId();
