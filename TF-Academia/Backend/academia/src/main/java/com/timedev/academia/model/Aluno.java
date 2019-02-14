@@ -35,6 +35,9 @@ public class Aluno extends Pessoa{
 	@Column
 	private String diaDoPagamento;
 	
+	@Column
+    private String matricula;
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RegistroPagamento> registrosDePagamentos = new ArrayList<RegistroPagamento>();
 
@@ -92,6 +95,14 @@ public class Aluno extends Pessoa{
 
 	public void setDiaDoPagamento(String diaDoPagamento) {
 		this.diaDoPagamento = diaDoPagamento;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 		
 	

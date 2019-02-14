@@ -71,8 +71,9 @@ public class AlunoController {
 				.map(aluno -> {
 					aluno.setNome(alunoRequest.getNome());
 					aluno.setSexo(alunoRequest.getSexo());
-					aluno.setEmail(alunoRequest.getEmail());
+				//	aluno.setEmail(alunoRequest.getEmail());
 					aluno.setCpf(alunoRequest.getCpf());
+					aluno.setMatricula(alunoRequest.getMatricula());
 					aluno.setDataDeMatricula(alunoRequest.getDataDeMatricula());
 					aluno.setDataDeNascimento(alunoRequest.getDataDeNascimento());
 					aluno.setMensalidade(alunoRequest.getMensalidade());
@@ -115,4 +116,11 @@ public class AlunoController {
 					return alunoRepository.save(aluno);
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));
 	}
+	
+	@GetMapping("/aluno/listaVencimento/{dataVencimento}")
+	public Page<Aluno> getDataDeVencimento(@Valid @PathVariable String dataVencimento,
+			Pageable pageable){
+		return alunoRepository.findByDataVencimento(dataVencimento, pageable);
+	}
+
 }

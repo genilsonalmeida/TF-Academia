@@ -47,7 +47,6 @@ public class UsuarioController {
 					usuario.setNome(usuarioRequest.getNome());
 					usuario.setEmail(usuarioRequest.getEmail());
 					usuario.setSenha(usuarioRequest.getSenha());
-					usuario.setMatricula(usuarioRequest.getMatricula());
 					
 					return usuarioRepository.save(usuario);
 				}).orElseThrow(() -> new ResourceNotFoundException(" Página não encontrada " 

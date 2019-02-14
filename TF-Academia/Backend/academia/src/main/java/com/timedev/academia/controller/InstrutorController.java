@@ -65,7 +65,7 @@ public class InstrutorController {
 				.map(instrutor -> {
 					instrutor.setNome(instrutorRequest.getNome());
 					instrutor.setSexo(instrutorRequest.getSexo());
-					instrutor.setEmail(instrutorRequest.getEmail());
+				//	instrutor.setEmail(instrutorRequest.getEmail());
 					instrutor.setCpf(instrutorRequest.getCpf());
 					instrutor.setDataDeNascimento(instrutorRequest.getDataDeNascimento());
 					instrutor.setEndereco(instrutorRequest.getEndereco());

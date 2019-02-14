@@ -16,8 +16,7 @@ public class Usuario {
     private String email;
     @Column
     private String senha;
-    @Column
-    private String matricula;
+    
 
 	public Usuario() {}
 
@@ -53,13 +52,5 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-		
 	
 }

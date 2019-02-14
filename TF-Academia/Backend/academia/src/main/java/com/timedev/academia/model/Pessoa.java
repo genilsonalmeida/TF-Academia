@@ -32,7 +32,6 @@ public abstract class Pessoa {
 	private String nome;
 	
 	@Column
-	@NotEmpty(message="Cpf deve ser informado")
 	private String cpf;
 
 	@Column
@@ -42,8 +41,7 @@ public abstract class Pessoa {
 	@NotEmpty(message="Sexo deve ser informado")
 	private String sexo;
 	
-	@Column(unique = true)
-	@NotEmpty(message="Email deve ser informado")
+	@Column(unique = false)
 	private String email;
 	
 	@Embedded

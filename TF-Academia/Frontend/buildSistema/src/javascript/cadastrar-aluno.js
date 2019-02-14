@@ -35,8 +35,7 @@ $(document).ready(function () {
 
         let numCelular = trim($('#celular').val());
         let numCelEmergencia = trim($('#celular-emergencia').val());
-
-        console.log($('#celular').val());
+        let matriculaGerada = gerarMatricula();
 
         let novo = {
             nome: $('#nome').val().toUpperCase(),
@@ -46,6 +45,7 @@ $(document).ready(function () {
             numeroCelular: numCelular,
             numeroCelularEmergencia: numCelEmergencia,
             mensalidade: $('#valorMensalidade').val(),
+            matricula:matriculaGerada,
             endereco: {
                 cep: $('#cep').val(),
                 numero: $('#numero').val(),
@@ -70,6 +70,24 @@ $(document).ready(function () {
     }
 
 });
+
+function gerarMatricula(){
+    let matricula = letraDaMatricula();
+        matricula += numeroDaMatricula();
+        alert(matricula);
+        return matricula;
+}
+
+function letraDaMatricula(){
+    let nome = $('#nome').val().toUpperCase();
+    return nome.slice(0,1);
+}
+
+function numeroDaMatricula(){
+    let numero = trim($('#celular').val());
+        numero  =  numero.slice(7,11);   
+        return numero;
+}
 
 function trim(vlr) {
     var resultado = vlr.replace(/ /g, "");
