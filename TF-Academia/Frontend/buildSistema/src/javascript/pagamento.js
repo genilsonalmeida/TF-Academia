@@ -19,7 +19,8 @@ $('#btn-cancelar').click(function(){
 });
 
 function buscarAlunoPorCpf(){
-    let matricula = document.getElementById('cpf-busca').value;
+    let matricula = document.getElementById('matricula-busca').value;
+    matricula = matricula.toUpperCase();
     http.open('GET','http://localhost:8081/aluno/buscarMatricula/'+ matricula);
     http.onload = function (){
         if(this.status === 200){
@@ -29,11 +30,7 @@ function buscarAlunoPorCpf(){
                 esconderDivBusca();
                 exibirDivForm();
                 carregarDadosDoAluno(recebe);
-            
-            }
-            
-            
-            
+            }    
         }
     }
     
