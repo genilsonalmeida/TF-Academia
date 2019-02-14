@@ -47,9 +47,9 @@ public class AlunoController {
 				.orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idAluno));		
 	}
 	
-	@GetMapping("/aluno/buscarCpf/{alunoCpf}")
-	public Aluno getAlunoByCpf(@Valid @PathVariable String alunoCpf) {
-		return alunoRepository.findByCpf(alunoCpf);
+	@GetMapping("/aluno/buscarMatricula/{alunoMatricula}")
+	public Aluno getAlunoByCpf(@Valid @PathVariable String alunoMatricula) {
+		return alunoRepository.findByMatricula(alunoMatricula);
 	}
 	
 	@GetMapping("/aluno/buscarNomeCelular/{alunoNome}/{alunoCelular}/{pageNumber}")
@@ -71,7 +71,7 @@ public class AlunoController {
 				.map(aluno -> {
 					aluno.setNome(alunoRequest.getNome());
 					aluno.setSexo(alunoRequest.getSexo());
-				//	aluno.setEmail(alunoRequest.getEmail());
+					aluno.setEmail(alunoRequest.getEmail());
 					aluno.setCpf(alunoRequest.getCpf());
 					aluno.setMatricula(alunoRequest.getMatricula());
 					aluno.setDataDeMatricula(alunoRequest.getDataDeMatricula());

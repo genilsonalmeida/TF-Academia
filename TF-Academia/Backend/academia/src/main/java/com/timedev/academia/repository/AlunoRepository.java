@@ -11,7 +11,7 @@ import com.timedev.academia.model.Aluno;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Integer>{
-  public Aluno findByCpf(String cpf);
+  public Aluno findByMatricula(String matricula);
   public Page<Aluno> findByNomeOrNumeroCelular(String nome, String nCelular, Pageable pageable);
 
   @Query( value = "select * from pessoa where tipo='AL' and dia_do_pagamento<=?1",

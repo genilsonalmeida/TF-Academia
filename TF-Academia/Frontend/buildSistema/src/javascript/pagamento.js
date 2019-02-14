@@ -19,8 +19,8 @@ $('#btn-cancelar').click(function(){
 });
 
 function buscarAlunoPorCpf(){
-    let cpf = document.getElementById('cpf-busca').value;
-    http.open('GET','http://localhost:8081/aluno/buscarCpf/'+ cpf);
+    let matricula = document.getElementById('cpf-busca').value;
+    http.open('GET','http://localhost:8081/aluno/buscarMatricula/'+ matricula);
     http.onload = function (){
         if(this.status === 200){
             if(!validarrespostaJson(this.responseText)){

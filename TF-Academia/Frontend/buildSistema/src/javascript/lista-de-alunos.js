@@ -55,7 +55,7 @@ function atualizandoLista() {
     for (var i = 0; i < recebe.content.length; i++) {
         let tr = $('<tr>');
         let cols = '';
-        cols += '<th scope="row">*</th>';
+        cols += '<th scope="row">'+recebe.content[i].matricula+'</th>';
         var nome = letraMaiuscula(i);
         cols += '<th scope="row">' + nome + '</th>';
         cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
