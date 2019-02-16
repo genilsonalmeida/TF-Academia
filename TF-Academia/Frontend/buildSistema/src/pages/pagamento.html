@@ -28,12 +28,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Matricula: </label>
+                                <div id="campo-vazio"></div>
                                 <input type="text" style="text-transform: uppercase"  maxlength="5" class="form-control"
                                 id="matricula-busca" placeholder="Ex.: A0000" required="required">
                             </div>
                             
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="buscarAlunoPorCpf()">Buscar</button>
+                        <button type="button" class="btn btn-primary" onclick="mandarValorDoElemento()">Buscar</button>
                         <button type="button" class="btn btn-danger" id="btn-cancelar">Cancelar</button> 
                      </form>
                  </div>

@@ -3,7 +3,7 @@ let http = new XMLHttpRequest();
 let  data = new Date;
 let recebeDataAtual;
 let recebe;
-
+let alunoMatricula = '';
 $('#botao-cancelar').click(function(){
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
     if (r == true) {
@@ -18,10 +18,32 @@ $('#btn-cancelar').click(function(){
     }
 });
 
-function buscarAlunoPorCpf(){
+function verificarmatricula(matricula){
+    if(!(matriculaENula(matricula) && matriculaEVasia(matricula))){
+       alunoMatricula = matricula;
+       buscarAlunoPorMatricula();
+    }
+}
+
+function matriculaENula(matricula){
+    if(matricula === null){ return true;}
+}
+function matriculaEVasia(matricula){
+    if(matricula === ''){ return true;}
+}
+
+function mandarValorDoElemento(){
     let matricula = document.getElementById('matricula-busca').value;
-    matricula = matricula.toUpperCase();
-    http.open('GET','http://localhost:8081/aluno/buscarMatricula/'+ matricula);
+    verificarmatricula(matricula);
+}
+
+function madarValorDaMatriculaLocalStorag(){
+    let matricula = localStorage.getItem('alunoMatricula');
+    verificarmatricula(matricula);
+}
+
+function buscarAlunoPorMatricula(){
+    http.open('GET','http://localhost:8081/aluno/buscarMatricula/'+ alunoMatricula.toUpperCase());
     http.onload = function (){
         if(this.status === 200){
             if(!validarrespostaJson(this.responseText)){
@@ -30,6 +52,7 @@ function buscarAlunoPorCpf(){
                 esconderDivBusca();
                 exibirDivForm();
                 carregarDadosDoAluno(recebe);
+                limparValores();       
             }    
         }
     }
@@ -38,9 +61,14 @@ function buscarAlunoPorCpf(){
     http.send();
 }
 
+function limparValores(){
+    alunoMatricula = '';
+    localStorage.setItem("alunoMatricula",'');
+}
+
 function validarrespostaJson(validar){ 
     if(validar === ""){
-        alert('CPF não existe');
+        alert('Matricula não existe');
         return true;
     }
      return false;
@@ -116,3 +144,4 @@ function savePagamento(){
 
 formatandoData();
 esconderDivForm();
+madarValorDaMatriculaLocalStorag();

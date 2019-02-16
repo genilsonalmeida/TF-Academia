@@ -26,3 +26,8 @@ $('#efetuar-pagamento').click(function(){
     //alert("Pagina de listar alunos ainda não foi definida...");
 });
 
+$('#lista-debito').click(function(){
+    location.href = '../pages/lista-alunos-debito.html';
+    //alert("Pagina de listar alunos ainda não foi definida...");
+});
+
