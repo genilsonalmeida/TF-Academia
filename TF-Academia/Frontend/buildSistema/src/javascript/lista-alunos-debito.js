@@ -101,9 +101,17 @@ function exibirAlunos(nome, dataPagamento, cor,diaDoPagamento, pos, numero){
     cols += '<th scope="row">'+numero+'</th>';
     cols += '<th scope="row" style="background-color:#FFF;border:solid 1px;">'+ diaDoPagamento +'</th>';
     cols += '<th id="colunaMesTaual" style="background-color:rgb'+cor+';border:solid 1px;" scope="row"  >'+ dataPagamento +'</th>'
-    cols += '<th scope="row"   onclick="salvarMatriculaNoLocalStorag('+pos+')"><img src="../../assets/icones/icons8-notas-de-dinheiro-24.png"></th>';
+    cols += '<th scope="row" onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)"  onclick="salvarMatriculaNoLocalStorag('+pos+')"><img src="../../assets/icones/icons8-notas-de-dinheiro-24.png"></th>';
     tr.append(cols);
     $('tbody').append(tr); 
+}
+
+function mudarCorDaColunaQuandoMousePassar(x) {
+    x.style.backgroundColor = "lightblue";
+}
+  
+  function mudarCorDaColunaQuandoMouseSair(x) {
+    x.style.backgroundColor = "white";  
 }
 
 function carregarInformacaoDaTabela(){
