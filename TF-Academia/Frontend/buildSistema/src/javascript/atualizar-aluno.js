@@ -16,6 +16,7 @@ function buscarAlunoPorId() {
             aluno = JSON.parse(this.responseText);
             console.log(aluno.nome);
             carregarDadosDoAluno(aluno);
+            verificarMatricula(aluno.matricula);
         }
     }
 
@@ -41,7 +42,25 @@ function carregarDadosDoAluno(aluno) {
     $('#email').val(aluno.email);
     $('#dataMatricula').val(aluno.dataDeMatricula);
     $('#diaDoPagamento').val(aluno.diaDoPagamento);
+}
 
+function verificarMatricula(matricula){
+    if(matriculaENull(matricula)){
+        gerarMatricula();
+    }
+}
+
+function matriculaENull(matricula){
+    if(matricula === null){
+        return true;
+    }
+}
+
+function gerarMatricula(){
+    let letra = aluno.nome.slice(0,1);
+    let numero = aluno.numeroCelular.slice(7,11);
+    aluno.matricula = letra + numero;
+    alert(aluno.matricula);
 }
 
 function atualizarDados() {
@@ -66,6 +85,7 @@ function atualizarDados() {
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
         numeroCelular: numCelular,
+        matricula:aluno.matricula,
         numeroCelularEmergencia: numCelEmergencia,
         mensalidade: $('#valorMensalidade').val(),
         diaDoPagamento: $('#diaDoPagamento').val(),

@@ -9,6 +9,10 @@ let diaParametro = '';
 let corNaoPago = '(255,165,0)';
 let corPago = '(0,255,127)';
 
+$('#botao-voltar').click(function () {
+    location.href = '../pages/principal.html';
+});
+
 function receberLista(){
     
     http.open('GET','http://localhost:8081/aluno/listaVencimento/'+diaParametro);

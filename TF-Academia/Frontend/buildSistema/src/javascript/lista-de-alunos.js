@@ -117,7 +117,8 @@ function removerAluno(posicion) {
             if (this.status == 200) {
                 document.getElementById("list-aluno").innerHTML = "";
                 document.getElementById("pagination-conteudo").innerHTML = "";
-                tabela(paginaAtual);
+                proximaLista = 0;
+                tabela(0);
 
             }
         }
