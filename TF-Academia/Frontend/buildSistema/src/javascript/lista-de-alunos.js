@@ -8,10 +8,18 @@ jQuery(window).load(function () {
 let recebe;
 let paginaAtual;
 let proximaLista = 1;
+let alunos = [];
 
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
+
+
+function adicionarAlunosALista(novosAlunos){
+    novosAlunos.forEach(element =>{
+       alunos.push(element);
+    });
+}
 
 function tabela(numeroPagina) {
     
@@ -27,7 +35,7 @@ function tabela(numeroPagina) {
         if (this.status == 200) {
             recebe = JSON.parse(this.responseText);
             console.log(recebe);
-           
+            adicionarAlunosALista(recebe.content);
             paginacaoDaLista(recebe.totalPages);
             atualizandoLista();
 
@@ -40,8 +48,8 @@ function tabela(numeroPagina) {
 
 let nome;
 function letraMaiuscula(i) {
-    str = recebe.content[i].nome;
-    qtd = recebe.content[i].nome.length;
+    str = alunos[i].nome;
+    qtd = alunos[i].nome.length;
     prim = str.substring(0, 1);
     resto = str.substring(1, qtd);
     str = prim.toUpperCase() + resto;
@@ -52,13 +60,13 @@ function letraMaiuscula(i) {
 
 function atualizandoLista() {
     
-    for (var i = 0; i < recebe.content.length; i++) {
+    for (var i = 0; i < alunos.length; i++) {
         let tr = $('<tr>');
         let cols = '';
-        cols += '<th scope="row">'+recebe.content[i].matricula+'</th>';
+        cols += '<th scope="row">'+alunos[i].matricula+'</th>';
         var nome = letraMaiuscula(i);
         cols += '<th scope="row">' + nome + '</th>';
-        cols += '<th scope="row">' + recebe.content[i].numeroCelular + '</th>';
+        cols += '<th scope="row">' + alunos[i].numeroCelular + '</th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="guardarIdDoRegistroPagamentoNoLocalStorage(' + i + ')"><img src="../../assets/icones/icon-pagamento.png"></th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
@@ -101,7 +109,7 @@ function irParaProxmalista(pagTotal){
 
 
 function editarAluno(id) {
-    localStorage.setItem('idAluno', recebe.content[id].id);
+    localStorage.setItem('idAluno', alunos[id].id);
     document.location = "atualizar-aluno.html"
 }
 
@@ -110,14 +118,13 @@ function removerAluno(posicion) {
     var r = confirm("Tem certeza que deseja excluir o aluno?");
     if (r == true) {
         let http = new XMLHttpRequest();
-        let id = recebe.content[posicion].id;
+        let id = alunos[posicion].id;
         http.open('DELETE', 'http://localhost:8081/aluno/' + id);
         http.setRequestHeader('Content-Type', 'application/json', true);
         http.onload = function () {
             if (this.status == 200) {
                 document.getElementById("list-aluno").innerHTML = "";
                 document.getElementById("pagination-conteudo").innerHTML = "";
-                proximaLista = 0;
                 tabela(0);
 
             }
@@ -131,24 +138,24 @@ function removerAluno(posicion) {
 
 function carregarInfoAluno(aluno) {
     retornarIconereferenteASexoDoInstrutor(aluno);
-    console.log(recebe.content[aluno].dataNascimento);
+    console.log(alunos[aluno].dataNascimento);
     let div = document.getElementById('info-aluno');
     div.innerHTML = "";
     div.innerHTML += '<div class="media" >';
     div.innerHTML += '<img src="../../assets/icones/' + caminhoDaImagem + '" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
-    div.innerHTML += '<h4>' + recebe.content[aluno].nome.toUpperCase() + '</h4>';
-    let numFormatado = formatar(recebe.content[aluno].numeroCelular);
-    let numEmFormatado = formatar(recebe.content[aluno].numeroCelular);
+    div.innerHTML += '<h4>' + alunos[aluno].nome.toUpperCase() + '</h4>';
+    let numFormatado = formatar(alunos[aluno].numeroCelular);
+    let numEmFormatado = formatar(alunos[aluno].numeroCelular);
     div.innerHTML += '<p>Número: ' + numFormatado + '</p>';
     div.innerHTML += '<p>Número de Emergência: ' + numEmFormatado + '</p>';
-    div.innerHTML += '<p>Email: ' + recebe.content[aluno].email + ' </p>';
-    div.innerHTML += '<p>CPF: ' + recebe.content[aluno].cpf + '</p>';
-    div.innerHTML += '<p>Data de nasciemto: ' + recebe.content[aluno].dataDeNascimento + ' </p>';
-    div.innerHTML += '<p>Endereço: ' + recebe.content[aluno].endereco.cidade + '</p>';
-    div.innerHTML += '<p>Bairro: ' + recebe.content[aluno].endereco.bairro + '</p>';
-    div.innerHTML += '<p>Rua ou Av e Número da residêcia: ' + recebe.content[aluno].endereco.rua + ' Num:' + recebe.content[aluno].endereco.numero +'</p>';
-    div.innerHTML += '<p>CEP: ' + recebe.content[aluno].endereco.cep + '</p>';
+    div.innerHTML += '<p>Email: ' + alunos[aluno].email + ' </p>';
+    div.innerHTML += '<p>CPF: ' + alunos[aluno].cpf + '</p>';
+    div.innerHTML += '<p>Data de nasciemto: ' + alunos[aluno].dataDeNascimento + ' </p>';
+    div.innerHTML += '<p>Endereço: ' + alunos[aluno].endereco.cidade + '</p>';
+    div.innerHTML += '<p>Bairro: ' + alunos[aluno].endereco.bairro + '</p>';
+    div.innerHTML += '<p>Rua ou Av e Número da residêcia: ' + alunos[aluno].endereco.rua + ' Num:' + alunos[aluno].endereco.numero +'</p>';
+    div.innerHTML += '<p>CEP: ' + alunos[aluno].endereco.cep + '</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">Voltar</button></div></div> ';
 
     $('#divPrincipal').css('visibility', 'hidden');
@@ -156,7 +163,7 @@ function carregarInfoAluno(aluno) {
 
 function retornarIconereferenteASexoDoInstrutor(aluno) {
 
-    if (recebe.content[aluno].sexo === "MASCULINO") {
+    if (alunos[aluno].sexo === "MASCULINO") {
         caminhoDaImagem = "man-icon.png";
     } else {
         caminhoDaImagem = "wam-icon.png"
@@ -182,7 +189,7 @@ function buscarPorNomeNumeroCelular() {
         if (this.status == 200) {
             recebe = JSON.parse(this.responseText);
             console.log(recebe);
-            if (recebe.content.length == 0) {
+            if (alunos.length == 0) {
                 document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
                     + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
                     + '</div>'
@@ -200,8 +207,8 @@ function buscarPorNomeNumeroCelular() {
 }
 
 function guardarIdDoRegistroPagamentoNoLocalStorage(posicao){
-    localStorage.setItem('registroId',recebe.content[posicao].registrosDePagamentos[0].id);
-    localStorage.setItem('alunoNome',recebe.content[posicao].nome);
+    localStorage.setItem('registroId',alunos[posicao].registrosDePagamentos[0].id);
+    localStorage.setItem('alunoNome',alunos[posicao].nome);
     console.log('re'+localStorage.getItem('registroId'));
     document.location = "situacao-pagamento.html"
 }
