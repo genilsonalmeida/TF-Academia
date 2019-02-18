@@ -11,12 +11,7 @@ $('#botao-cancelar').click(function(){
     }
 });
 
-$('#btn-cancelar').click(function(){
-    var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
-    if (r == true) {
-        location.href = '../pages/principal.html';
-    }
-});
+
 
 function verificarmatricula(matricula){
     if(!(matriculaENula(matricula) && matriculaEVasia(matricula))){
