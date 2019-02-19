@@ -54,7 +54,8 @@ public class RegistroPagamento {
 		
 		for (Pagamento pagamento : pagamentos) {
 			if(pagamento.getId() == id) {
-				recebePagamento = pagamento;				
+				recebePagamento = pagamento;
+				break;
 			}
 		}
 		pagamentos.remove(recebePagamento);

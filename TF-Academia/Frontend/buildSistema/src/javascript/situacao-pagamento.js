@@ -92,6 +92,7 @@ function removerPagamento(posicao) {
 
     var r = confirm("Tem certeza que deseja excluir o pagamento?");
     if (r == true) {
+       
         let http = new XMLHttpRequest();
         http.open('DELETE', 'http://localhost:8081/registroPagamento/' + registroId + '/deletePagamento');
         http.setRequestHeader('Content-Type', 'application/json', true);
@@ -103,6 +104,7 @@ function removerPagamento(posicao) {
         let pagamento = {
             'id': recebe.pagamentos[posicao].id
         };
+        console.log(recebe.pagamentos[posicao].id);
 
         http.onerro = () => alert('ERRO');
         http.send(JSON.stringify(pagamento));

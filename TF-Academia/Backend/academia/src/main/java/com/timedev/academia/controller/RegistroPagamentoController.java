@@ -77,6 +77,7 @@ public class RegistroPagamentoController {
 			@Valid @RequestBody Pagamento pagamento) {
 		return registroPagamentoRepository.findById(idRegistroPag)
 				.map(rPagamento -> {
+					
 					rPagamento.removePagamento(pagamento.getId());
 					return registroPagamentoRepository.save(rPagamento);
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada " + idRegistroPag));

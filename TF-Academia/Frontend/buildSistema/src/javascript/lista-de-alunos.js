@@ -9,7 +9,8 @@ let recebe;
 let paginaAtual;
 let proximaLista = 1;
 let alunos = [];
-
+let valor
+let posicaoNoContainer = 0;
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
@@ -18,6 +19,8 @@ $('#botao-voltar').click(function () {
 function adicionarAlunosALista(novosAlunos){
     novosAlunos.forEach(element =>{
        alunos.push(element);
+       atualizandoLista(element,posicaoNoContainer);
+       posicaoNoContainer++;
     });
 }
 
@@ -37,7 +40,7 @@ function tabela(numeroPagina) {
             console.log(recebe);
             adicionarAlunosALista(recebe.content);
             paginacaoDaLista(recebe.totalPages);
-            atualizandoLista();
+           // atualizandoLista();
 
         }
     };
@@ -58,22 +61,22 @@ function letraMaiuscula(i) {
     return nome;
 }
 
-function atualizandoLista() {
+function atualizandoLista(aluno, i) {
     
-    for (var i = 0; i < alunos.length; i++) {
+  //  for (var i = 0; i < alunos.length; i++) {
         let tr = $('<tr>');
         let cols = '';
-        cols += '<th scope="row">'+alunos[i].matricula+'</th>';
-        var nome = letraMaiuscula(i);
-        cols += '<th scope="row">' + nome + '</th>';
-        cols += '<th scope="row">' + alunos[i].numeroCelular + '</th>';
+        cols += '<th scope="row">'+aluno.matricula+'</th>';
+       // var nome = letraMaiuscula(i);
+        cols += '<th scope="row">' + aluno.nome + '</th>';
+        cols += '<th scope="row">' + aluno.numeroCelular + '</th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="guardarIdDoRegistroPagamentoNoLocalStorage(' + i + ')"><img src="../../assets/icones/icon-pagamento.png"></th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
         tr.append(cols);
         $('tbody').append(tr);     
-    }
+   // }
 }
 function mudarCorDaColunaQuandoMousePassar(x) {
     x.style.backgroundColor = "lightblue";
