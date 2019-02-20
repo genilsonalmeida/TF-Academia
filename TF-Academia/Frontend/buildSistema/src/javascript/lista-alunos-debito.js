@@ -8,7 +8,7 @@ let data = new Date();
 let diaParametro = '';
 let corNaoPago = '(255,165,0)';
 let corPago = '(0,255,127)';
-
+let meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
@@ -77,7 +77,8 @@ function buscarAlunosComDebito(){
              exibirAlunos(element.nome, "Em Falta :(", corNaoPago,
              element.diaDoPagamento,
              pos,
-             element.numeroCelular)
+             element.numeroCelular,
+             element.matricula)
         }
         else {
             console.log(mesCerto);
@@ -86,7 +87,8 @@ function buscarAlunosComDebito(){
             corPago,
             element.diaDoPagamento,
             pos,
-            element.numeroCelular)
+            element.numeroCelular,
+            element.matricula)
         }
         pos++;
      });   
@@ -96,14 +98,14 @@ function mes(pagamento){
   return pagamento.dataDoPagamento.slice(0,7) === data.toJSON().slice(0,7);
 }
 
-function exibirAlunos(nome, dataPagamento, cor,diaDoPagamento, pos, numero){
+function exibirAlunos(nome, dataPagamento, cor,diaDoPagamento, pos, numero,matricula){
     
     let tr = $('<tr>');
     let cols = '';
-    cols += '<th scope="row"></th>';
+    cols += '<th scope="row">'+matricula+'</th>';
     cols += '<th scope="row">' + nome + '</th>';
     cols += '<th scope="row">'+numero+'</th>';
-    cols += '<th scope="row" style="background-color:#FFF;border:solid 1px;">'+ diaDoPagamento +'</th>';
+    cols += '<th scope="row" style="background-color:#FFF;">'+ diaDoPagamento +' de '+meses[data.getMonth()]+'</th>';
     cols += '<th id="colunaMesTaual" style="background-color:rgb'+cor+';border:solid 1px;" scope="row"  >'+ dataPagamento +'</th>'
     cols += '<th scope="row" onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)"  onclick="salvarMatriculaNoLocalStorag('+pos+')"><img src="../../assets/icones/icons8-notas-de-dinheiro-24.png"></th>';
     tr.append(cols);
