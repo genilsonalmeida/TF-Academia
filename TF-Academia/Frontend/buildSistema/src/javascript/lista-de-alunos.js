@@ -180,16 +180,15 @@ function fecharinfo() {
 
 
 
-function exibirAluno() {
-    if (alunos.length == 0) {
+function exibirAluno(alunoRequest) {
+    if (alunoRequest.length == 0) {
         document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
             + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
             + '</div>'
     } else {
         document.getElementById('list-aluno').innerHTML = "";
-        atualizandoLista();
+        atualizandoLista(alunoRequest[0]);
         paginacaoDaLista(recebe.totalPages);
-
     }
 }
 

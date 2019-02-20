@@ -74,7 +74,7 @@ function buscarAlunosComDebito(){
         let mesCerto = element.registrosDePagamentos[0].pagamentos.filter(mes);
         
         if(mesCerto.length === 0){
-             exibirAlunos(element.nome, "Em Falta :(", corNaoPago,
+             exibirAlunos(element.nome, "Em Falta", corNaoPago,
              element.diaDoPagamento,
              pos,
              element.numeroCelular,
@@ -83,7 +83,7 @@ function buscarAlunosComDebito(){
         else {
             console.log(mesCerto);
             console.log(mesCerto);
-            exibirAlunos(element.nome, mesCerto[0].dataDoPagamento, 
+            exibirAlunos(element.nome, "pago", 
             corPago,
             element.diaDoPagamento,
             pos,
@@ -128,8 +128,9 @@ function carregarInformacaoDaTabela(){
 }
 function salvarMatriculaNoLocalStorag(pos){ 
 let alunoMatricula = listaDeAlunos.content[pos].matricula;
+let alunoNome = listaDeAlunos.content[pos].nome;
     localStorage.setItem('alunoMatricula',alunoMatricula);
-    alert(localStorage.getItem('alunoMatricula'));
+    alert('Realizar pagamento do/da '+localStorage.getItem('alunoMatricula')+' '+alunoNome);
     location.href = '../pages/pagamento.html';
 }
 
