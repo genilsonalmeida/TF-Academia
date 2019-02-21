@@ -17,7 +17,8 @@ $('#botao-voltar').click(function () {
 });
 
 
-function adicionarAlunosALista(novosAlunos) {
+
+function adicionarAlunosNaLista(novosAlunos) {
     novosAlunos.forEach(element => {
         alunos.push(element);
         atualizandoLista(element, posicaoNoContainer);
@@ -25,29 +26,30 @@ function adicionarAlunosALista(novosAlunos) {
     });
 }
 
-function tabela(numeroPagina) {
 
+function adicionarAlunosATabela(alunosParaTabela,posicaoNoContainer) {
+        atualizandoLista(alunosParaTabela, posicaoNoContainer);
+}
+
+function tabela(numeroPagina) {
 
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8081/aluno/lista/' + numeroPagina);
     paginaAtual = numeroPagina;
-
-
 
     xhr.onload = function () {
 
         if (this.status == 200) {
             recebe = JSON.parse(this.responseText);
             console.log(recebe);
-            adicionarAlunosALista(recebe.content);
+            adicionarAlunosNaLista(recebe.content);
             paginacaoDaLista(recebe.totalPages);
+            
             // atualizandoLista();
-
         }
     };
     xhr.onerro = () => alert('ERRO');
     xhr.send();
-
 }
 
 let nome;
@@ -75,7 +77,7 @@ function atualizandoLista(aluno, i) {
     cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
     tr.append(cols);
     $('tbody').append(tr);
-    
+
 }
 function mudarCorDaColunaQuandoMousePassar(x) {
     x.style.backgroundColor = "lightblue";
@@ -180,18 +182,37 @@ function fecharinfo() {
 
 
 
-function exibirAluno(alunoRequest) {
-    if (alunoRequest.length == 0) {
-        document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
-            + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
-            + '</div>'
-    } else {
+function exibirAlunoDaBusca(alunosDaBusca,pages) {
+     
+    if (verificarAlunosBuscaEVasio(alunosDaBusca)) {
         document.getElementById('list-aluno').innerHTML = "";
-        atualizandoLista(alunoRequest[0]);
-        paginacaoDaLista(recebe.totalPages);
+        carragarTabelaComOsAlunosDaBusca(alunosDaBusca);
+        paginacaoDaLista(pages);
+    }
+    else {
+        exibirMenssagenDeAlunoNaoEncontrado();
     }
 }
 
+function carragarTabelaComOsAlunosDaBusca(ListaAlunosDaBusca){
+    posicaoNoContainer = 0;
+    ListaAlunosDaBusca.forEach(element =>{
+        atualizandoLista(element, posicaoNoContainer);
+        posicaoNoContainer++;
+    });   
+}
+
+function verificarAlunosBuscaEVasio(alunosDaBusca) {
+    if (alunosDaBusca.length !== 0) {
+        return true;
+    }
+}
+
+function exibirMenssagenDeAlunoNaoEncontrado() {
+    document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
+        + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
+        + '</div>'
+}
 
 function guardarIdDoRegistroPagamentoNoLocalStorage(posicao) {
     localStorage.setItem('registroId', alunos[posicao].registrosDePagamentos[0].id);
@@ -210,3 +231,4 @@ function formatar(num) {
 }
 
 tabela(0);
+

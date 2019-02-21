@@ -137,5 +137,3 @@ let alunoNome = listaDeAlunos.content[pos].nome;
 passarDiaAtualParaParametro();
 receberLista();
 carregarInformacaoDaTabela();
-
-  

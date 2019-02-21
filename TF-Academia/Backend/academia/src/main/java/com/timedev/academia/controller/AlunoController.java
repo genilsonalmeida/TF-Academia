@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.timedev.academia.exeption.ResourceNotFoundException;
 import com.timedev.academia.model.Aluno;
-import com.timedev.academia.model.Pagamento;
 import com.timedev.academia.model.RegistroPagamento;
 import com.timedev.academia.repository.AlunoRepository;
 @CrossOrigin
