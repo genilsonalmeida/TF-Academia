@@ -31,7 +31,7 @@ function adicionarAlunosATabela(alunosParaTabela,posicaoNoContainer) {
         atualizandoLista(alunosParaTabela, posicaoNoContainer);
 }
 
-function tabela(numeroPagina) {
+function tabela(numeroPagina) {//refatorar
 
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8081/aluno/lista/' + numeroPagina);
@@ -53,7 +53,7 @@ function tabela(numeroPagina) {
 }
 
 let nome;
-function letraMaiuscula(i) {
+function letraMaiuscula(i) {//refatorar
     str = alunos[i].nome;
     qtd = alunos[i].nome.length;
     prim = str.substring(0, 1);
@@ -64,7 +64,7 @@ function letraMaiuscula(i) {
     return nome;
 }
 
-function atualizandoLista(aluno, i) {
+function atualizandoLista(aluno, i) {//refatorar
 
     let tr = $('<tr>');
     let cols = '';
@@ -180,40 +180,6 @@ function fecharinfo() {
     $('#divPrincipal').css('visibility', 'visible');
 }
 
-
-
-function exibirAlunoDaBusca(alunosDaBusca,pages) {
-     
-    if (verificarAlunosBuscaEVasio(alunosDaBusca)) {
-        document.getElementById('list-aluno').innerHTML = "";
-        carragarTabelaComOsAlunosDaBusca(alunosDaBusca);
-        paginacaoDaLista(pages);
-    }
-    else {
-        exibirMenssagenDeAlunoNaoEncontrado();
-    }
-}
-
-function carragarTabelaComOsAlunosDaBusca(ListaAlunosDaBusca){
-    posicaoNoContainer = 0;
-    ListaAlunosDaBusca.forEach(element =>{
-        atualizandoLista(element, posicaoNoContainer);
-        posicaoNoContainer++;
-    });   
-}
-
-function verificarAlunosBuscaEVasio(alunosDaBusca) {
-    if (alunosDaBusca.length !== 0) {
-        return true;
-    }
-}
-
-function exibirMenssagenDeAlunoNaoEncontrado() {
-    document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
-        + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
-        + '</div>'
-}
-
 function guardarIdDoRegistroPagamentoNoLocalStorage(posicao) {
     localStorage.setItem('registroId', alunos[posicao].registrosDePagamentos[0].id);
     localStorage.setItem('alunoNome', alunos[posicao].nome);
@@ -231,4 +197,3 @@ function formatar(num) {
 }
 
 tabela(0);
-
