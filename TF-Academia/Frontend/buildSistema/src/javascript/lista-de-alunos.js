@@ -143,7 +143,7 @@ function removerAluno(posicion) {
 function carregarInfoAluno(aluno) {
     retornarIconereferenteASexoDoInstrutor(aluno);
     console.log(alunos[aluno].dataNascimento);
-    let div = document.getElementById('info-aluno');
+    let div = document.querySelector('#info-aluno');
     div.innerHTML = "";
     div.innerHTML += '<div class="media" >';
     div.innerHTML += '<img src="../../assets/icones/' + caminhoDaImagem + '" class="align-self-start mr-3" style="width:60px">';
@@ -162,14 +162,15 @@ function carregarInfoAluno(aluno) {
     div.innerHTML += '<p>CEP: ' + alunos[aluno].endereco.cep + '</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">Voltar</button></div></div> ';
 
-    $('#divPrincipal').css('visibility', 'hidden');
+    $('#tabelaContaner').css('visibility', 'hidden');
+    window.scrollTo(0, 10);
 }
 
 function retornarIconereferenteASexoDoInstrutor(aluno) {
 
     if (alunos[aluno].sexo === "MASCULINO") {
         caminhoDaImagem = "man-icon.png";
-    } else {
+    } else if(alunos[aluno].sexo === "FEMININO") {
         caminhoDaImagem = "wam-icon.png"
     }
 }
@@ -177,7 +178,7 @@ function retornarIconereferenteASexoDoInstrutor(aluno) {
 
 function fecharinfo() {
     document.getElementById('info-aluno').innerHTML = "";
-    $('#divPrincipal').css('visibility', 'visible');
+    $('#tabelaContaner').css('visibility', 'visible');
 }
 
 function guardarIdDoRegistroPagamentoNoLocalStorage(posicao) {

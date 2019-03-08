@@ -11,6 +11,7 @@ $(document).ready(function(){
 });
 
 function inicializarProcedimentosParaAlunosBusca(){
+    document.getElementById('alert').innerHTML ="";
     if(verificarAlunosBuscaEVasio()){
         exibirMenssagenDeAlunoNaoEncontrado();
         //recarregarPaginaDeListaDeAlunos();
@@ -31,6 +32,7 @@ function buscarPorNomeNumeroC() {
             resultadodaBusca = JSON.parse(this.responseText);
             console.log(alunoRequest);
             inicializarProcedimentosParaAlunosBusca();
+            
         }
     };
     xhr.onerro = () => alert('ERRO');

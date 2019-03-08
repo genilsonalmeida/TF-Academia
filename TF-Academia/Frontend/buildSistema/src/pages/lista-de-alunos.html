@@ -21,15 +21,16 @@
       <div class="titulo">Lista de alunos </div>
       <div class="input-group mb-3" id="buscar">
         <input id="buscaValor" type="search" class="form-control" placeholder="Ex: Nome ou Número: (82) 11111-1111"
-          aria-label="Search" aria-describedby="button-addon2">
+          aria-label="Search" aria-describedby="button-addon2" onkeyup="buscarPorNomeNumeroC()">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" onclick="buscarPorNomeNumeroC()" type="submit" id="button-addon2">Buscar</button>
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
         </div>
       </div>
       <div id="alert"></div>
-      <div class="container" id="info-aluno">
-      </div>
       <div id="divPrincipal">
+        <div class="container" id="info-aluno">
+        </div>
+        <div id="tabelaContaner">
         <table class="table">
           <thead>
             <tr class="bg-primary">
@@ -54,6 +55,7 @@
           </ul>
         </div>
       </div>
+    </div>
     </div>
     <div class="footer" id="rodape"></div>
   </div>

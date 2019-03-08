@@ -54,7 +54,7 @@ public class AlunoController {
 	@GetMapping("/aluno/buscarNomeCelular/{alunoNome}/{alunoCelular}/{pageNumber}")
 	public Page<Aluno> getByNomeCelular(@PathVariable String alunoNome, @PathVariable String alunoCelular,
 		@PathVariable Integer pageNumber, Pageable pageable) {
-		pageable =  PageRequest.of(pageNumber, 5);
+		pageable =  PageRequest.of(pageNumber, 10);
 		return alunoRepository.findByNomeOrNumeroCelular(alunoNome, alunoCelular, pageable);
 	}
 	

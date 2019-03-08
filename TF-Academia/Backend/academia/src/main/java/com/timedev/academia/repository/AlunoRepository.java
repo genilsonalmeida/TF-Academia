@@ -14,7 +14,7 @@ import com.timedev.academia.model.Aluno;
 public interface AlunoRepository extends JpaRepository<Aluno, Integer>{
   public Aluno findByMatricula(String matricula);
   
-  @Query(value = "select * from pessoa where  nome  like :nome% or numero_celular=:nCelular",
+  @Query(value = "select * from pessoa where tipo='AL' and nome  like :nome% or numero_celular=:nCelular",
 		  nativeQuery = true)
   public Page<Aluno> findByNomeOrNumeroCelular(
 		 @Param("nome") String nome, 
