@@ -36,7 +36,8 @@ $(document).ready(function () {
         let numCelular = trim($('#celular').val());
         let numCelEmergencia = trim($('#celular-emergencia').val());
         let matriculaGerada = gerarMatricula();
-
+        let diaDoPagamentoValidado = validarDiaDoPagamento($('#diaDoPagamento').val());
+        
         let novo = {
             nome: $('#nome').val().toUpperCase(),
             dataDeNascimento: $('#dataNascimento').val(),
@@ -60,7 +61,7 @@ $(document).ready(function () {
                 }
             ],
             email: $('#email').val().toLowerCase(),
-            diaDoPagamento: $('#diaDoPagamento').val(),
+            diaDoPagamento: diaDoPagamentoValidado,
             mensalidade: $('#valorMensalidade').val(),
         };
 
@@ -70,6 +71,17 @@ $(document).ready(function () {
     }
 
 });
+
+function validarDiaDoPagamento(diaDoPagamento){
+   if( diaDoPagamento <= 9){
+        return '0'+diaDoPagamento;    
+   }else if(diaDoPagamento > 31){
+        return 15;
+   }
+
+   
+   return diaDoPagamento;
+}
 
 function gerarMatricula(){
     let matricula = letraDaMatricula();

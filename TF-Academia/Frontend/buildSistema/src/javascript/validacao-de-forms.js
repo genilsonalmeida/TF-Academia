@@ -8,6 +8,7 @@ $(document).ready(function () {
     $('#celular').mask('(00) 00000-0000');
     $('#celular-emergencia').mask('(00) 00000-0000');
     $('#matricula-busca').mask('A0000');
-     
+    $('#diaDoPagamento').mask('00', {'translation': {0: {pattern: /[0-9*]/}}});
+    
 });
 // fim da validação
