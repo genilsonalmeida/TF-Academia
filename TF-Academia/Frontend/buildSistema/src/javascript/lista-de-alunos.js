@@ -127,10 +127,7 @@ function removerAluno(posicion) {
         http.setRequestHeader('Content-Type', 'application/json', true);
         http.onload = function () {
             if (this.status == 200) {
-                document.getElementById("list-aluno").innerHTML = "";
-                document.getElementById("pagination-conteudo").innerHTML = "";
-                tabela(0);
-
+                recarregarPaginaListaDeAlunos();
             }
         }
 
@@ -138,6 +135,10 @@ function removerAluno(posicion) {
         http.send();
     }
 
+}
+
+function recarregarPaginaListaDeAlunos(){
+    document.location = "lista-de-alunos.html";
 }
 
 function carregarInfoAluno(aluno) {
