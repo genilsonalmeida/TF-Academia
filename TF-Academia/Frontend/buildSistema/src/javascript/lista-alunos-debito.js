@@ -9,6 +9,8 @@ let diaParametro = '';
 let corNaoPago = '(255,165,0)';
 let corPago = '(0,255,127)';
 let meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+let alunosComDebito = [];
+
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
@@ -74,11 +76,7 @@ function buscarAlunosComDebito(){
         let mesCerto = element.registrosDePagamentos[0].pagamentos.filter(mes);
         
         if(mesCerto.length === 0){
-             exibirAlunos(element.nome, "Em Falta", corNaoPago,
-             element.diaDoPagamento,
-             pos,
-             element.numeroCelular,
-             element.matricula)
+            alunosComDebito.push(element);
         }
         else {
             console.log(mesCerto);
@@ -91,11 +89,90 @@ function buscarAlunosComDebito(){
             element.matricula)
         }
         pos++;
-     });   
+     });
+     
+     console.log(alunosComDebito);
+     exibirAlunosComDebito();
 }
 
 function mes(pagamento){
   return pagamento.dataDoPagamento.slice(0,7) === data.toJSON().slice(0,7);
+}
+
+function exibirAlunosComDebito(){
+    let tbody = document.querySelector('table tbody');
+    let dadosDoAlunoParaTabela = [];
+    
+    alunosComDebito.forEach(aluno =>{
+        let tr = document.createElement('tr');
+        dadosDoAlunoParaTabela = retornarDadosDoAlunoComDebtio(aluno);
+        dadosDoAlunoParaTabela.forEach(dado =>{
+            let td = criarElementoTd();
+            td.textContent = dado;
+            td.style.fontWeight = "700";
+            tr.appendChild(td);
+        });
+        tr.appendChild(retornarColunaDoStatusDoPagamanto());
+        let tdPagar = retornaColunaParaRealizarOPagamentoComEventoOnclickComAMatricula(aluno);
+        tdPagar.appendChild(adicionarIcone());
+        tdPagar = adicionarEventosDeMudacaDeCorAColuna(tdPagar);
+        tr.appendChild(tdPagar);
+    
+        tbody.appendChild(tr);
+    });
+}
+
+function retornarColunaDoStatusDoPagamanto(){
+    let tdStatus = document.createElement('td');
+    tdStatus.style.backgroundColor = 'rgb(255,165,0)';
+    tdStatus.style.fontWeight = "700";
+    tdStatus.style.border = 'solid 1px';
+    tdStatus.textContent = 'Em Debito';  
+    return tdStatus;
+}
+
+function retornaColunaParaRealizarOPagamentoComEventoOnclickComAMatricula(aluno){
+    let tdPagar = document.createElement('td');
+    tdPagar.onclick = function(){
+        localStorage.setItem('alunoMatricula',aluno.matricula);
+        alert('Realizar pagamento do/da '+localStorage.getItem('alunoMatricula')+' '+aluno.nome);
+        location.href = '../pages/pagamento.html';
+    }
+
+    
+    return tdPagar;
+}
+
+function adicionarIcone(){
+    let img = document.createElement('img');
+    img.src = "../../assets/icones/icons8-notas-de-dinheiro-24.png";
+    return img;
+}
+
+function adicionarEventosDeMudacaDeCorAColuna(tdPagar){
+    tdPagar.onmousemove = function(){
+        mudarCorDaColunaQuandoMousePassar(tdPagar);
+    }
+    tdPagar.onmouseout = function(){
+        mudarCorDaColunaQuandoMouseSair(tdPagar);
+    }
+    return tdPagar; 
+}
+
+function retornarDadosDoAlunoComDebtio(aluno){
+     let informacoes = [];
+     informacoes.push(aluno.matricula);
+     informacoes.push(aluno.nome);
+     informacoes.push(aluno.numeroCelular);
+     informacoes.push(aluno.diaDoPagamento + " de " + meses[data.getMonth()]);
+     return informacoes;
+}
+
+function criarElementoTd(){
+    return  document.createElement('td');
+}
+function adicionarEstiloAColuna(){
+   return style.fontWeight = "900";
 }
 
 function exibirAlunos(nome, dataPagamento, cor,diaDoPagamento, pos, numero,matricula){
