@@ -60,7 +60,7 @@ function limparTabelaDeAlunos(){
 
 function carragarTabelaComOsAlunosDaBusca(){
     console.log("carrgando alunos");
-    let alunos = retornarElementosDoResultadoDaBusca();
+    alunos = retornarElementosDoResultadoDaBusca();
     posicaoNoContainer = 0;
     alunos.forEach(element =>{
         atualizandoLista(element, posicaoNoContainer);
