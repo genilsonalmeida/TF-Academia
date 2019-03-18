@@ -41,6 +41,7 @@ $(document).ready(function () {
         let novo = {
             nome: $('#nome').val().toUpperCase(),
             dataDeNascimento: $('#dataNascimento').val(),
+            dataDeMatricula:$('#dataDeMatricula').val(),
             sexo: $('#sexo').val(),
             cpf: $('#cpf').val(),
             numeroCelular: numCelular,

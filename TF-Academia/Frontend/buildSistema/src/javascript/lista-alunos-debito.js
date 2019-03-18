@@ -6,13 +6,27 @@
 let http = new XMLHttpRequest();
 let data = new Date();
 let diaParametro = '';
-let corNaoPago = '(255,165,0)';
-let corPago = '(0,255,127)';
+let corNaoPago = 'rgb(255,165,0)';
+let corPago = 'rgb(0,255,127)';
 let meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 let alunosComDebito = [];
+let alunosSemDebito = [];
+let tbody = document.querySelector('table tbody');
+let valorDosPagamentosRealizados = 0;
+let valorEmDebito = 0;
+let saldoTotalDoMes = 0;
 
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
+});
+
+$('#recarregar-lista').click(function () {
+    valorDosPagamentosRealizados = 0;
+    valorEmDebito = 0;
+    saldoTotalDoMes = 0;
+    limparTabela();
+    reiniciarAlunosComDebitoESemDebito();
+    receberLista();
 });
 
 function receberLista(){
@@ -22,8 +36,9 @@ function receberLista(){
     http.onload = function() {
         if(this.status==200){
             let recebe = JSON.parse(this.responseText);
-            console.log(recebe.content);
+            console.log(recebe);
             verificarRecebimentoDosAlunos(recebe);
+            exibirValoresRelacionadosAosPagamentos();
         }else{
             console.log("erro");
         }
@@ -33,12 +48,50 @@ function receberLista(){
     http.send();
 }
 
+
+
+function carregarTabelaDeAlunos(resultado){
+    console.log(resultado);
+    reiniciarAlunosComDebitoESemDebito();    
+    verificarRecebimentoDosAlunos(resultado);
+}
+
+function limparTabela(){
+    tbody.textContent = "";
+}
+
+function reiniciarAlunosComDebitoESemDebito(){
+    alunosComDebito = [];
+    alunosSemDebito = [];
+}
+
 function verificarRecebimentoDosAlunos(alunos){
-if(alunos.content.length > 0){
-    iniciarLista(alunos);
-    buscarAlunosComDebito();
-}
-}
+    if(alunos.content.length > 0){
+        iniciarLista(alunos);
+        buscarAlunosComDebito();
+   }else{ exibirAlerta();}
+ }
+
+function exibirAlerta(){
+    let divPrincipal = document.querySelector('#alert');
+    divPrincipal.textContent = "";
+    let divAlert = document.createElement('div');
+    let button = document.createElement('button');
+    let strong  = document.createElement('strong');
+    divAlert.classList.add('alert', 'alert-danger', 'alert-dismissible', 'fade', 'show')
+    button.type = 'button';
+    button.className = 'close';
+    button.textContent = "x";
+    button.dataset = "alert";
+    button.onclick = function(){
+        divPrincipal.textContent = "";
+    }
+    strong.textContent = "Não Encontrado";
+    divAlert.appendChild(button);
+    divAlert.appendChild(strong);
+    divPrincipal.appendChild(divAlert);
+} 
+
 
 function iniciarLista(lista){
     listaDeAlunos = lista; 
@@ -70,7 +123,7 @@ function adicionar0AntesDoDia(){
 
 function buscarAlunosComDebito(){
     console.log("entrando no filter");
-    let pos = 0;
+   
      listaDeAlunos.content.forEach(element => {
         console.log("próximo"); 
         let mesCerto = element.registrosDePagamentos[0].pagamentos.filter(mes);
@@ -79,31 +132,59 @@ function buscarAlunosComDebito(){
             alunosComDebito.push(element);
         }
         else {
-            console.log(mesCerto);
-            console.log(mesCerto);
-            exibirAlunos(element.nome, "pago", 
-            corPago,
-            element.diaDoPagamento,
-            pos,
-            element.numeroCelular,
-            element.matricula)
+            alunosSemDebito.push(element);
         }
-        pos++;
+       
      });
-     
-     console.log(alunosComDebito);
+     console.log(alunosSemDebito);
+     exibirAlunosSemDebito();
      exibirAlunosComDebito();
+     
 }
 
 function mes(pagamento){
   return pagamento.dataDoPagamento.slice(0,7) === data.toJSON().slice(0,7);
 }
 
+function exibirValoresRelacionadosAosPagamentos(){
+    carregarSaldoDosPagamentosRealisadosEsteMes();
+    carregarValorQueAindaFaltaSerPagoEsteMes();
+    carregarValorTotalDasMesalidadesDoMes();
+}
+
+function carregarSaldoDosPagamentosRealisadosEsteMes(){
+    let titulo = document.querySelector('#alunos-que-pagaram');
+    titulo.textContent = "Valor Recebido de " + alunosSemDebito.length + " Alunos" ;
+    let card = document.querySelector('#valores-pagos');
+    card.textContent = " R$ = " + valorDosPagamentosRealizados + " reais";
+}
+
+function carregarValorQueAindaFaltaSerPagoEsteMes(){
+    let titulo = document.querySelector('#alunos-em-debito');
+    titulo.textContent = "Valor Não Recebido de " + + alunosComDebito.length + " Alunos";
+    let card = document.querySelector('#valor-em-debito');
+    card.textContent = " R$ = " + valorEmDebito + " reais";
+}
+
+function carregarValorTotalDasMesalidadesDoMes(){
+
+    let titulo = document.querySelector('#valor-total-mensalidaes');
+    titulo.textContent = "Valor Total de "  + (alunosComDebito.length + alunosSemDebito.length) + " Alunos";
+    let card = document.querySelector('#valor-total');
+    card.textContent = " R$ = " + somarValorTotalDasMensalidades() + " reais";
+
+}
+
+function somarValorTotalDasMensalidades(){
+    return valorEmDebito + valorDosPagamentosRealizados;
+}
+
 function exibirAlunosComDebito(){
-    let tbody = document.querySelector('table tbody');
+   
     let dadosDoAlunoParaTabela = [];
     
     alunosComDebito.forEach(aluno =>{
+        valorEmDebito += aluno.mensalidade;
         let tr = document.createElement('tr');
         dadosDoAlunoParaTabela = retornarDadosDoAlunoComDebtio(aluno);
         dadosDoAlunoParaTabela.forEach(dado =>{
@@ -112,7 +193,7 @@ function exibirAlunosComDebito(){
             td.style.fontWeight = "700";
             tr.appendChild(td);
         });
-        tr.appendChild(retornarColunaDoStatusDoPagamanto());
+        tr.appendChild(retornarColunaDoStatusDoPagamanto(corNaoPago,"Em Debito"));
         let tdPagar = retornaColunaParaRealizarOPagamentoComEventoOnclickComAMatricula(aluno);
         tdPagar.appendChild(adicionarIcone());
         tdPagar = adicionarEventosDeMudacaDeCorAColuna(tdPagar);
@@ -122,12 +203,12 @@ function exibirAlunosComDebito(){
     });
 }
 
-function retornarColunaDoStatusDoPagamanto(){
+function retornarColunaDoStatusDoPagamanto(corDaColuna, messagem){
     let tdStatus = document.createElement('td');
-    tdStatus.style.backgroundColor = 'rgb(255,165,0)';
+    tdStatus.style.backgroundColor = corDaColuna;
     tdStatus.style.fontWeight = "700";
     tdStatus.style.border = 'solid 1px';
-    tdStatus.textContent = 'Em Debito';  
+    tdStatus.textContent = messagem;  
     return tdStatus;
 }
 
@@ -137,9 +218,7 @@ function retornaColunaParaRealizarOPagamentoComEventoOnclickComAMatricula(aluno)
         localStorage.setItem('alunoMatricula',aluno.matricula);
         alert('Realizar pagamento do/da '+localStorage.getItem('alunoMatricula')+' '+aluno.nome);
         location.href = '../pages/pagamento.html';
-    }
-
-    
+    }    
     return tdPagar;
 }
 
@@ -163,7 +242,7 @@ function retornarDadosDoAlunoComDebtio(aluno){
      let informacoes = [];
      informacoes.push(aluno.matricula);
      informacoes.push(aluno.nome);
-     informacoes.push(aluno.numeroCelular);
+     informacoes.push(formatar(aluno.numeroCelular));
      informacoes.push(aluno.diaDoPagamento + " de " + meses[data.getMonth()]);
      return informacoes;
 }
@@ -175,18 +254,34 @@ function adicionarEstiloAColuna(){
    return style.fontWeight = "900";
 }
 
-function exibirAlunos(nome, dataPagamento, cor,diaDoPagamento, pos, numero,matricula){
+function exibirAlunosSemDebito(){
+
+let dadosDoAlunoParaTabela = [];
+    alunosSemDebito.forEach(aluno =>{
+    console.log("Mensalidade " + aluno. mensalidade + " + " + valorDosPagamentosRealizados);
+        somarSaldoDeMensalidadesPagas(aluno. mensalidade);
+        let tr = document.createElement('tr');
+        dadosDoAlunoParaTabela = retornarDadosDoAlunoComDebtio(aluno);
+        dadosDoAlunoParaTabela.forEach(dado =>{
+            let td = criarElementoTd();
+            td.textContent = dado;
+            td.style.fontWeight = "700";
+            tr.appendChild(td);
+        });
+        tr.appendChild(retornarColunaDoStatusDoPagamanto(corPago,"Pago"));
+        let tdPagar = document.createElement('td');
+        tdPagar.onclick = function(){return alert('Pagamento Deste Mês Já Foi Realizado!')};
+        tdPagar.appendChild(adicionarIcone());
+        tdPagar = adicionarEventosDeMudacaDeCorAColuna(tdPagar);
+        tr.appendChild(tdPagar);
     
-    let tr = $('<tr>');
-    let cols = '';
-    cols += '<th scope="row">'+matricula+'</th>';
-    cols += '<th scope="row">' + nome + '</th>';
-    cols += '<th scope="row">'+numero+'</th>';
-    cols += '<th scope="row" style="background-color:#FFF;">'+ diaDoPagamento +' de '+meses[data.getMonth()]+'</th>';
-    cols += '<th id="colunaMesTaual" style="background-color:rgb'+cor+';border:solid 1px;" scope="row"  >'+ dataPagamento +'</th>'
-    cols += '<th scope="row" onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)"  onclick="salvarMatriculaNoLocalStorag('+pos+')"><img src="../../assets/icones/icons8-notas-de-dinheiro-24.png"></th>';
-    tr.append(cols);
-    $('tbody').append(tr); 
+        tbody.appendChild(tr);
+    });
+}
+
+function somarSaldoDeMensalidadesPagas(valor){
+    valorDosPagamentosRealizados += valor;
+    console.log(valorDosPagamentosRealizados);
 }
 
 function mudarCorDaColunaQuandoMousePassar(x) {
@@ -209,6 +304,14 @@ let alunoNome = listaDeAlunos.content[pos].nome;
     localStorage.setItem('alunoMatricula',alunoMatricula);
     alert('Realizar pagamento do/da '+localStorage.getItem('alunoMatricula')+' '+alunoNome);
     location.href = '../pages/pagamento.html';
+}
+function formatar(num) {
+    let resultado = num.substr(0, 0) + "(" + num.substr(0);
+    resultado = resultado.substr(0, 3) + ")" + resultado.substr(3);
+    resultado = resultado.substr(0, 4) + " " + resultado.substr(4);
+    resultado = resultado.substr(0, 10) + "-" + resultado.substr(10);
+
+    return resultado;
 }
 
 passarDiaAtualParaParametro();

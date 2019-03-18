@@ -28,6 +28,7 @@ function carregarDadosDoAluno(aluno) {
     console.log(aluno);
     $('#nome').val(aluno.nome);
     $('#dataNascimento').val(aluno.dataDeNascimento);
+    $('#dataDeMatricula').val(aluno.dataDeMatricula);
     $('#sexo').val(aluno.sexo);
     $('#cpf').val(aluno.cpf);
     $('#celular').val(aluno.numeroCelular);
@@ -82,6 +83,7 @@ function atualizarDados() {
     let novo = {
         nome: $('#nome').val().toUpperCase(),
         dataDeNascimento: $('#dataNascimento').val(),
+        dataDeMatricula:$('#dataDeMatricula').val(),
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
         numeroCelular: numCelular,

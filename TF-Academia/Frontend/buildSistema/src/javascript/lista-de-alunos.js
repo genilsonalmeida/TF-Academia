@@ -3,27 +3,52 @@
 jQuery(window).load(function () {
     $(".loader").delay(500).fadeOut("slow"); //retire o delay quando for copiar!
     $("#tudo_page").toggle("fast");
+    buscarAlunos(0);
 });
 
 let recebe;
-let paginaAtual;
+let paginaAtual = 0;
 let proximaLista = 1;
 let alunos = [];
-let valor
-let posicaoNoContainer = 0;
+let valor;
 let alunoRequest;
+let resultado = [];
+let criar = document.createElement.bind(document);
+
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
 
+$('#bntProximaPage').click(function () {
+    paginacaoDaLista(resultado.totalPages);
+});
 
+
+
+
+function carregarTabelaDeAlunos(alunosContainer){
+      resultado = alunosContainer;
+      console.log(resultado);
+      validarResultadoDaBusca();
+      executarProcessosParaExibirAluno();
+}
+
+function validarResultadoDaBusca(){
+    if(resultado.totalElements === 0){
+        exibirMenssagenDeAlunoNaoEncontrado()
+    }
+}
+
+function executarProcessosParaExibirAluno(){
+    adicionarAlunosNaLista(resultado.content);
+}
 
 function adicionarAlunosNaLista(novosAlunos) {
-    novosAlunos.forEach(element => {
-        alunos.push(element);
-        atualizandoLista(element, posicaoNoContainer);
-        posicaoNoContainer++;
+    novosAlunos.forEach(aluno => {
+        alunos.push(aluno);
+        console.log(aluno.nome);
     });
+    montarTabela(novosAlunos); 
 }
 
 
@@ -31,54 +56,105 @@ function adicionarAlunosATabela(alunosParaTabela,posicaoNoContainer) {
         atualizandoLista(alunosParaTabela, posicaoNoContainer);
 }
 
-function tabela(numeroPagina) {//refatorar
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8081/aluno/lista/' + numeroPagina);
-    paginaAtual = numeroPagina;
-
-    xhr.onload = function () {
-
-        if (this.status == 200) {
-            recebe = JSON.parse(this.responseText);
-            console.log(recebe);
-            adicionarAlunosNaLista(recebe.content);
-            paginacaoDaLista(recebe.totalPages);
-            
-            // atualizandoLista();
-        }
-    };
-    xhr.onerro = () => alert('ERRO');
-    xhr.send();
+function pegarInformacaoDoAlunoParaTabela(aluno){
+    let alunoInfo = [];
+    alunoInfo.push(aluno.matricula);
+    alunoInfo.push(aluno.nome);
+    alunoInfo.push(formatar(aluno.numeroCelular));
+    
+    return alunoInfo;
 }
 
-let nome;
-function letraMaiuscula(i) {//refatorar
-    str = alunos[i].nome;
-    qtd = alunos[i].nome.length;
-    prim = str.substring(0, 1);
-    resto = str.substring(1, qtd);
-    str = prim.toUpperCase() + resto;
-    nome = str;
-
-    return nome;
+function montarTabela(alunosContainer) {//refatorar
+    let tbody = document.querySelector('table tbody');
+    alunosContainer.forEach(aluno => {
+        let colunas = pegarInformacaoDoAlunoParaTabela(aluno);
+        let tr = criar('tr');
+        colunas.forEach(coluna => { 
+            let td = criar('td');    
+            td.textContent = coluna;
+            td.style.fontWeight = "700";
+            tr.appendChild(td);
+        });
+        
+        let tdPagamentos = montarColunaDePagamentos(aluno);
+        let tdInformacao = montarColunaInformacao(aluno);
+        let tdEditar = montaColunaParaEditar(aluno);
+        let tdDeletar = monatarColunaDeletar(aluno);
+        tr.appendChild(tdPagamentos);
+        tr.appendChild(tdInformacao);
+        tr.appendChild(tdEditar);
+        tr.appendChild(tdDeletar);
+        console.log(tr);
+        tbody.appendChild(tr);
+    });
 }
 
-function atualizandoLista(aluno, i) {//refatorar
-
-    let tr = $('<tr>');
-    let cols = '';
-    cols += '<th scope="row">' + aluno.matricula + '</th>';
-    cols += '<th scope="row">' + aluno.nome + '</th>';
-    cols += '<th scope="row">' + aluno.numeroCelular + '</th>';
-    cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="guardarIdDoRegistroPagamentoNoLocalStorage(' + i + ')"><img src="../../assets/icones/icon-pagamento.png"></th>';
-    cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="carregarInfoAluno(' + i + ')"><img src="../../assets/icones/info.svg"></th>'
-    cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="editarAluno(' + i + ')"><img src="../../assets/icones/baseline-border_color-24px.svg"></th>';
-    cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)" onClick="removerAluno(' + i + ')"><img src="../../assets/icones/baseline-delete-24px.svg"></th>'
-    tr.append(cols);
-    $('tbody').append(tr);
-
+function montarColunaDePagamentos(aluno){
+   let tdPagamentos = document.createElement('td');
+   let src = "../../assets/icones/icon-pagamento.png";
+   tdPagamentos.onclick = function(){
+        let dados = {
+            registroId : aluno.registrosDePagamentos[0].id,
+            alunoNome : aluno.nome   
+        };
+          guardarIdDoRegistroPagamentoNoLocalStorage(dados);
+   }
+        tdPagamentos = adcionarStiloDaColuna(tdPagamentos);
+        tdPagamentos.appendChild(adicionarIconeDaColuna(src)); 
+    return tdPagamentos;
 }
+
+function montarColunaInformacao(aluno){
+     let tdInformacao = document.createElement('td');
+    let src = "../../assets/icones/info.svg";
+     tdInformacao.onclick = function(){
+        carregarInfoAluno(aluno);
+     }
+     tdInformacao = adcionarStiloDaColuna(tdInformacao);
+     tdInformacao.appendChild(adicionarIconeDaColuna(src));
+     return tdInformacao;
+}
+
+function montaColunaParaEditar(aluno){
+     let tdEditar = criar('td');
+     let src = "../../assets/icones/baseline-border_color-24px.svg";
+     tdEditar.onclick = function(){
+        editarAluno(aluno.id);
+     }
+     tdEditar = adcionarStiloDaColuna(tdEditar);
+     tdEditar.appendChild(adicionarIconeDaColuna(src));
+     return tdEditar;
+}
+
+function monatarColunaDeletar(aluno){
+    let tdDeletar = criar('td');
+    let src = "../../assets/icones/baseline-delete-24px.svg";
+    tdDeletar.onclick = function(){
+        removerAluno(aluno.id);
+    }
+    tdDeletar = adcionarStiloDaColuna(tdDeletar);
+    tdDeletar.appendChild(adicionarIconeDaColuna(src));
+    return tdDeletar;
+}
+
+function guardarIdDoRegistroPagamentoNoLocalStorage(dadosDoAluno) {
+    localStorage.setItem('registroId', dadosDoAluno.registroId);//alunos[posicao].registrosDePagamentos[0].id
+    localStorage.setItem('alunoNome', dadosDoAluno.alunoNome);//alunos[posicao].nome
+    console.log('re' + localStorage.getItem('registroId'));
+    document.location = "situacao-pagamento.html"
+}
+
+function adcionarStiloDaColuna(td){
+    td.onmousemove = function(){
+        mudarCorDaColunaQuandoMousePassar(td);
+    }
+    td.onmouseout = function(){
+        mudarCorDaColunaQuandoMouseSair(td);
+    }
+   return td; 
+}
+
 function mudarCorDaColunaQuandoMousePassar(x) {
     x.style.backgroundColor = "lightblue";
 }
@@ -86,12 +162,14 @@ function mudarCorDaColunaQuandoMousePassar(x) {
 function mudarCorDaColunaQuandoMouseSair(x) {
     x.style.backgroundColor = "white";
 }
+
+function adicionarIconeDaColuna(src){
+    let img = document.createElement('img');
+    img.src = src;
+    return img;
+}
+
 function paginacaoDaLista(qntDePaginas) {
-    document.getElementById('pagination-conteudo').innerHTML = "";
-    let ul = $('<ul>');
-    let li = '';
-    li += '<li class="page-item"><button type="button" class="page-link bnt-proxima-page">Mais+</button></li>';
-    $('ul').append(li);
     selecionandoListaExibida(qntDePaginas);
 }
 
@@ -100,29 +178,25 @@ function selecionandoListaExibida(pages) {
 }
 
 function irParaProxmalista(pagTotal) {
-    document.getElementsByClassName('bnt-proxima-page')[0].onclick = function () {
         console.log('função selecionarid')
         if (proximaLista < pagTotal) {
-            tabela(proximaLista++);
+            buscarAlunos(proximaLista++);
             console.log(proximaLista)
         } else { alert('Fim da Lista') }
-
-    }
 }
 
 
 
 function editarAluno(id) {
-    localStorage.setItem('idAluno', alunos[id].id);
+    localStorage.setItem('idAluno', id);
     document.location = "atualizar-aluno.html"
 }
 
-function removerAluno(posicion) {
+function removerAluno(id) {
 
     var r = confirm("Tem certeza que deseja excluir o aluno?");
     if (r == true) {
-        let http = new XMLHttpRequest();
-        let id = alunos[posicion].id;
+        let http = new XMLHttpRequest(); 
         http.open('DELETE', 'http://localhost:8081/aluno/' + id);
         http.setRequestHeader('Content-Type', 'application/json', true);
         http.onload = function () {
@@ -142,36 +216,36 @@ function recarregarPaginaListaDeAlunos(){
 }
 
 function carregarInfoAluno(aluno) {
-    retornarIconereferenteASexoDoInstrutor(aluno);
-    console.log(alunos[aluno].dataNascimento);
+    retornarIconereferenteASexoDoInstrutor(aluno.sexo);
+    console.log(aluno.dataNascimento);
     let div = document.querySelector('#info-aluno');
     div.innerHTML = "";
     div.innerHTML += '<div class="media" >';
     div.innerHTML += '<img src="../../assets/icones/' + caminhoDaImagem + '" class="align-self-start mr-3" style="width:60px">';
     div.innerHTML += '<div class="media-body">';
-    div.innerHTML += '<h4>' + alunos[aluno].nome.toUpperCase() + '</h4>';
-    let numFormatado = formatar(alunos[aluno].numeroCelular);
-    let numEmFormatado = formatar(alunos[aluno].numeroCelular);
+    div.innerHTML += '<h4>' + aluno.nome.toUpperCase() + '</h4>';
+    let numFormatado = formatar(aluno.numeroCelular);
+    let numEmFormatado = formatar(aluno.numeroCelular);
     div.innerHTML += '<p>Número: ' + numFormatado + '</p>';
     div.innerHTML += '<p>Número de Emergência: ' + numEmFormatado + '</p>';
-    div.innerHTML += '<p>Email: ' + alunos[aluno].email + ' </p>';
-    div.innerHTML += '<p>CPF: ' + alunos[aluno].cpf + '</p>';
-    div.innerHTML += '<p>Data de nasciemto: ' + alunos[aluno].dataDeNascimento + ' </p>';
-    div.innerHTML += '<p>Endereço: ' + alunos[aluno].endereco.cidade + '</p>';
-    div.innerHTML += '<p>Bairro: ' + alunos[aluno].endereco.bairro + '</p>';
-    div.innerHTML += '<p>Rua ou Av e Número da residêcia: ' + alunos[aluno].endereco.rua + ' Num:' + alunos[aluno].endereco.numero + '</p>';
-    div.innerHTML += '<p>CEP: ' + alunos[aluno].endereco.cep + '</p>';
+    div.innerHTML += '<p>Email: ' + aluno.email + ' </p>';
+    div.innerHTML += '<p>CPF: ' + aluno.cpf + '</p>';
+    div.innerHTML += '<p>Data de nasciemto: ' + aluno.dataDeNascimento + ' </p>';
+    div.innerHTML += '<p>Endereço: ' + aluno.endereco.cidade + '</p>';
+    div.innerHTML += '<p>Bairro: ' + aluno.endereco.bairro + '</p>';
+    div.innerHTML += '<p>Rua ou Av e Número da residêcia: ' + aluno.endereco.rua + ' Num:' + aluno.endereco.numero + '</p>';
+    div.innerHTML += '<p>CEP: ' + aluno.endereco.cep + '</p>';
     div.innerHTML += '<button onclick="fecharinfo()" type="button"  style="margin-bottom:1.2%; " class="btn btn-danger">Voltar</button></div></div> ';
 
     $('#tabelaContaner').css('visibility', 'hidden');
     window.scrollTo(0, 10);
 }
 
-function retornarIconereferenteASexoDoInstrutor(aluno) {
+function retornarIconereferenteASexoDoInstrutor(sexo) {
 
-    if (alunos[aluno].sexo === "MASCULINO") {
+    if (sexo === "MASCULINO") {
         caminhoDaImagem = "man-icon.png";
-    } else if(alunos[aluno].sexo === "FEMININO") {
+    } else if(sexo === "FEMININO") {
         caminhoDaImagem = "wam-icon.png"
     }
 }
@@ -182,15 +256,15 @@ function fecharinfo() {
     $('#tabelaContaner').css('visibility', 'visible');
 }
 
-function guardarIdDoRegistroPagamentoNoLocalStorage(posicao) {
-    localStorage.setItem('registroId', alunos[posicao].registrosDePagamentos[0].id);
-    localStorage.setItem('alunoNome', alunos[posicao].nome);
-    console.log('re' + localStorage.getItem('registroId'));
-    document.location = "situacao-pagamento.html"
+
+function limparTabela(){
+    let tbody = document.querySelector('table tbody');
+    tbody.textContent = "";
 }
 
+
 function formatar(num) {
-    var resultado = num.substr(0, 0) + "(" + num.substr(0);
+    let resultado = num.substr(0, 0) + "(" + num.substr(0);
     resultado = resultado.substr(0, 3) + ")" + resultado.substr(3);
     resultado = resultado.substr(0, 4) + " " + resultado.substr(4);
     resultado = resultado.substr(0, 10) + "-" + resultado.substr(10);
@@ -198,4 +272,3 @@ function formatar(num) {
     return resultado;
 }
 
-tabela(0);

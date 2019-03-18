@@ -44,11 +44,17 @@
                             </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputDataNascimento">DATA DE NASCIMENTO</label>
+                        <div class="form-group col-md-6">
+                            <label for="inputDataNascimento">DATA DE NASCIMENTO: </label>
                             <input type="date" max="2010-01-01" class="form-control" required="required" id="dataNascimento">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
+                            <label for="dataDeMatricula">DATA DA MATRICULA: </label>
+                            <input type="date" max="2010-01-01" class="form-control" required="required" id="dataDeMatricula">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
                             <label for="inputSexo">SEXO</label>
                             <select id="sexo" class="form-control">
                                 <option value="" disabled selected>Escolher...</option>
@@ -56,7 +62,7 @@
                                 <option>FEMININO</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="inputCpf">CPF</label>
                             <input type="text" style="text-transform: uppercase" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                                 class="form-control" id="cpf" placeholder="Ex.: 000.000.000-00" required="required">

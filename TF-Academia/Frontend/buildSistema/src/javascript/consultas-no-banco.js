@@ -10,6 +10,21 @@ $(document).ready(function(){
   })
 });
 
+function exibirMassagenDeErro(erro){
+    alert('erro ' + erro);
+}
+
+function buscarAlunos(numeroPagina) {//refatorar
+fetch('http://localhost:8081/aluno/lista/'+numeroPagina)
+    .then(function(res){
+        res.json().then(function(resultado){
+            console.log('retornando os dados'); 
+            carregarTabelaDeAlunos(resultado);
+        })
+    });
+}
+
+
 function inicializarProcedimentosParaAlunosBusca(){
     document.getElementById('alert').innerHTML ="";
     if(verificarAlunosBuscaEVasio()){
@@ -30,9 +45,8 @@ function buscarPorNomeNumeroC() {
     xhr.onload = function () {
         if (this.status == 200) {
             resultadodaBusca = JSON.parse(this.responseText);
-            console.log(alunoRequest);
-            inicializarProcedimentosParaAlunosBusca();
-            
+            limparTabela(); 
+            carregarTabelaDeAlunos(resultadodaBusca);
         }
     };
     xhr.onerro = () => alert('ERRO');
@@ -58,22 +72,15 @@ function limparTabelaDeAlunos(){
     document.getElementById('list-aluno').innerHTML = "";
 }
 
-function carragarTabelaComOsAlunosDaBusca(){
-    console.log("carrgando alunos");
-    alunos = retornarElementosDoResultadoDaBusca();
-    posicaoNoContainer = 0;
-    alunos.forEach(element =>{
-        atualizandoLista(element, posicaoNoContainer);
-        posicaoNoContainer++;
-    });   
-}
+
 
 
 
 function exibirMenssagenDeAlunoNaoEncontrado() {
     document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
         + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
-        + '</div>'
+        + '</div>';
+        
 }
 function recarregarPaginaDeListaDeAlunos(){
    document.location = "lista-de-alunos.html";

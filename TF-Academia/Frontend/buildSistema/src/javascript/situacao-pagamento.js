@@ -7,7 +7,7 @@ let meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agos
 $('#botao-voltar').click(function () {
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
     if (r == true) {
-        location.href = '../pages/principal.html';
+        location.href = '../pages/lista-de-alunos.html';
     }
 });
 
@@ -76,10 +76,12 @@ function removerPagamento(posicao) {
         http.setRequestHeader('Content-Type', 'application/json', true);
         http.onload = function () {
             if (this.status == 200) {
+                
                 tabela(0);
                 
             }
         }
+        
         let pagamento = {
             'id': recebe.pagamentos[posicao].id
         };
