@@ -1,4 +1,4 @@
-package com.timedev.academia.controller;
+﻿package com.timedev.academia.controller;
 
 import javax.validation.Valid;
 
@@ -121,5 +121,9 @@ public class AlunoController {
 			Pageable pageable){
 		return alunoRepository.findByDataVencimento(dataVencimento, pageable);
 	}
+@GetMapping("/aluno/retornarTotalDeMensalidadesEAlunos")
+	public Page<Integer> getTotalMensalidadesETotalDeAlunos(Pageable pageable){
+	    return	alunoRepository.getValorTotalMensalidadesAndCountOfAlunos(pageable); 
+	 }
 
 }

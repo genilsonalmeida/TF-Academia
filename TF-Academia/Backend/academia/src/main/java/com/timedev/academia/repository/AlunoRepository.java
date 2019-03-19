@@ -24,4 +24,10 @@ public interface AlunoRepository extends JpaRepository<Aluno, Integer>{
   @Query( value = "select * from pessoa where tipo='AL' and dia_do_pagamento<=?1",
 		  nativeQuery = true)
   public Page<Aluno> findByDataVencimento(String dataVencimento, Pageable pageable);
+
+ @Query(value = "select count(*) qtn_alunos, sum(mensalidade) total_mes from pessoa where tipo='AL'",
+		  nativeQuery = true)
+  public Page<Integer> getValorTotalMensalidadesAndCountOfAlunos(Pageable pagable);
+
+
 }
