@@ -22,6 +22,18 @@ $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
 });
 
+
+$('#bnt-lista-pagos').click(function () {
+    limparTabela();
+    exibirAlunosSemDebito();
+});
+
+$('#bnt-lista-Debito').click(function () {
+    limparTabela();
+    exibirAlunosComDebito();
+});
+
+
 $('#recarregar-lista').click(function () {
     valorDosPagamentosRealizados = 0;
     valorEmDebito = 0;
@@ -69,6 +81,7 @@ function reiniciarAlunosComDebitoESemDebito(){
 
 function verificarRecebimentoDosAlunos(alunos){
     if(alunos.content.length > 0){
+        fecharAlerta();
         iniciarLista(alunos);
         buscarAlunosComDebito();
    }else{ exibirAlerta();}
@@ -85,15 +98,19 @@ function exibirAlerta(){
     button.className = 'close';
     button.textContent = "x";
     button.dataset = "alert";
-    button.onclick = function(){
-        divPrincipal.textContent = "";
-    }
+    
+    divPrincipal.textContent = "";
+    
     strong.textContent = "Não Encontrado";
     divAlert.appendChild(button);
     divAlert.appendChild(strong);
     divPrincipal.appendChild(divAlert);
 } 
 
+function fecharAlerta(){
+    let divPrincipal = document.querySelector('#alert');
+    divPrincipal.textContent = "";
+}
 
 function iniciarLista(lista){
     listaDeAlunos = lista; 
@@ -150,8 +167,7 @@ function mes(pagamento){
 
 function exibirValoresRelacionadosAosPagamentos(){
     carregarSaldoDosPagamentosRealisadosEsteMes();
-    carregarValorQueAindaFaltaSerPagoEsteMes();
-   
+    carregarValorQueAindaFaltaSerPagoEsteMes();  
 }
 
 function carregarSaldoDosPagamentosRealisadosEsteMes(){
@@ -168,14 +184,7 @@ function carregarValorQueAindaFaltaSerPagoEsteMes(){
     card.textContent = " R$ = " + valorEmDebito + " reais";
 }
 
-function carregarValorTotalDasMesalidadesDoMes(){
-    
-    let titulo = document.querySelector('#valor-total-mensalidaes');
-    titulo.textContent = "Total de  Alunos " + totalDeAlunos;
-    let card = document.querySelector('#valor-total');
-    card.textContent = "total de mensalidades R$ = " + saldoTotalDoMes + " reais";
 
-}
 
 function buscarValorToTalDasMensalidadesEQuantidadeToTalDeAlunos(){
     fetch('http://localhost:8081/aluno/retornarTotalDeMensalidadesEAlunos')
@@ -194,9 +203,13 @@ function pegarValorMensalidadesETotalDeAlunos(resultado){
     carregarValorTotalDasMesalidadesDoMes();
 }
 
+function carregarValorTotalDasMesalidadesDoMes(){
+    
+    let titulo = document.querySelector('#valor-total-mensalidaes');
+    titulo.textContent = "Total de  Alunos " + totalDeAlunos;
+    let card = document.querySelector('#valor-total');
+    card.textContent = "total de mensalidades R$ = " + saldoTotalDoMes + " reais";
 
-function somarValorTotalDasMensalidades(){
-    return valorEmDebito + valorDosPagamentosRealizados;
 }
 
 function exibirAlunosComDebito(){
@@ -333,6 +346,8 @@ function formatar(num) {
 
     return resultado;
 }
+
+
 
 passarDiaAtualParaParametro();
 receberLista();
