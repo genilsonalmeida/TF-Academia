@@ -80,7 +80,7 @@ public class Aluno extends Pessoa{
 	public void removerRegistro(Integer id) {
 		RegistroPagamento recebeRegistro = null;
 		for (RegistroPagamento registroPagamento : registrosDePagamentos) {
-			if(registroPagamento.getId() == id) {
+			if(registroPagamento.getId() == id.intValue()) {
 				recebeRegistro = registroPagamento; 
 			}
 		}

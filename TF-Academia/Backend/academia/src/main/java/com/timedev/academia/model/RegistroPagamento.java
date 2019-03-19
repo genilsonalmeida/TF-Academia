@@ -53,7 +53,7 @@ public class RegistroPagamento {
 		Pagamento recebePagamento = null;
 		
 		for (Pagamento pagamento : pagamentos) {
-			if(pagamento.getId() == id) {
+			if(pagamento.getId() == id.intValue()) {
 				recebePagamento = pagamento;
 				break;
 			}

@@ -119,6 +119,7 @@ public class AlunoController {
 	@GetMapping("/aluno/listaVencimento/{dataVencimento}")
 	public Page<Aluno> getDataDeVencimento(@Valid @PathVariable String dataVencimento,
 			Pageable pageable){
+		pageable =  PageRequest.of(0, 1000);
 		return alunoRepository.findByDataVencimento(dataVencimento, pageable);
 	}
 @GetMapping("/aluno/retornarTotalDeMensalidadesEAlunos")
