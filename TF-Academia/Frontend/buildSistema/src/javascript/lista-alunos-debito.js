@@ -163,7 +163,7 @@ function carregarSaldoDosPagamentosRealisadosEsteMes(){
 
 function carregarValorQueAindaFaltaSerPagoEsteMes(){
     let titulo = document.querySelector('#alunos-em-debito');
-    titulo.textContent = "Valor Não Recebido de " + + alunosComDebito.length + " Alunos";
+    titulo.textContent = "Valor Não Recebido de " +  alunosComDebito.length + " Alunos";
     let card = document.querySelector('#valor-em-debito');
     card.textContent = " R$ = " + valorEmDebito + " reais";
 }
@@ -171,9 +171,9 @@ function carregarValorQueAindaFaltaSerPagoEsteMes(){
 function carregarValorTotalDasMesalidadesDoMes(){
     
     let titulo = document.querySelector('#valor-total-mensalidaes');
-    titulo.textContent = "Valor Total de "  + totalDeAlunos + " Alunos";
+    titulo.textContent = "Total de  Alunos " + totalDeAlunos;
     let card = document.querySelector('#valor-total');
-    card.textContent = " R$ = " + saldoTotalDoMes + " reais";
+    card.textContent = "total de mensalidades R$ = " + saldoTotalDoMes + " reais";
 
 }
 
