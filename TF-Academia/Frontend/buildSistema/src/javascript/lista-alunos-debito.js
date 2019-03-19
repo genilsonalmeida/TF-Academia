@@ -1,6 +1,7 @@
     jQuery(window).load(function () {
         $(".loader").delay(500).fadeOut("slow"); //retire o delay quando for copiar!
         $("#tudo_page").toggle("fast");
+        buscarValorToTalDasMensalidadesEQuantidadeToTalDeAlunos();
     });
 
 let http = new XMLHttpRequest();
@@ -15,6 +16,7 @@ let tbody = document.querySelector('table tbody');
 let valorDosPagamentosRealizados = 0;
 let valorEmDebito = 0;
 let saldoTotalDoMes = 0;
+let totalDeAlunos = 0;
 
 $('#botao-voltar').click(function () {
     location.href = '../pages/principal.html';
@@ -149,7 +151,7 @@ function mes(pagamento){
 function exibirValoresRelacionadosAosPagamentos(){
     carregarSaldoDosPagamentosRealisadosEsteMes();
     carregarValorQueAindaFaltaSerPagoEsteMes();
-    carregarValorTotalDasMesalidadesDoMes();
+   
 }
 
 function carregarSaldoDosPagamentosRealisadosEsteMes(){
@@ -167,13 +169,31 @@ function carregarValorQueAindaFaltaSerPagoEsteMes(){
 }
 
 function carregarValorTotalDasMesalidadesDoMes(){
-
+    
     let titulo = document.querySelector('#valor-total-mensalidaes');
-    titulo.textContent = "Valor Total de "  + (alunosComDebito.length + alunosSemDebito.length) + " Alunos";
+    titulo.textContent = "Valor Total de "  + totalDeAlunos + " Alunos";
     let card = document.querySelector('#valor-total');
-    card.textContent = " R$ = " + somarValorTotalDasMensalidades() + " reais";
+    card.textContent = " R$ = " + saldoTotalDoMes + " reais";
 
 }
+
+function buscarValorToTalDasMensalidadesEQuantidadeToTalDeAlunos(){
+    fetch('http://localhost:8081/aluno/retornarTotalDeMensalidadesEAlunos')
+           .then(function(res){
+               res.json().then(function(resultado){
+                console.log(resultado);
+                   pegarValorMensalidadesETotalDeAlunos(resultado.content[0]);
+               })
+           });         
+}
+
+function pegarValorMensalidadesETotalDeAlunos(resultado){
+    totalDeAlunos = resultado[0]
+    saldoTotalDoMes = resultado[1];
+    console.log(totalDeAlunos);
+    carregarValorTotalDasMesalidadesDoMes();
+}
+
 
 function somarValorTotalDasMensalidades(){
     return valorEmDebito + valorDosPagamentosRealizados;
