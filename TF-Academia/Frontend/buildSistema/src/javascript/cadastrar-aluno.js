@@ -32,46 +32,51 @@ $(document).ready(function () {
                 document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible"><strong>Alerta!</strong> Email ou Cpf ou número de celular já existe </div>';         
             }
         }
-
-        let numCelular = trim($('#celular').val());
-        let numCelEmergencia = trim($('#celular-emergencia').val());
-        let matriculaGerada = gerarMatricula();
-        let diaDoPagamentoValidado = validarDiaDoPagamento($('#diaDoPagamento').val());
+         
+        let novoAluno = retornaAtributosDoAluno();
         
-        let novo = {
-            nome: $('#nome').val().toUpperCase(),
-            dataDeNascimento: $('#dataNascimento').val(),
-            dataDeMatricula:$('#dataDeMatricula').val(),
-            sexo: $('#sexo').val(),
-            cpf: $('#cpf').val(),
-            numeroCelular: numCelular,
-            numeroCelularEmergencia: numCelEmergencia,
-            mensalidade: $('#valorMensalidade').val(),
-            matricula:matriculaGerada,
-            endereco: {
-                cep: $('#cep').val(),
-                numero: $('#numero').val(),
-                cidade: $('#cidade').val().toLowerCase(),
-                bairro: $('#bairro').val().toLowerCase(),
-                uf: $('#uf').val().toLowerCase(),
-                rua: $('#rua').val().toLowerCase()
-            },
-            registrosDePagamentos: [
-                {
-                    descricaoDoregistro: 'mensalidade'
-                }
-            ],
-            email: $('#email').val().toLowerCase(),
-            diaDoPagamento: diaDoPagamentoValidado,
-            mensalidade: $('#valorMensalidade').val(),
-        };
-
         xhr.onerro = () => alert('ERRO');
-        xhr.send(JSON.stringify(novo));
+        xhr.send(JSON.stringify(novoAluno));
 
     }
 
 });
+
+function retornaAtributosDoAluno(){
+    let numCelular = trim($('#celular').val());
+    let numCelEmergencia = trim($('#celular-emergencia').val());
+    let matriculaGerada = gerarMatricula();
+    let diaDoPagamentoValidado = validarDiaDoPagamento($('#diaDoPagamento').val());
+    
+    let novo = {
+        nome: $('#nome').val().toUpperCase(),
+        dataDeNascimento: $('#dataNascimento').val(),
+        dataDeMatricula:$('#dataDeMatricula').val(),
+        sexo: $('#sexo').val(),
+        cpf: $('#cpf').val(),
+        numeroCelular: numCelular,
+        numeroCelularEmergencia: numCelEmergencia,
+        mensalidade: $('#valorMensalidade').val(),
+        matricula:matriculaGerada,
+        endereco: {
+            cep: $('#cep').val(),
+            numero: $('#numero').val(),
+            cidade: $('#cidade').val().toLowerCase(),
+            bairro: $('#bairro').val().toLowerCase(),
+            uf: $('#uf').val().toLowerCase(),
+            rua: $('#rua').val().toLowerCase()
+        },
+        registrosDePagamentos: [
+            {
+                descricaoDoregistro: 'mensalidade'
+            }
+        ],
+        email: $('#email').val().toLowerCase(),
+        diaDoPagamento: diaDoPagamentoValidado,
+        mensalidade: $('#valorMensalidade').val(),
+    };
+  return novo;
+}
 
 function validarDiaDoPagamento(diaDoPagamento){
    if( diaDoPagamento <= 9){
