@@ -1,7 +1,9 @@
+let data = new Date();
+
 $(document).ready(function () {
 
     $('#botao-finalizar').click(save);
-
+   
 
     function save(event) {
         event.preventDefault();
@@ -51,7 +53,7 @@ function retornaAtributosDoAluno(){
     let novo = {
         nome: $('#nome').val().toUpperCase(),
         dataDeNascimento: $('#dataNascimento').val(),
-        dataDeMatricula:$('#dataDeMatricula').val(),
+        dataDeMatricula: validarDataDeMatricula(),
         sexo: $('#sexo').val(),
         cpf: $('#cpf').val(),
         numeroCelular: numCelular,
@@ -84,8 +86,6 @@ function validarDiaDoPagamento(diaDoPagamento){
    }else if(diaDoPagamento > 31){
         return 15;
    }
-
-   
    return diaDoPagamento;
 }
 
@@ -113,6 +113,41 @@ function trim(vlr) {
     resultado = resultado.replace(')', '');
     resultado = resultado.replace('-', '');
     return resultado;
+}
+
+function validarDataDeMatricula(){
+     
+  let inpultDataMatricula = $('#dataDeMatricula').val();
+  alert("validando inpult" + inpultDataMatricula);
+    if(inpultEVasiio(inpultDataMatricula)){
+       return adicionarDataAtual();
+    }
+   return inpultDataMatricula;
+}
+
+function inpultEVasiio(inpultDataMatricula){
+    if(inpultDataMatricula === ""){  
+      console.log(inpultDataMatricula);
+      return true;    
+    }
+}
+
+function adicionarDataAtual(){
+  let dataAtual =  data.getFullYear() + "-";
+      if(data.getMonth() <= 9){
+        dataAtual += "0" + (data.getMonth() + 1);                      
+     }
+     else{ 
+        dataAtual +=  (data.getMonth() + 1); 
+        }
+
+     if(data.getDate() <= 9){ 
+        dataAtual += "-0" + data.getDate();
+        }
+     else{
+        dataAtual += "-" + data.getDate()
+         }
+  return dataAtual;
 }
 
 $('#botao-cancelar').click(function () {
