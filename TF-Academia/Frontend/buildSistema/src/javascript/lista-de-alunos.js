@@ -96,7 +96,8 @@ function montarColunaDePagamentos(aluno){
    tdPagamentos.onclick = function(){
         let dados = {
             registroId : aluno.registrosDePagamentos[0].id,
-            alunoNome : aluno.nome   
+            alunoNome : aluno.nome,
+            alunoDataMatricula : aluno.dataDeMatricula    
         };
           guardarIdDoRegistroPagamentoNoLocalStorage(dados);
    }
@@ -141,6 +142,8 @@ function monatarColunaDeletar(aluno){
 function guardarIdDoRegistroPagamentoNoLocalStorage(dadosDoAluno) {
     localStorage.setItem('registroId', dadosDoAluno.registroId);//alunos[posicao].registrosDePagamentos[0].id
     localStorage.setItem('alunoNome', dadosDoAluno.alunoNome);//alunos[posicao].nome
+    localStorage.setItem('alunoDataMatricula', dadosDoAluno.alunoDataMatricula);//alunos[posicao].nome
+    
     console.log('re' + localStorage.getItem('registroId'));
     document.location = "situacao-pagamento.html"
 }
@@ -263,12 +266,4 @@ function limparTabela(){
 }
 
 
-function formatar(num) {
-    let resultado = num.substr(0, 0) + "(" + num.substr(0);
-    resultado = resultado.substr(0, 3) + ")" + resultado.substr(3);
-    resultado = resultado.substr(0, 4) + " " + resultado.substr(4);
-    resultado = resultado.substr(0, 10) + "-" + resultado.substr(10);
-
-    return resultado;
-}
 

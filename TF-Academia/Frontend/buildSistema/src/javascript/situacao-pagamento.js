@@ -3,7 +3,8 @@ let registroId = localStorage.getItem('registroId');
 let http = new XMLHttpRequest();
 let data = new Date();
 let meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-
+let diaDaMatricula = 0;
+let mesDaMatricula = 0;
 $('#botao-voltar').click(function () {
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
     if (r == true) {
@@ -49,7 +50,7 @@ function atualizandoLista() {
         let cols = '';
         var data = newDate(recebe.pagamentos[i].dataDoPagamento);
         cols += '<th scope="row">'+(i + 1)+'</th>';
-        cols += '<th scope="row">' + recebe.pagamentos[i].dataDoPagamento + '</th>';
+        cols += '<th scope="row">' + formatarAno(recebe.pagamentos[i].dataDoPagamento) + '</th>';
         cols += '<th scope="row"> R$ ' + recebe.pagamentos[i].valor + ',00 </th>'
         cols += '<th scope="row">' + recebe.pagamentos[i].descricaoDoPagamento + '</th>';
         cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)"  onClick="removerPagamento(' + i + ')" ><img   src="../../assets/icones/baseline-delete-24px.svg"></th>'
@@ -63,7 +64,19 @@ function atualizandoLista() {
 
 
 function adicionarNomeDoAlunoADiv() {
-    document.getElementById('nome-aluno').innerHTML = localStorage.getItem('alunoNome');
+    let dataDaMatricula = localStorage.getItem('alunoDataMatricula');
+    console.log(dataDaMatricula);
+    let titulo = document.querySelector('#nome-aluno');
+    titulo.textContent = localStorage.getItem('alunoNome');
+    titulo.textContent += " Matriculado desde de  " + formatarAno(dataDaMatricula);
+}
+
+function formatarAno(ano){
+    let anoFormatado = ano.substring(8,10) 
+                       + "/" + ano.substring(5,7) 
+                       + "/" + ano.substring(0,4);
+    diaDaMatricula =  ano.substring(8,10);
+    return anoFormatado
 }
 
 function removerPagamento(posicao) {
