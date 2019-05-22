@@ -68,7 +68,7 @@ function adicionarNomeDoAlunoADiv() {
     console.log(dataDaMatricula);
     let titulo = document.querySelector('#nome-aluno');
     titulo.textContent = localStorage.getItem('alunoNome');
-    titulo.textContent += " Matriculado desde de  " + formatarAno(dataDaMatricula);
+    titulo.textContent += " Matriculado desde " + formatarAno(dataDaMatricula);
 }
 
 function formatarAno(ano){

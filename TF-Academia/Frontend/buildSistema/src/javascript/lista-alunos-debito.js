@@ -199,17 +199,36 @@ function buscarValorToTalDasMensalidadesEQuantidadeToTalDeAlunos(){
 function pegarValorMensalidadesETotalDeAlunos(resultado){
     totalDeAlunos = resultado[0]
     saldoTotalDoMes = resultado[1];
-    console.log(totalDeAlunos);
+    console.log('total de alunos',totalDeAlunos);
     carregarValorTotalDasMesalidadesDoMes();
 }
 
-function carregarValorTotalDasMesalidadesDoMes(){
-    
+async function carregarValorTotalDasMesalidadesDoMes(){
+    let textPrazo = document.querySelector('#alunos-no-prazo');
     let titulo = document.querySelector('#valor-total-mensalidaes');
-    titulo.textContent = "Total de  Alunos " + totalDeAlunos;
-    let card = document.querySelector('#valor-total');
-    card.textContent = "total de mensalidades R$ = " + saldoTotalDoMes + " reais";
+    titulo.textContent = await retornaTotalDeMensalidades();  
+    
+    let alunosPrazo = await retornarAlunosNoPraso();
+    textPrazo.textContent = alunosPrazo 
+    + " Alunos no prazo"  
+}
 
+function retornarAlunosNoPraso(){
+        //    console.log('alunos com debito',alunosComDebito.length)
+        //    console.log('alunos sem debito',alunosSemDebito.length)
+        //    console.log('alunos com debito',totalDeAlunos)
+        //    console.log("quantidade de alunos no praso",totalDeAlunos -  (alunosComDebito.length + alunosSemDebito.length)) 
+    return new Promise(function resoverPromise(resolve,reject){
+       return resolve(totalDeAlunos - (alunosComDebito.length + alunosSemDebito.length)) 
+    }) 
+}
+
+function retornaTotalDeMensalidades(){
+    return new Promise(function resolverPromise(resolve,reject){
+          return resolve(
+            totalDeAlunos + " Alunos Matriculados, total de mensalidades é de R$ = " + saldoTotalDoMes + " reais"
+          )
+    })
 }
 
 function exibirAlunosComDebito(){

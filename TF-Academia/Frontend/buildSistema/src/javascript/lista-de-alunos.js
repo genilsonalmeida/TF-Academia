@@ -23,7 +23,10 @@ $('#bntProximaPage').click(function () {
     paginacaoDaLista(resultado.totalPages);
 });
 
-
+$('#button-recarregar').click(function () {
+    limparTabela(); 
+    buscarAlunos(0);
+});
 
 
 function carregarTabelaDeAlunos(alunosContainer){
@@ -35,8 +38,8 @@ function carregarTabelaDeAlunos(alunosContainer){
 
 function validarResultadoDaBusca(){
     if(resultado.totalElements === 0){
-        exibirMenssagenDeAlunoNaoEncontrado()
-    }
+        exibirMenssagenDeAlunoNaoEncontrado();
+    }else{fecharAlertaDeAlunoNaoEncontrado();}
 }
 
 function executarProcessosParaExibirAluno(){

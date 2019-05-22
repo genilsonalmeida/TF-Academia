@@ -79,8 +79,11 @@ function limparTabelaDeAlunos(){
 function exibirMenssagenDeAlunoNaoEncontrado() {
     document.getElementById('alert').innerHTML = '<div class="alert alert-danger alert-dismissible">'
         + '<strong>Não Encontrado!</strong> Este nome não Refere-se a um Aluno Cadastrado.'
-        + '</div>';
-        
+        + '</div>'; 
+}
+
+function fecharAlertaDeAlunoNaoEncontrado(){
+    document.getElementById('alert').innerHTML = "";
 }
 function recarregarPaginaDeListaDeAlunos(){
    document.location = "lista-de-alunos.html";
