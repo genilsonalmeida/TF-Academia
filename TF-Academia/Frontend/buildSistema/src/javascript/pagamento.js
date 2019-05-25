@@ -4,6 +4,10 @@ let  data = new Date;
 let recebeDataAtual;
 let recebe;
 let alunoMatricula = '';
+
+const dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado");
+const monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto","setembro", "outubro", "novembro", "dezembro");
+
 $('#botao-cancelar').click(function(){
     var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
     if (r == true) {
@@ -54,6 +58,7 @@ function buscarAlunoPorMatricula(){
                 esconderDivBusca();
                 exibirDivForm();
                 carregarDadosDoAluno(recebe);
+                salvarDadosDoAluno(recebe);
                 limparValores();       
             }    
         }
@@ -105,14 +110,23 @@ function carregarDadosDoAluno(aluno){
    cpf.value = aluno.cpf;
    vencimento.value = aluno.diaDoPagamento;
    dataPagamento.value = recebeDataAtual;
-  
+   
 }
+
+function salvarDadosDoAluno(aluno){
+     let dataVencimento =   monName[data.getMonth()] + " de " + data.getFullYear ();  
+     localStorage.setItem('aluno-nome',aluno.nome);
+     localStorage.setItem('aluno-mensalidade',aluno.mensalidade);
+     localStorage.setItem('aluno-diaPagamento',aluno.diaDoPagamento);
+     localStorage.setItem('dataAtual',recebeDataAtual)
+     localStorage.setItem('descricao',formatandoData());
+     localStorage.setItem('data-vencimento',dataVencimento);
+}
+		
 
 
 function formatandoData(){
   
-  let  dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado");
-  let  monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto","setembro", "outubro", "novembro", "dezembro");
   let descricao = dayName[data.getDay()] + ", " + data.getDate() + " de " + monName[data.getMonth()]  +  " de "  +     data.getFullYear () + "\npagamento da mensalidade realizado com sucesso";
   recebeDataAtual = dayName[data.getDay()] + ", " + data.getDate() + " de " + monName[data.getMonth()]  +  " de "  +     data.getFullYear (); 
   console.log(descricao); 
@@ -128,7 +142,7 @@ function savePagamento(){
         if(this.status == 200){
            let recebe = JSON.parse(this.responseText);
            alert(formatandoData());
-           document.location = "lista-alunos-debito.html";
+           document.location = "./imprecoes/nota-nao-fiscal-de-pagamento.html";
            console.log(recebe);   
          }else{
             alert("Pagamento não cadastrado");
@@ -141,9 +155,10 @@ function savePagamento(){
     };
     
     http.onerro = () => alert('ERRO');
-   http.send(JSON.stringify(pagamento));
+    http.send(JSON.stringify(pagamento));
 }
 
 formatandoData();
 esconderDivForm();
 madarValorDaMatriculaLocalStorag();
+
