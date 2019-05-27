@@ -31,7 +31,7 @@ $('#lista-debito').click(function(){
     //alert("Pagina de listar alunos ainda não foi definida...");
 });
 
-$('#lista').click(function(){
-    location.href = '../pages/lista.html';
+$('#criar-lista').click(function(){
+    location.href = '../pages/ferramentas/criar-lista.html';
 });
 
