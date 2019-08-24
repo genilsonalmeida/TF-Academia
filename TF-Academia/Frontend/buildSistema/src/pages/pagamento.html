@@ -70,6 +70,15 @@
                                     <label>Data de pagamento: </label>
                                     <input type="datetime" class="form-control" id="data-pagamento" disabled>
                                 </div>
+                                <div class="form-group col-md-4">
+                                    <label>Valor recebido: </label>
+                                    <input type="number" min="0" max="100" onfocusout="validarValor(this.value)" 
+                                    placeholder="Digite o valor do pagamento!"    class="form-control" id="valor-recebido">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Troco: </label>
+                                    <input type="number" min="0" class="form-control" id="valor-troco" placeholder="Clique aqui!" disabled>
+                                </div>
                             </div>
                             <button type="button" class="btn btn-primary" onclick="savePagamento()" id="botao-confirmar">Confirmar</button>
                             <button type="button" class="btn btn-danger" id="botao-cancelar">Cancelar</button>

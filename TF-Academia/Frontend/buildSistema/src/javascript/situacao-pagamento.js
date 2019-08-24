@@ -126,7 +126,7 @@ function exibirMessagenDetabelaVazia(){
     divContent.style.width = '30%';
     divContent.style.padding = '5% 5% 5% 5%';
     divContent.style.borderRadius = '3% 3% 3% 3%';
-    let menssagen = document.createElement('h1');
+    let menssagen = document.createElement('h3');
     menssagen.textContent = "Ainda Não há Pagamentos";
     menssagen.style.textAlign = 'center';
     divContent.appendChild(menssagen);

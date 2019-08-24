@@ -5,6 +5,10 @@ let recebeDataAtual;
 let recebe;
 let alunoMatricula = '';
 
+localStorage.setItem('valor-do-pagamento', 0);
+localStorage.setItem('troco', 0);
+
+
 const dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado");
 const monName = new Array ("janeiro", "fevereiro", "março", "abril", "Maio", "junho", "julho", "agosto","setembro", "outubro", "novembro", "dezembro");
 
@@ -121,6 +125,7 @@ function salvarDadosDoAluno(aluno){
      localStorage.setItem('dataAtual',recebeDataAtual)
      localStorage.setItem('descricao',formatandoData());
      localStorage.setItem('data-vencimento',dataVencimento);
+     localStorage.setItem('aluno-telefone', aluno.numeroCelular);
 }
 		
 
@@ -157,6 +162,43 @@ function savePagamento(){
     http.onerro = () => alert('ERRO');
     http.send(JSON.stringify(pagamento));
 }
+
+function validarValor(valor){
+ valor = parseInt(valor);
+    
+ console.log(valor + ',00')
+ if( verificarValorEVasio(valor) ||
+     verificarValorEIgualAZero(valor) ||
+     verificarSeValorEMenorQueAMensalidade(valor)
+     ){
+     alert('O valor digitado é invalido!');
+ }
+ else{
+    localStorage.setItem('valor-do-pagamento',parseFloat(valor + 0.00)); 
+    calcularTroco(valor);
+ } 
+  
+}
+
+function verificarSeValorEMenorQueAMensalidade(valor){
+  const mensalidade = parseInt(localStorage.getItem('aluno-mensalidade'))   
+  return valor <  mensalidade
+}
+
+function verificarValorEIgualAZero(valor){
+    return valor === 0
+}
+
+function verificarValorEVasio(valor){
+    return isNaN(valor)
+}
+
+function calcularTroco(valor){
+   let inputTroco = document.querySelector('#valor-troco');
+   inputTroco.value = (valor - recebe.mensalidade).toFixed(2);
+   localStorage.setItem('troco', inputTroco.value);
+}
+
 
 formatandoData();
 esconderDivForm();

@@ -5,6 +5,8 @@ $(document).ready(function () {
     $('#cep').mask('00.000-000');
     $('#numero').mask('0000');
     $('#valorMensalidade').mask('000.00',{reverse:true});
+    $('#valor-recebido').mask('000.00',{reverse:true});
+    $('#valor-troco').mask('0000.00',{reverse:true});
     $('#celular').mask('(00) 00000-0000');
     $('#celular-emergencia').mask('(00) 00000-0000');
     $('#matricula-busca').mask('A0000');
