@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>TF ACADEMIA</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/cadastrar.css">
+    <link rel="stylesheet" href="../../assets/css/cadastrar-aluno.css">
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
 
     <script src="../libs/jquery.js"></script>
@@ -21,6 +20,7 @@
             <div class="titulo">
                 Cadastrar aluno
             </div>
+            <!--
             <div style="border: 2px solid; border-color:black; float: right; margin-top: 2%;  margin-right: 2%; height: 30%;">
                 <div>
                     <img src="../../assets/imagens/camera.jpg" style="width: 40%; margin-left: 30%; padding-top: 20%;">
@@ -30,26 +30,26 @@
                     <a href="#" class="btn btn-primary btn-lg" style="margin-top: 5%; margin-left: 13%;">Capturar Foto</a>
                 </div>
             </div>
-            
+            -->
+
             <div class="form-cadastro">
                 <form>
                     <div class="form-row">
                         <div id="alert"></div>
                         <div class="form-group col-md-12">
                             <label for="inputNome">NOME COMPLETO: </label>
-                            <input type="text"  required="required" class="form-control"
-                                id="nome" placeholder="Ex.: JOAO DA SILVA" required>
+                            <input type="text" class="form-control" id="nome" placeholder="Ex.: JOAO DA SILVA">
                         </div>
 
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputDataNascimento">DATA DE NASCIMENTO: </label>
-                            <input type="date" max="2010-01-01" class="form-control" required="required" id="dataNascimento">
+                            <input type="date" max="2010-01-01" class="form-control" id="dataNascimento">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="dataDeMatricula">DATA DA MATRICULA: </label>
-                            <input type="date" max="2010-01-01" class="form-control" required="required" id="dataDeMatricula">
+                            <input type="date" max="2010-01-01" class="form-control" id="dataDeMatricula">
                         </div>
                     </div>
                     <div class="form-row">   
@@ -59,70 +59,66 @@
                                 <option value="" disabled selected>Escolher...</option>
                                 <option>MASCULINO</option>
                                 <option>FEMININO</option>
+                                <option>NÃO DECLARAR</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputCpf">CPF: </label>
                             <input type="text" style="text-transform: uppercase" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                                class="form-control" id="cpf" placeholder="Ex.: 000.000.000-00" required="required">
+                                class="form-control" id="cpf" placeholder="Ex.: 000.000.000-00">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputCep">CEP: </label>
-                            <input type="text" style="text-transform: uppercase" required="required" class="form-control"
-                                id="cep" placeholder="Ex.: 00.000-000">
+                            <input type="text" style="text-transform: uppercase" class="form-control" id="cep" placeholder="Ex.: 00.000-000">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputEndereço">Rua ou Av </label>
+                            <label for="inputEndereço">ENDEREÇO</label>
                             <input type="text" style="text-transform: uppercase" maxlength="255" class="form-control"
-                                id="rua" placeholder="CONJUNTO ALDEBARAM, QUADRA Z" required="required">
+                                id="rua" placeholder="CONJUNTO ALDEBARAM, QUADRA Z">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputNumero">NÚMERO: </label>
-                            <input type="text" class="form-control" id="numero" placeholder="0000" required="required">
+                            <input type="text" class="form-control" id="numero" placeholder="0000">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCidade">CIDADE: </label>
-                            <input type="text" style="text-transform: uppercase" class="form-control" id="cidade"
-                                placeholder="Ex.: MACEIO" required="required">
+                            <input type="text" style="text-transform: uppercase" class="form-control" id="cidade" placeholder="Ex.: MACEIO">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputBairro">BAIRRO: </label>
-                            <input type="text" style="text-transform: uppercase" class="form-control" id="bairro"
-                                placeholder="Ex.: Farol" required>
-                            <!--="required"-->
+                            <input type="text" style="text-transform: uppercase" class="form-control" id="bairro" placeholder="Ex.: Farol">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputUf">UF: </label>
-                            <input type="text" style="text-transform: uppercase" maxlength="2" class="form-control" id="uf"
-                                placeholder="AL" required="required">
+                            <input type="text" style="text-transform: uppercase" maxlength="2" class="form-control" id="uf" placeholder="AL">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail">E-MAIL: </label>
-                            <input type="email" class="form-control" id="email" placeholder="josejoao@live.com" required="required">
+                            <input type="email" class="form-control" id="email" placeholder="josejoao@live.com">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputNumero">DIA PARA PAGAMENTO: </label>
-                            <input type="number" min="1" max="31" class="form-control" id="diaDoPagamento" placeholder="Ex.: 01" required="required">
+                            <input type="number" min="1" max="31" class="form-control" id="diaDoPagamento" placeholder="Ex.: 01">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputValorMensalidade">VALOR DA MENSALIDADE: </label>
-                            <input type="text" step="0.10" class="form-control" id="valorMensalidade" placeholder="Ex.: 00,00" required="required">
+                            <input type="text" step="0.10" class="form-control" id="valorMensalidade" placeholder="Ex.: 00,00">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputTelefone">TELEFONE CELULAR: </label>
-                            <input type="tel" class="form-control" id="celular" required="required" placeholder="(00) 00000-0000">
+                            <input type="tel" class="form-control" id="celular" placeholder="(00) 00000-0000">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputResidencial">TELEFONE DE EMERGÊNCIA: </label>
-                            <input type="tel" class="form-control" id="celular-emergencia" placeholder="(00) 0000-0000" required="required">
+                            <input type="tel" class="form-control" id="celular-emergencia" placeholder="(00) 0000-0000">
                         </div>
                     </div>
                     <button class="btn btn-primary" id="botao-finalizar" type="button">Finalizar</button>
@@ -130,6 +126,7 @@
                 </form>
             </div>
         </div>
+        <div class="footer" id="rodape"></div>
     </div>
 
 </body>
