@@ -3,7 +3,7 @@
     height: 100%;
     margin: 0%; 
     background-image: url('../imagens/fundo.jpg');
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     display: table;
 }
@@ -17,21 +17,55 @@
     font-family: 'Candara';
 }
 #botao{
-    float: right;
-    width: 150px;
+    width: 100%;
     display: block;
-    
-}
-.radio{
-    display: inline-block;
 }
 
 .tela-central{
-background-color: rgb(255, 255, 255);
-margin: 15px auto auto auto;
-height: 270px;
-width: 500px;
-box-shadow: 5px 5px 20px 5px #aaaaaa;
-border-radius: 5px;
-padding: 30px 20px 20px 20px ;
+    background-color: rgb(255, 255, 255);
+    margin: 15px auto auto auto;
+    height: 270px;
+    max-width: 40%;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    border-radius: 5px;
+    padding: 30px 20px 20px 20px;
 }
+
+
+@media (max-width: 320px) {
+    .principal {
+      background-image: url('../imagens/fundo-320.jpg');
+    }
+}  
+@media (min-width: 321px) and (max-width: 400px) {
+    .principal {
+      background-image: url('../imagens/fundo-400.jpg');
+    }
+}
+@media (min-width: 401px) and (max-width: 575.98px) { 
+    .principal {
+        background-image: url('../imagens/fundo-575.jpg');
+    }
+ }
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .principal {
+        background-image: url('../imagens/fundo-767.jpg');
+    }
+ }
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .principal {
+        background-image: url('../imagens/fundo-991.jpg');
+    }
+ }
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .principal {
+        background-image: url('../imagens/fundo-1199.jpg');
+    }
+ }
+@media (min-width: 1200px) { 
+    .principal {
+        background-image: url('../imagens/fundo-1300.jpg');
+    }
+ }
