@@ -1,61 +1,102 @@
-@font-face{
+@font-face {
     font-family: 'Candara';
     src: url('../fontes/Candara.ttf')
 }
-.content-fluid{
+
+.titulo {
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    color: #1EBEC8;
+    font-size: 2.1875rem;
+    margin: 1.25rem auto 1.5rem auto;
+    font-family: 'Candara';
+}
+
+.content-fluid {
     width: 100%;
     height: 100%;
     margin: 0%;
     display: table;
 }
-.header{
+
+.header {
     width: 100%;
-    margin: 0%; 
+    margin: 0%;
 }
-#img-adm{
+
+#img-adm {
     float: right;
 }
-.card-aluno {
-    display: inline;  
-    float: left;
+
+
+/*.card-aluno {
+    display: inline;
     border: #FFFFFF;
     border-radius: 0.625rem;
-}
+}*/
+
 .card-instrutor {
     display: inline;
-    float: left;
     border: #FFFFFF;
     border-radius: 0.625rem;
 }
-.card-financeiro{
-    display: inline;    
-    float: left;
+
+.card-financeiro {
+    display: inline;
     margin-right: 50%;
-    border:#FFFFFF;
+    border: #FFFFFF;
     border-radius: 0.625rem;
 }
-#title-card{
+
+#title-card {
     text-align: left;
     font-size: 1.56rem;
     color: white;
     font-family: 'Candara';
     background-color: #168E95;
 }
-.text-card{
- font-size: 1.25rem;   
- padding-left: 2%;
- color:#168E95;
- cursor: hand;
+
+.text-card {
+    font-size: 1.25rem;
+    padding-left: 2%;
+    color: #168E95;
+    cursor: hand;
 }
-.text-card:hover{
+
+.text-card:hover {
     background-color: rgb(241, 245, 245);
     font-weight: bold;
 }
-#titleHome{
+
+#titleHome {
     margin-left: 67%;
 }
-.card-columns{
-    float: none;
-    margin: 5% auto auto auto;
-    margin-left: 5%;
+
+.card-columns {
+    margin: 0 auto;
+    width: 50%;
+}
+
+#title-menus {
+    text-align: center;
+    margin-top: 70%;
+    margin-bottom: 0%;
+}
+
+#icon-menus {
+    font-size: 3em;
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.row {
+    border: 1px solid;
+}
+
+#menu {
+    width: 50%;
 }
