@@ -49,13 +49,15 @@
     border-radius: 0.625rem;
 }
 
-#title-card {
+
+/*#title-card {
     text-align: left;
     font-size: 1.56rem;
     color: white;
     font-family: 'Candara';
     background-color: #168E95;
 }
+
 
 .text-card {
     font-size: 1.25rem;
@@ -67,13 +69,9 @@
 .text-card:hover {
     background-color: rgb(241, 245, 245);
     font-weight: bold;
-}
+}*/
 
-#titleHome {
-    margin-left: 67%;
-}
-
-.card-columns {
+.main {
     margin: 0 auto;
     width: 50%;
 }
@@ -82,10 +80,25 @@
     text-align: center;
     margin-top: 70%;
     margin-bottom: 0%;
+    color: white;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#menu-title-inf-left {
+    position: relative;
+    border-width: 2px;
+    width: 20%;
+    height: 19%;
+    left: 0px;
+    background-color: #1EBEC8;
+    float: left;
+    margin-left: 25%;
+    margin-top: 5%;
 }
 
 #icon-menus {
-    font-size: 3em;
+    font-size: 4em;
     color: white;
     position: absolute;
     top: 40%;
@@ -93,10 +106,27 @@
     transform: translate(-50%, -50%)
 }
 
-.row {
-    border: 1px solid;
+#menu-lista {
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #1EBEC8;
+    width: 27%;
+    height: 19%;
+    float: left;
+    padding: 2%;
+    font-size: 1.25rem;
+    padding-left: 2%;
+    color: #168E95;
+    cursor: hand;
 }
 
-#menu {
-    width: 50%;
+#menu-title {
+    position: relative;
+    border-width: 2px;
+    width: 20%;
+    height: 19%;
+    left: 0px;
+    background-color: #1EBEC8;
+    float: left;
 }
