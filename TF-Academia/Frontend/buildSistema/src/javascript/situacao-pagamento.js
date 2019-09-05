@@ -1,15 +1,15 @@
 
 let registroId = localStorage.getItem('registroId');
-let http = new XMLHttpRequest();
 let data = new Date();
 let meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 let diaDaMatricula = 0;
 let mesDaMatricula = 0;
-$('#botao-voltar').click(function () {
-    var r = confirm("Tem certeza que deseja sair da tela de pagamento??");
-    if (r == true) {
-        location.href = '../pages/lista-de-alunos.html';
-    }
+let pagamentos = "";
+$('#botao-voltar').click(function (event) {
+    
+    event.preventDefault();
+    location.href = '../pages/lista-de-alunos.html';  
+
 });
 
 jQuery(window).load(function () {
@@ -17,58 +17,119 @@ jQuery(window).load(function () {
     $("#tudo_page").toggle("fast");
 });
 
+function buscarpagamentosDeUmAluno(){
+ 
+  return  fetch(`http://localhost:8081/registroPagamento/${registroId}`,{})
+          .then(function(responce){       
+            
+           return responce.json();
 
-
-function tabela(numeroPagina) {
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8081/registroPagamento/' + registroId);
-    paginaAtual = numeroPagina;
-    xhr.onload = function () {
-
-        if (this.status == 200) {
-            recebe = JSON.parse(this.responseText);
-            console.log(recebe);
-            // paginacaoDaLista(recebe.totalPages);
-            validarResultado();
-            atualizandoLista();
-        }
-    };
-    xhr.onerro = () => alert('ERRO');
-    xhr.send();
+        });
 
 }
 
-function newDate(){
-    console.log("Entrei!");
+
+
+async function  tabela() {
+
+   let registro = await buscarpagamentosDeUmAluno();
+   pagamentos = extrairPagamentos(registro);
+   console.log(pagamentos);
+   if(pagamentos.length == 0)  exibirMessagenDetabelaVazia();
+   gerarTabelaDePagamentos();
+       
+
 }
 
-function atualizandoLista() {
-    document.getElementById('list-aluno').innerHTML = "";
-    for (var i = 0; i < recebe.pagamentos.length; i++) {
-        let tr = $('<tr>');
-        let cols = '';
-        var data = newDate(recebe.pagamentos[i].dataDoPagamento);
-        cols += '<th scope="row">'+(i + 1)+'</th>';
-        cols += '<th scope="row">' + formatarAno(recebe.pagamentos[i].dataDoPagamento) + '</th>';
-        cols += '<th scope="row"> R$ ' + recebe.pagamentos[i].valor + ',00 </th>'
-        cols += '<th scope="row">' + recebe.pagamentos[i].descricaoDoPagamento + '</th>';
-        cols += '<th scope="row"  onmouseover="mudarCorDaColunaQuandoMousePassar(this)" onmouseout="mudarCorDaColunaQuandoMouseSair(this)"  onClick="removerPagamento(' + i + ')" ><img   src="../../assets/icones/baseline-delete-24px.svg"></th>'
-        tr.append(cols);
-        $('tbody').append(tr);
+function extrairPagamentos(registro){
+    return registro.pagamentos;
+}
 
+function gerarTabelaDePagamentos(){
+    console.log("gerando tabela");
+    let tabela = document.querySelector("#list-aluno");
+    
+       tabela.textContent = "";
+    
+      for (let pagamento  of pagamentos) {
+        let indice = pagamentos.indexOf(pagamento);   
+        let tr = document.createElement('tr');
+        let tdIndice = retornarColunaComIndiceDo(indice);
+        let dadosDasColunas =  extrairDadosParaTabela(pagamento);
+                           
+        tr.appendChild(tdIndice);
+    
+           for (let i in dadosDasColunas) {
+               let td = document.createElement('td');
+               td.textContent = dadosDasColunas[i];  
+               tr.appendChild(td);
+           }           
+        
+        let tdDeletar = document.createElement('td');
+        tdDeletar =  retornarColunaDeletar(tdDeletar); 
+        tdDeletar.onclick = function(){
+            let  confirmaOpcao = confirm("Tem certeza que deseja excluir o pagamento?");
+            if(confirmaOpcao){chamarMetodoParaDeletarPagamento(indice)}
+            }; 
+        tr.appendChild(tdDeletar);   
+        tabela.appendChild(tr);     
+      }
+    
     }
+         
+
+function retornarColunaComIndiceDo(pagamentoIndice){
+  
+  let tdIndice = document.createElement('td');
+  tdIndice.textContent = pagamentoIndice + 1;   
+   
+  return tdIndice; 
+        
+}
+
+function retornarColunaDeletar(tdDeletar){
+    let iconeDeletar = document.createElement('img');
+        iconeDeletar.src = '../../assets/icones/baseline-delete-24px.svg';
+        tdDeletar.appendChild(iconeDeletar);
+        
+        tdDeletar = adcionarStiloDaColuna(tdDeletar);
+     return tdDeletar;   
+}
+
+function chamarMetodoParaDeletarPagamento(indice){
+    return   removerPagamento(indice);     
+}
+
+function extrairDadosParaTabela(pagamento){
+    let dado = [];
+    
+    dado.push(pagamento.dataDoPagamento);
+    dado.push(pagamento.valor);
+    dado.push(pagamento.descricaoDoPagamento);
+    
+   return dado;       
 }
 
 
 
 
-function adicionarNomeDoAlunoADiv() {
-    let dataDaMatricula = localStorage.getItem('alunoDataMatricula');
-    console.log(dataDaMatricula);
+function carregarInformacoesDoAluno(){
     let titulo = document.querySelector('#nome-aluno');
+    adicionarNomeDoAluno(titulo);
+    adicionarDataDaMatricula(titulo);
+}
+
+function adicionarNomeDoAluno(titulo) {
+    
     titulo.textContent = localStorage.getItem('alunoNome');
+    
+}
+
+function adicionarDataDaMatricula(titulo){
+
+    let dataDaMatricula = localStorage.getItem('alunoDataMatricula');
     titulo.textContent += " Matriculado desde " + formatarAno(dataDaMatricula);
+
 }
 
 function formatarAno(ano){
@@ -79,44 +140,63 @@ function formatarAno(ano){
     return anoFormatado
 }
 
-function removerPagamento(posicao) {
+async function removerPagamento(posicao) {
 
-    var r = confirm("Tem certeza que deseja excluir o pagamento?");
-    if (r == true) {
-       
-        let http = new XMLHttpRequest();
-        http.open('DELETE', 'http://localhost:8081/registroPagamento/' + registroId + '/deletePagamento');
-        http.setRequestHeader('Content-Type', 'application/json', true);
-        http.onload = function () {
-            if (this.status == 200) {
-                
-                tabela(0);
-                
-            }
-        }
-        
-        let pagamento = {
-            'id': recebe.pagamentos[posicao].id
-        };
-        console.log(recebe.pagamentos[posicao].id);
+      let pagamento = pagamentos[posicao];
+        console.log(pagamento);
 
-        http.onerro = () => alert('ERRO');
-        http.send(JSON.stringify(pagamento));
-    }
+      let url = 'http://localhost:8081/registroPagamento/' + registroId + '/deletePagamento';
 
+      let pagamentoRemovido = await fetch(url,{
+         method:'DELETE',
+         mode: 'cors', // no-cors, cors, *same-origin
+         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+         credentials: 'same-origin', // include, *same-origin, omit
+         headers:{
+           'Content-Type':'application/json',
+         },
+         redirect: 'follow', // manual, *follow, error
+         referrer: 'no-referrer', // no-referrer, *client
+         body: JSON.stringify(pagamento),
+     }).then(function(){
+         console.log(responce.json());
+     }).catch(function(erro) {
+        console.error(erro);
+     });
+     
+      tabela(0);
+  
 }
+
+ 
+
+function adcionarStiloDaColuna(td){
+    td.onmousemove = function(){
+        mudarCorDaColunaQuandoMousePassar(td);
+    }
+    td.onmouseout = function(){
+        mudarCorDaColunaQuandoMouseSair(td);
+    }
+   return td; 
+}
+
+
 function mudarCorDaColunaQuandoMousePassar(x) {
     x.style.backgroundColor = "lightblue";
 }
-  
-  function mudarCorDaColunaQuandoMouseSair(x) {
-    x.style.backgroundColor = "white";  
+
+function mudarCorDaColunaQuandoMouseSair(x) {
+    x.style.backgroundColor = "white";
 }
 
-function validarResultado(){
-    if(recebe.pagamentos.length === 0){
-        exibirMessagenDetabelaVazia();
-    }
+function validarResultado(valor){
+    if(valor === 0){
+        console.log("não validado");
+        return false;
+    }else{
+        console.log("validado");
+        return true;
+        }
 }
 
 function exibirMessagenDetabelaVazia(){
@@ -132,5 +212,5 @@ function exibirMessagenDetabelaVazia(){
     divContent.appendChild(menssagen);
 }
 
-tabela(0);
-adicionarNomeDoAlunoADiv();
+tabela();
+carregarInformacoesDoAluno();
