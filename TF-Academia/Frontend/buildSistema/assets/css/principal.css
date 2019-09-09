@@ -12,121 +12,70 @@
     margin: 1.25rem auto 1.5rem auto;
     font-family: 'Candara';
 }
-
-.content-fluid {
-    width: 100%;
-    height: 100%;
-    margin: 0%;
-    display: table;
-}
-
 .header {
     width: 100%;
     margin: 0%;
 }
-
-#img-adm {
-    float: right;
+.container-cards {
+    margin: 0 10%;
+}
+/*Configuração do card*/
+.card-menu {
+	width: 350px;
+	height: 150px;
+	margin: 3% 0;
 }
 
-
-/*.card-aluno {
-    display: inline;
-    border: #FFFFFF;
-    border-radius: 0.625rem;
-}*/
-
-.card-instrutor {
-    display: inline;
-    border: #FFFFFF;
-    border-radius: 0.625rem;
+/*Título do Card*/
+.menu-title {
+	background-color: #1EBEC8;
+	float: left;
+	width: 45%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
-
-.card-financeiro {
-    display: inline;
-    margin-right: 50%;
-    border: #FFFFFF;
-    border-radius: 0.625rem;
-}
-
-
-/*#title-card {
-    text-align: left;
-    font-size: 1.56rem;
+.icon-menus {
+	font-size: 4em;
     color: white;
-    font-family: 'Candara';
-    background-color: #168E95;
 }
-
-
-.text-card {
-    font-size: 1.25rem;
-    padding-left: 2%;
-    color: #168E95;
-    cursor: hand;
-}
-
-.text-card:hover {
-    background-color: rgb(241, 245, 245);
-    font-weight: bold;
-}*/
-
-.main {
-    margin: 0 auto;
-    width: 50%;
-}
-
-#title-menus {
-    text-align: center;
-    margin-top: 70%;
-    margin-bottom: 0%;
+.title-menu {
     color: white;
     font-weight: bold;
-    font-size: 150%;
+    font-size: 1.9em;
 }
 
-#menu-title-inf-left {
-    position: relative;
-    border-width: 2px;
-    width: 20%;
-    height: 19%;
-    left: 0px;
-    background-color: #1EBEC8;
-    float: left;
-    margin-left: 25%;
-    margin-top: 5%;
-}
-
-#icon-menus {
-    font-size: 4em;
-    color: white;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-}
-
-#menu-lista {
-    position: relative;
-    border-style: solid;
+/*Links do Card*/
+.menu-lista {
+	float: right;
+	width: 55%;
+	height: 100%;
+	border-style: solid;
     border-width: 1px;
     border-color: #1EBEC8;
-    width: 27%;
-    height: 19%;
-    float: left;
-    padding: 2%;
-    font-size: 1.25rem;
-    padding-left: 2%;
-    color: #168E95;
-    cursor: hand;
 }
 
-#menu-title {
-    position: relative;
-    border-width: 2px;
-    width: 20%;
-    height: 19%;
-    left: 0px;
-    background-color: #1EBEC8;
-    float: left;
+.links-menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+    flex-flow: column nowrap;
+    height: 100%;
+}
+
+.links-menu a {
+	display: block;
+    padding: 2%;
+    font-size: 1.25rem;
+    color: #168E95;
+    text-decoration: none !important; 
+}
+
+.links-menu a:hover {
+	background-color: #168E95;
+	color: white;
 }
