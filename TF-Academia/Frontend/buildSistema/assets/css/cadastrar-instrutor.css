@@ -1,7 +1,54 @@
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container-flex{
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    display: table;
+}
+
+.cor-navbar{
+    background-color: #1EBEC8 !important;
+}
+
+.nome-do-sistema{
+    color: white !important;
+    font-family: 'Candara';
+}
+
+.titulo{
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    color: #1EBEC8;/* #2CB7C4; */
+    font-size: 2.1875rem;
+    font-family: 'Candara';
+}
+
+/* ESTILO DO RODAPÉ*/
+.footer{
+    display: table-row; 
+    width: 100%;
+    background-color: #1EBEC8;
+    margin: 0%;
+    height: 1.875rem;
+}
+
+.texto-rodape{
+    /* width: 100%; */
+    font-size: 1rem; 
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'Candara';   
+}
+
+/** ESTILO DO FORMULARIO */
 .form-cadastro{
-    margin-left: 5%;
-    
-    float: left;
+    margin-left: 14%;    
     width: 70%;
     display: inline-table;
     height: auto;
@@ -16,10 +63,13 @@
     height: 150px;
     display: inline-block;
 }
-#dataNascimento{
-   
-    margin-left: 0%;    
+
+label{
+    font-size: 13px;
+    font-weight: bold;
+    color: #1EBEC8;
 }
+
 #botao-finalizar{
     width: 30%;
     float: right;
