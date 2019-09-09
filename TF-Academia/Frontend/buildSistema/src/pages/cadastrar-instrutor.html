@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>TF ACADEMIA</title>
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/cadastrar.css">
+    <link rel="stylesheet" href="../../assets/css/cadastrar-instrutor.css">
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
 
     <script src="../libs/jquery.js"></script>
@@ -21,7 +21,8 @@
             <div class="titulo">
                 Cadastrar Instrutor
             </div>
-            <div style="border: 2px solid; border-color:black; float: right; margin-top: 2%;  margin-right: 2%; height: 30%;">
+            <!--
+            <div display="none" style="border: 2px solid; border-color:black; float: right; margin-top: 2%;  margin-right: 2%; height: 30%;">
                 <div>
                     <img src="../../assets/imagens/camera.jpg" style="width: 40%; margin-left: 30%; padding-top: 20%;">
                 </div>
@@ -30,13 +31,14 @@
                     <a href="#" class="btn btn-primary btn-lg" style="margin-top: 5%; margin-left: 13%;">Capturar Foto</a>
                 </div>
             </div>
+            -->
             <div id="alert"></div>
             <div class="form-cadastro">
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputNome">NOME COMPLETO</label>
-                            <input type="text"  required="required" class="form-control" id="nome" placeholder="Ex.: João da Silva">
+                            <input type="text" class="form-control" id="nome" placeholder="Ex.: João da Silva">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail">E-MAIL</label>
@@ -47,7 +49,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputDataNascimento">DATA DE NASCIMENTO</label>
-                            <input type="date" max="2010-01-01" class="form-control" required="required" id="dataNascimento">
+                            <input type="date" max="2010-01-01" class="form-control" id="dataNascimento">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputSexo">SEXO</label>
@@ -55,24 +57,24 @@
                                 <option value="" disabled selected>Escolher...</option>
                                 <option>MASCULINO</option>
                                 <option>FEMININO</option>
+                                <option>NÂO DECLARAR</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputCpf">CPF</label>
                             <input type="text" style="text-transform: uppercase" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" class="form-control"
-                                id="cpf" placeholder="Ex.: 000.000.000-00" required="required">
+                                id="cpf" placeholder="Ex.: 000.000.000-00">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputCep">CEP</label>
-                            <input type="text" style="text-transform: uppercase" maxlength="9" required="required" class="form-control" id="cep"
+                            <input type="text" style="text-transform: uppercase" maxlength="9" class="form-control" id="cep"
                                 placeholder="Ex.: 00.000-000">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputEndereço">Rua ou Av</label>
-                            <input type="text" style="text-transform: uppercase" maxlength="255" class="form-control" id="rua" placeholder="CONJUNTO ALDEBARAM, QUADRA Z"
-                                required="required">
+                            <label for="inputEndereço">ENDEREÇO</label>
+                            <input type="text" style="text-transform: uppercase" maxlength="255" class="form-control" id="rua" placeholder="CONJUNTO ALDEBARAM, QUADRA Z">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputNumero">NÚMERO</label>
@@ -82,15 +84,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCidade">CIDADE</label>
-                            <input type="text" style="text-transform: uppercase" class="form-control" id="cidade" placeholder="Ex.: MACEIO" required="required">
+                            <input type="text" style="text-transform: uppercase" class="form-control" id="cidade" placeholder="Ex.: MACEIO">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputBairro">BAIRRO</label>
-                            <input type="text" style="text-transform: uppercase" class="form-control" id="bairro" placeholder="Ex.: FAROL" required="required">
+                            <input type="text" style="text-transform: uppercase" class="form-control" id="bairro" placeholder="Ex.: FAROL">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputUf">UF</label>
-                            <input type="text" style="text-transform: uppercase" maxlength="2" class="form-control" id="uf" placeholder="AL" required="required">
+                            <input type="text" style="text-transform: uppercase" maxlength="2" class="form-control" id="uf" placeholder="AL">
                         </div>
                     </div>
                     <div class="form-row">
@@ -108,9 +110,11 @@
                     <button type="button" class="btn btn-primary" id="botao-finalizar">Finalizar</button>
                     <button type="submit" class="btn btn-danger" id="botao-cancelar">Cancelar</button>
                 </form>
-                <!--<div></div>-->
+                
             </div>
+            
         </div>
+        <div class="footer" id="rodape"></div>
     </div>
 
 </body>
