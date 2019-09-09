@@ -3,7 +3,8 @@
 
 
 
-$('#botao-cancelar').click(function () {
+$('#botao-cancelar').click(function (event) {
+    event.preventDefault();
     var r = confirm("Tem certeza que deseja cancelar o cadastro?");
     if (r == true) {
         location.href = '../pages/principal.html';
